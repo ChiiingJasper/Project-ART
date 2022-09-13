@@ -1,0 +1,390 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Alliance Recruitment Tool</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="~/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Nav Bar Start -->
+    <div class="navbar navbar-expand-lg bg-light navbar-light">
+        <div class="container-fluid">
+            <img id="logo" src="img/white1.png" width="10%" alt="Image">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                    <a href="#" class="nav-item nav-link">Home</a>
+                    <a href="#About" class="nav-item nav-link">About Us</a>
+                    <a href="#Contact" class="nav-item nav-link">Contact Us</a>
+                    <a href="#Features" class="nav-item nav-link">Features</a>
+                    <a href="#" class="nav-item nav-link">Sign In</a>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+    <!-- Carousel Start -->
+    <div class="carousel" id="Home">
+
+        <div class="carousel-item">
+            <div class="container">
+                <img class="side-logo" src="img/White.png" alt="Side Logo">
+                <div class="sign-in">
+                    SIGN IN
+                </div>
+                <div class="instructions">
+                    Sign in with your Email or Company ID
+                </div>
+
+                <div class="control-group email-form">
+                    <input type="text" class="form-control custom-form" id="Email/Company ID"
+                           placeholder="Email/Company ID" required="required"
+                           data-validation-required-message="Please enter your Email/Company ID" />
+                </div>
+
+                <div class="control-group password-form ">
+                    <input type="Password" class="form-control custom-form" id="Password" placeholder="Password"
+                           required="required" data-validation-required-message="Please enter your Password" />
+                </div>
+            </div>
+
+            <button class="btn custom-btn button" type="submit" id="sendMessageButton">Sign In</button>
+
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+    <!-- Carousel End -->
+    <!-- Team Start -->
+    <div class="team about" id="About">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Our Team</p>
+                <h2>The Developers Channel</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-item">
+                        <div class="team-img">
+                            <img src="img\Picture1.png" alt="Image">
+                            <div class="team-social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-text">
+                            <h2>Jasper Ching</h2>
+                            <p>Project Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-item">
+                        <div class="team-img">
+                            <img src="img\Picture2.png" alt="Image">
+                            <div class="team-social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-text">
+                            <h2>Ben Amiel Castañares</h2>
+                            <p>Research Lead</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-item">
+                        <div class="team-img">
+                            <img src="img/Picture3.png" alt="Image">
+                            <div class="team-social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-text">
+                            <h2>Franco Miguel Dosdos</h2>
+                            <p>Project Designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-item">
+                        <div class="team-img">
+                            <img src="img/Picture4.png" alt="Image">
+                            <div class="team-social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-text">
+                            <h2>Luc Nathan Miscala</h2>
+                            <p>Project Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+    <!-- Contact Start -->
+    <div class="contact" id="Contact">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Contact Us</p>
+                <h2>Message Us For Inquiries</h2>
+            </div>
+            <div class="row align-items-center contact-information">
+                <div class="col-md-6 col-lg-3">
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fa fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Address</h3>
+                            <p>Natalio B. Bacalso Ave, Cebu City</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fa fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Call Us</h3>
+                            <p>+639 717 1662</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email Us</h3>
+                            <p>devchan@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fa fa-share"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Follow Us</h3>
+                            <div class="contact-social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook-f"></i></a>
+                                <a href=""><i class="fab fa-youtube"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href=""><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row contact-form">
+                <div class="col-md-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15702.365266502953!2d123.881134!3d10.2944755!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x95d783198f4634f8!2sCebu%20Institute%20of%20Technology%20-%20University!5e0!3m2!1sen!2sph!4v1654595702168!5m2!1sen!2sph"
+                            frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+                </div>
+                <div class="col-md-6">
+                    <div id="success"></div>
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <div class="control-group">
+                            <input type="text" class="form-control" id="name" placeholder="Your Name"
+                                   required="required" data-validation-required-message="Please enter your name" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="email" class="form-control" id="email" placeholder="Your Email"
+                                   required="required" data-validation-required-message="Please enter your email" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" id="subject" placeholder="Subject"
+                                   required="required" data-validation-required-message="Please enter a subject" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" id="message" placeholder="Message" required="required"
+                                      data-validation-required-message="Please enter your message"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn custom-btn" type="submit" id="sendMessageButton">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+    <!-- Features Start -->
+    <div class="food features" id="Features">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Features</p>
+                <h2>Alliance Recruitment Tool</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-4">
+
+                    <div class="food-item">
+                        <img src="img/ai.png" alt="ai" width="100" height="100" style="margin: 20px">
+                        <div class="ai"></div>
+                        <h2>Artifical Intelligence Assessment</h2>
+                        <p>
+                            Candidate details uploaded into the system will be assessed by Artificial intelligence.
+                        </p>
+                        <a href="">See More</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="food-item">
+                        <img src="img/filter.png" alt="ai" width="100" height="100" style="margin: 20px">
+                        <h2>Filtering of Skills, Traits, and Attitude</h2>
+                        <p>
+                            Candidates are filtered based off their skills, traits, and attidude towards certain job
+                            descriptions.
+                        </p>
+                        <a href="">See More</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="food-item">
+
+                        <img src="img/medal.png" alt="ai" width="100" height="100" style="margin: 20px">
+                        <h2>Ranking of Best-Fit Candidates</h2>
+                        <p>
+                            Best suited candidates are ranked based on their aptitude towards the job.
+                        </p>
+                        <a href="">See More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features End -->
+    <!-- Footer Start -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="footer-contact">
+                                <h2>Our Address</h2>
+                                <p><i class="fa fa-map-marker-alt"></i>Natalio B. Bacalso Ave, Cebu City</p>
+                                <p><i class="fa fa-phone-alt"></i>+639 717 1662</p>
+                                <p><i class="fa fa-envelope"></i>devchan@gmail.com</p>
+                                <div class="footer-social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-youtube"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="footer-link">
+                                <h2>Quick Links</h2>
+                                <a href="">Terms of use</a>
+                                <a href="">Privacy policy</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FAQs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="footer-newsletter">
+                        <h2>Newsletter</h2>
+                        <p>
+                            The Developers Channel is dedicated in finding a solution for all of your online needs.
+                            Please contact us if you have any technical related problems that we can help you solve.
+                        </p>
+                        <div class="form">
+                            <input class="form-control" placeholder="Email goes here">
+                            <button class="btn custom-btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>Alliance Recruitment Tool &copy; <a href="#">ART</a>, All Right Reserved.</p>
+                <p>Designed By <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">The Developers Channel</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="~/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="~/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="~/mail/jqBootstrapValidation.min.js"></script>
+    <script src="~/mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/js/main.js"></script>
+</body>
+
+</html>
