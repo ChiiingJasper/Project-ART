@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_ART.Models
 {
     public class TableIntroduction
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Introduction ID")]
         public int Introduction_ID { get; set; }
 

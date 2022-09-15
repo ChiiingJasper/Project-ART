@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_ART.Models
 {
     public class TableDatasheet
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Data Sheet ID")]
         public int Data_Sheet_ID { get; set; }
 

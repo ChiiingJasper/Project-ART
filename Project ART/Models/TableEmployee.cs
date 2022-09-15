@@ -7,6 +7,7 @@ namespace Project_ART.Models
     public class TableEmployee
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Company ID")]
         public int Company_ID { get; set; }
 

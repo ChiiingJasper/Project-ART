@@ -7,6 +7,7 @@ namespace Project_ART.Models
     public class TableExam
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Exam ID")]
         public int Exam_ID { get; set; }
 

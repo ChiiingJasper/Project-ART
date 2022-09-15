@@ -7,6 +7,7 @@ namespace Project_ART.Models
     public class TableInterview
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Interview ID")]
         public int Interview_ID { get; set; }
 
