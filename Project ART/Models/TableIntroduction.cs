@@ -7,7 +7,6 @@ namespace Project_ART.Models
     public class TableIntroduction
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Introduction ID")]
         public int Introduction_ID { get; set; }
 

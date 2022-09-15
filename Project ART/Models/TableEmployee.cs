@@ -7,7 +7,6 @@ namespace Project_ART.Models
     public class TableEmployee
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Company ID")]
         public int Company_ID { get; set; }
 
@@ -22,10 +21,10 @@ namespace Project_ART.Models
         public char? Middle_Initial { get; set; }
 
         [DisplayName("Email")]
-        public EmailAddressAttribute? Email { get; set; }
+        public string? Email { get; set; }
 
         [DisplayName("Mobile Number")]
-        public PhoneAttribute? Mobile_Number { get; set; }
+        public string? Mobile_Number { get; set; }
 
     }
 }
