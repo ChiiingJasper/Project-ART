@@ -7,4 +7,13 @@
     <RootNamespace>Project_ART</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\Datasheet.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Models\NewFile.txt" />
+    <None Remove="Models\TableInterview" />
+  </ItemGroup>
+
 </Project>
