@@ -52,11 +52,12 @@
     <!-- Nav Bar End -->
     <!-- Carousel Start -->
     <div class="container-xxl">
+        
     <div class="carousel" id="Home">
-
+            
         <div class="carousel-item">
-           
-                <img class="side-logo" src="img/White.png" alt="Side Logo">
+                
+                
                 <div class="sign-in">
                     SIGN IN
                 </div>
@@ -74,8 +75,9 @@
                     <input type="Password" class="form-control custom-form" id="Password" placeholder="Password"
                            required="required" data-validation-required-message="Please enter your Password" />
                 </div>
+                <a asp-controller="Tool" asp-action="Index" class="btn custom-btn button" type="submit" id="sendMessageButton">Sign In</a>
             </div>
-            <a asp-controller="Tool" asp-action="Index" class="btn custom-btn button" type="submit" id="sendMessageButton">Sign In</a>
+            <img class="side-logo" src="img/White.png" alt="Side Logo">
         </div>
 
 

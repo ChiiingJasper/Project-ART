@@ -1094,80 +1094,66 @@ body {
 }
 
 .sign-in {
-
-
-    position: absolute;
+    position: relative;
     width: 276px;
     height: 86px;
-    left: 1317px;
-    top: 246px;
-
-
+    margin-left: 54%;
+    margin-bottom: 3%;
     font-style: normal;
     font-weight: 700;
     font-size: 72px;
     line-height: 86px;
     letter-spacing: 0.03em;
-
     color: #FFFFFF;
-
-
 }
 
 .instructions {
-
-    position: absolute;
+    position: relative;
     width: 467px;
     height: 41px;
-    left: 1226px;
-    top: 441px;
-
+    margin-left: 54%;
+    margin-bottom: 1%;
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
     line-height: 29px;
     letter-spacing: 0.03em;
-
     color: #FFFFFF;
-
-
 }
 
 
 .side-logo {
-
-    position: absolute;
-    width: 610px;
-    height: 541px;
-    left: 181px;
-    top: 165px;
-
+    position: relative;
+    max-width: 50%;
+    max-height: 50%;
+    margin-top: 8%;
+    margin-left: 8%;
 }
 
 .email-form {
-    position: absolute;
+    position: relative;
     width: 531px;
     height: 59px;
-    left: 1190px;
-    top: 498px;
+    margin-left: 54%;
+    margin-bottom: 2%;
 }
 
 .password-form {
-    position: absolute;
+    position: relative;
     width: 531px;
     height: 59px;
-    left: 1190px;
-    top: 591px;
+    margin-left: 54%;
+    margin-bottom: 2%;
 }
 
 .button {
-    position: absolute;
+    position: relative;
     width: 210px;
     height: 48px;
-    left: 1350px;
-    top: 684px;
+    margin-left: 54%;
     font-size: 20px !important;
     padding: 7px 25px !important;
+    margin-bottom: 2%;
 }
 
 .custom-form {
