@@ -40,8 +40,16 @@ namespace Project_ART.Controllers
 
         public IActionResult UpdateEmployee(int? id)
         {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
             var employeeFromDb = _db.Employees.Find(id);
 
+            if (employeeFromDb == null)
+            {
+                return NotFound();
+            }
             return View(employeeFromDb);
         }
 
@@ -49,9 +57,14 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateEmployee(TableEmployee obj)
         {
-            _db.Employees.Update(obj);
-            _db.SaveChanges();
-            return RedirectToAction("TableEmployee");
+            if (ModelState.IsValid)
+            {
+                _db.Employees.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("TableEmployee");
+            }
+            return View(obj);
+
         }
 
         [HttpGet]
