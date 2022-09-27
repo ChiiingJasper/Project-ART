@@ -10,19 +10,22 @@ namespace Project_ART.Models
         [DisplayName("Candidate ID")]
         public int Candidate_ID { get; set; }
 
-        [DisplayName("Application ID")]
-        public int Application_ID { get; set; }
-
-        [DisplayName("Assessment ID")]
-        public int Assessment_ID { get; set; }
-
-
-        [DisplayName("Hired By")]
-        public int Hired_By { get; set; }
-
-
         [DisplayName("Is Hired")]
         public Boolean Is_Hired { get; set; }
-        
+
+        //Foreign Keys
+        [ForeignKey("JobApplication")]
+        public int? ApplicationID { get; set; }
+        public virtual TableJobApplication JobApplication { get; set; }
+
+        [ForeignKey("Assessments")]
+        public int? AssessmentID { get; set; }
+        public virtual TableAssessment Assessments { get; set; }
+
+        [ForeignKey("Users")]
+        [DisplayName("Hired By")]
+        public int? CompanyID { get; set; }
+        public virtual TableUser Users { get; set; }
+
     }
 }

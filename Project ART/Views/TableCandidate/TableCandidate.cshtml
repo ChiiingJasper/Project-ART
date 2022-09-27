@@ -1,0 +1,102 @@
+﻿@model IEnumerable<TableCandidate>
+@{
+    ViewData["Title"] = "TableCandidate";
+}
+
+
+<!-- DataTables Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col pt-2">
+                <h3 class="m-0 font-weight-bold text-primary">Candidate Table</h3>
+            </div>
+
+            <div class="col col-lg-2" align="right">
+                <a asp-controller="TableCandidate" asp-action="CreateCandidate" class="btn btn-success btn-icon-split btn-lg">
+                    <span class="icon text-white-50">
+                        <i class="bi bi-plus-circle"></i>
+                    </span>
+                    <span class="text">Add</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                    <tr>
+                        <th>Candidate ID</th>
+                        <th>Hired</th>
+                        <th>Application ID</th>
+                        <th>Assessment ID</th>
+                        <th>Company ID</th>
+
+
+                        <th style="text-align:center">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach(var obj in Model)
+                    {
+                        <tr>
+                            <td>@obj.Candidate_ID</td>
+                            <td>@obj.Is_Hired</td>
+                            <td>@obj.ApplicationID</td>
+                            <td>@obj.AssessmentID</td>
+                            <td>@obj.CompanyID</td>
+
+                            <td class="text-center">
+                                <a asp-controller="TableCandidate" asp-action="UpdateCandidate" asp-route-id="@obj.Candidate_ID"class="btn btn-info btn-block btn-sm">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Update
+                                </a>
+                                <a data-toggle="modal" data-target="#deleteModal-@obj.Candidate_ID" class="btn btn-danger btn-block btn-sm">
+                                    <i class="bi bi-trash3"></i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                        
+                        <!-- Logout Modal-->
+                        <div class="modal fade" id="deleteModal-@obj.Candidate_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to Delete?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">You will be deleting Candidate Number @obj.Candidate_ID</div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
+                                        <a class="btn btn-danger" asp-controller="TableCandidate" asp-action="DeleteCandidate" asp-route-id="@obj.Candidate_ID">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+                   
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Page level plugins -->
+    <script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/js/demo/datatables-demo.js"></script>
+
+}
