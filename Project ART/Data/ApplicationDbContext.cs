@@ -14,7 +14,7 @@ namespace Project_ART.Data
         public DbSet<TableAssessment> Assessments { get; set; }
         public DbSet<TableCandidate> Candidates { get; set; }
         public DbSet<TableDatasheet> Datasheets { get; set; }
-        public DbSet<TableEmployee> Employees { get; set; }
+        public DbSet<TableUser> Users { get; set; }
         public DbSet<TableExam> Exams { get; set; }
         public DbSet<TableInterview> Interviews { get; set; }
         public DbSet<TableIntroduction> Introductions { get; set; }

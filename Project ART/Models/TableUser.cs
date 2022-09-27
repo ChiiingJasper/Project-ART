@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_ART.Models
 {
-    public class TableEmployee
+    public class TableUser
     {
         [Key]
         [DisplayName("Company ID")]
@@ -25,6 +25,14 @@ namespace Project_ART.Models
 
         [DisplayName("Mobile Number")]
         public string? Mobile_Number { get; set; }
+
+        [DisplayName("Password")]
+        public string Password { get; set; }
+
+        [DisplayName("Is Admin")]
+        public Boolean Is_Admin { get; set; }
+        [DisplayName("Profile Picture")]
+        public string Profile_Pic { get; set; }
 
     }
 }

@@ -7,16 +7,16 @@ namespace Project_ART.Models
     public class TableSkill
     {
         [Key]
-        [DisplayName("Skill ID")]
         public int Skill_ID { get; set; }
-
-        [DisplayName("Datasheet ID")]
-        public int Data_Sheet_ID { get; set; }
-
-        [DisplayName("Skill")]
-        public string? Skill { get; set; }
+        [DisplayName("Skill Name")]
+        public string? Skill_Name { get; set; }
 
         //Foreign Key
+        [Required]
+        [ForeignKey("Datasheets")]
+        public int DatasheetID { get; set; }
+        public virtual TableDatasheet Datasheets { get; set; }
+
 
     }
 }

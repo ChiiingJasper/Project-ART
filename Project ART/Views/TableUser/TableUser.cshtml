@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TableUser>
 @{
-    ViewData["Title"] = "TableEmployee";
+    ViewData["Title"] = "TableUser";
 }
 
 
@@ -9,11 +9,11 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col pt-2">
-                <h3 class="m-0 font-weight-bold text-primary">Employee Table</h3>
+                <h3 class="m-0 font-weight-bold text-primary">User Table</h3>
             </div>
 
             <div class="col col-lg-2" align="right">
-                <a asp-controller="Tool" asp-action="CreateEmployee" class="btn btn-success btn-icon-split btn-lg">
+                <a asp-controller="TableUser" asp-action="CreateUser" class="btn btn-success btn-icon-split btn-lg">
                     <span class="icon text-white-50">
                         <i class="bi bi-plus-circle"></i>
                     </span>
@@ -55,7 +55,7 @@
                             <td>@obj.Is_Admin</td>
                             <td>@obj.Profile_Pic</td>
                             <td class="text-center">
-                                <a asp-controller="Tool" asp-action="UpdateEmployee" asp-route-id="@obj.Company_ID"class="btn btn-info btn-block btn-sm">
+                                <a asp-controller="TableUser" asp-action="UpdateUser" asp-route-id="@obj.Company_ID"class="btn btn-info btn-block btn-sm">
                                     <i class="bi bi-pencil-square"></i>
                                     Update
                                 </a>
@@ -80,7 +80,7 @@
                                     <div class="modal-body">You will be deleting Employee Number @obj.Company_ID</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
-                                        <a class="btn btn-danger" asp-controller="Tool" asp-action="DeleteEmployee" asp-route-id="@obj.Company_ID">Delete</a>
+                                        <a class="btn btn-danger" asp-controller="TableUser" asp-action="DeleteUser" asp-route-id="@obj.Company_ID">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -103,4 +103,5 @@
 
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
+
 }

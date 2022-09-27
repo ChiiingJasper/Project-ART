@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Project_ART.Data;
+﻿using Project_ART.Data;
 using Project_ART.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Project_ART.Controllers
 {
-    public class ToolController : Controller
+    public class TableUserController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public ToolController(ApplicationDbContext db)
+        public TableUserController(ApplicationDbContext db)
         {
             _db = db;
         }
@@ -18,27 +18,27 @@ namespace Project_ART.Controllers
             return View();
         }
 
-        public IActionResult TableEmployee()
+        public IActionResult TableUser()
         {
-            IEnumerable<TableUser> objTableEmployeeList = _db.Users;
-            return View(objTableEmployeeList);
+            IEnumerable<TableUser> objTableUserList = _db.Users;
+            return View(objTableUserList);
         }
 
-        public IActionResult CreateEmployee()
+        public IActionResult CreateUser()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateEmployee(TableUser obj)
+        public IActionResult CreateUser(TableUser obj)
         {
             _db.Users.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableEmployee");
+            return RedirectToAction("TableUser");
         }
 
-        public IActionResult UpdateEmployee(int? id)
+        public IActionResult UpdateUser(int? id)
         {
             if (id == null || id == 0)
             {
@@ -55,26 +55,25 @@ namespace Project_ART.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateEmployee(TableUser obj)
+        public IActionResult UpdateUser(TableUser obj)
         {
             if (ModelState.IsValid)
             {
                 _db.Users.Update(obj);
                 _db.SaveChanges();
-                return RedirectToAction("TableEmployee");
+                return RedirectToAction("TableUser");
             }
             return View(obj);
 
         }
 
         [HttpGet]
-        public IActionResult DeleteEmployee(int? id)
+        public IActionResult DeleteUser(int? id)
         {
-            var employeeFromDb = _db.Users.Find(id);
-            _db.Users.Remove(employeeFromDb);
+            var userFromDb = _db.Users.Find(id);
+            _db.Users.Remove(userFromDb);
             _db.SaveChanges();
-            return RedirectToAction("TableEmployee");
+            return RedirectToAction("TableUser");
         }
-
     }
 }

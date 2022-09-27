@@ -1,6 +1,6 @@
 ﻿@model TableUser
 @{
-    ViewData["Title"] = "UpdateEmployee";
+    ViewData["Title"] = "UpdateUser";
 }
 
 
@@ -13,10 +13,10 @@
                 <div class="col">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Update Employee</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Update User</h1>
                             <hr />
                         </div>
-                        <form class="user" method="post" asp-action="UpdateEmployee">
+                        <form class="user" method="post" asp-action="UpdateUser">
                             <input asp-for="Company_ID"  hidden>
                             <div class="form-group row">
                                 <input asp-for="First_Name" type="text" class="form-control form-control-user"
@@ -39,12 +39,28 @@
                                 <input asp-for="Mobile_Number" type="text" class="form-control form-control-user"
                                        placeholder="Mobile Number" required>
                             </div>
+                            <div class="form-group row">
+                                <input asp-for="Password" type="password" class="form-control form-control-user"
+                                       placeholder="Password" required>
+                            </div>
+                            <div class="form-group row">
+                                <select asp-for="Is_Admin" class="form-control form-control-user"
+                                       placeholder="Is_Admin" required>
+                                       <option value="">----Select----</option>
+                                       <option value="True">True</option>
+                                       <option value="False">False</option>
+                                </select>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Profile_Pic" type="text" class="form-control form-control-user"
+                                       placeholder="Profile_Pic" required>
+                            </div>
                             <hr>
                             <div class="form-group row">
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a asp-controller="Tool" asp-action="TableUser"  class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableUser" asp-action="TableUser"  class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>
@@ -63,3 +79,4 @@
     </div>
 
 </div>
+
