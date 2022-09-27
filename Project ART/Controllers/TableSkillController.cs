@@ -52,6 +52,8 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Datasheets = GetDatasheets();
             return View(skillFromDb);
         }
 
@@ -59,13 +61,9 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateSkill(TableSkill obj)
         {
-            if (ModelState.IsValid)
-            {
-                _db.Skills.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("TableSkill");
-            }
-            return View(obj);
+            _db.Skills.Update(obj);
+            _db.SaveChanges();
+            return RedirectToAction("TableSkill");
 
         }
 
