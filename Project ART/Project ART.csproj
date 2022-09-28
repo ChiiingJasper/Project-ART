@@ -27,4 +27,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\UploadedFiles\Video\" />
+    <Folder Include="wwwroot\UploadedFiles\Resume\" />
+  </ItemGroup>
+
 </Project>

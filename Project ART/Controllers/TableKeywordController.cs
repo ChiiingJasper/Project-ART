@@ -46,7 +46,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var keywordFromDb = _db.Introductions.Find(id);
+            var keywordFromDb = _db.KeyWords.Find(id);
 
             if (keywordFromDb == null)
             {
@@ -70,9 +70,14 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteIntroduction(int? id)
         {
+
             var keywordFromDb = _db.KeyWords.Find(id);
-            _db.KeyWords.Remove(keywordFromDb);
-            _db.SaveChanges();
+            if(keywordFromDb != null)
+            {
+                _db.KeyWords.Remove(keywordFromDb);
+                _db.SaveChanges();
+            }
+            
             return RedirectToAction("TableKeyword");
         }
 
