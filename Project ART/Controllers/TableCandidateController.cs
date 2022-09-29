@@ -89,7 +89,7 @@ namespace Project_ART.Controllers
                 lstApplications.Add(new SelectListItem()
                 {
                     Value = item.Application_ID.ToString(),
-                    Text = item.Is_Approved.ToString()
+                    Text = item.Application_ID.ToString()
                 });
             }
 
