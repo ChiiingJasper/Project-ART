@@ -19,8 +19,12 @@
                         <form class="user" method="post" asp-action="UpdateJobApplication">
                             <input asp-for="Application_ID"  hidden>
                             <div class="form-group row">
-                                <input asp-for="Is_Approved" type="text" class="form-control form-control-user"
-                                       placeholder="Is Approved" required>
+                                <select asp-for="Is_Approved" class="form-control select-form"
+                                        placeholder="Is_Approved" required>
+                                    <option selected disabled>----Is Approved----</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
                             </div>
                             <div class="form-group row">
                                 <input asp-for="Date_Received" type="datetime-local" class="form-control form-control-user"
