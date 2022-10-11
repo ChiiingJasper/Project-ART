@@ -33,6 +33,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateUser(TableUser obj)
         {
+            obj.Password = BCrypt.Net.BCrypt.HashPassword(obj.Password);
             _db.Users.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableUser");

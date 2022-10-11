@@ -1097,7 +1097,7 @@ body {
     position: relative;
     width: 276px;
     height: 86px;
-    margin-left: 54%;
+    margin-left: 22%;
     margin-bottom: 3%;
     font-style: normal;
     font-weight: 700;
@@ -1111,7 +1111,7 @@ body {
     position: relative;
     width: 467px;
     height: 41px;
-    margin-left: 54%;
+    margin-left: 6%;
     margin-bottom: 1%;
     font-style: normal;
     font-weight: 700;
@@ -1134,26 +1134,25 @@ body {
     position: relative;
     width: 531px;
     height: 59px;
-    margin-left: 54%;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 }
 
 .password-form {
     position: relative;
     width: 531px;
     height: 59px;
-    margin-left: 54%;
-    margin-bottom: 2%;
+
+    margin-bottom: 5%;
 }
 
 .button {
     position: relative;
     width: 210px;
     height: 48px;
-    margin-left: 54%;
+
     font-size: 20px !important;
     padding: 7px 25px !important;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 }
 
 .custom-form {
@@ -1161,4 +1160,11 @@ body {
     height: calc(1.5em + 0.75rem + 20px);
     font-size: 1.5rem;
     text-indent: 5px;
+}
+.login-form {
+    text-align: center;
+    align-items: center;
+    margin-left: 55%;
+    margin-bottom: 9%;
+    margin-top: 5%;
 }

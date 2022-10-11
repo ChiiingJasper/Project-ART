@@ -2,7 +2,7 @@
     ViewData["Title"] = "Index";
     Layout = null;
 }
-
+@model LoginModel
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +57,7 @@
             
         <div class="carousel-item">
                 
-                
+                <form class="login-form" method="post">
                 <div class="sign-in">
                     SIGN IN
                 </div>
@@ -66,16 +66,22 @@
                 </div>
 
                 <div class="control-group email-form">
-                    <input type="text" class="form-control custom-form" id="Email/Company ID"
+                        <input asp-for="Email" type="text" class="form-control custom-form" id="Email"
                            placeholder="Email/Company ID" required="required"
                            data-validation-required-message="Please enter your Email/Company ID" />
                 </div>
 
                 <div class="control-group password-form ">
-                    <input type="Password" class="form-control custom-form" id="Password" placeholder="Password"
+                    <input asp-for="Password" type="Password" class="form-control custom-form" id="Password" placeholder="Password"
                            required="required" data-validation-required-message="Please enter your Password" />
                 </div>
-                <a asp-controller="Tool" asp-action="Index" class="btn custom-btn button" type="submit" id="sendMessageButton">Sign In</a>
+
+
+                <button class="btn custom-btn button" type="submit" id="sendMessageButton">Sign In</button>
+
+                </form>
+
+
             </div>
             <img class="side-logo" src="img/White.png" alt="Side Logo">
         </div>
