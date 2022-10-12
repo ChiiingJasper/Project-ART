@@ -4,7 +4,7 @@ namespace Project_ART.Models
 {
     public class LoginModel
     {
-        public string Email { get; set; }
+        public string UserCred { get; set; }
         public string Password { get; set; }
     }
 }

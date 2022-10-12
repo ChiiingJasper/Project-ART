@@ -104,16 +104,22 @@
                     </div>
                 </div>
             </li>
-
+            
             <!-- Divider -->
             <li>
             <hr class="sidebar-divider">
             </li>
 
             <!-- Heading -->
-            <li>
-            <div class="sidebar-heading">
+            @{
+                String Is_Admin = Context.Session.GetString("Is_Admin");
+
+                if (Is_Admin is "True")
+                {
+                    <li>
+                    <div class="sidebar-heading">
                 Admin Panel
+
             </div>
             </li>
 
@@ -151,6 +157,12 @@
             <li>
             <hr class="sidebar-divider d-none d-md-block">
             </li>
+
+                }
+            }
+
+            <li>
+            
 
 
         </ul>
@@ -329,14 +341,17 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin Istrator</span>
+                               @if(User.Identity.IsAuthenticated){
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@User.Identity.Name</span>
+                               }
+                                
                                 <img class="img-profile rounded-circle"
                                      src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a asp-controller="Profile" asp-action="Index" class="dropdown-item">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -349,7 +364,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" asp-action="LogOut" asp-controller="Home">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>

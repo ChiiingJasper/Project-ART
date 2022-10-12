@@ -2,12 +2,16 @@
 using Project_ART.Data;
 using Project_ART.Models;
 using System.Diagnostics;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Project_ART.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _db;
+
 
         public HomeController(ApplicationDbContext db)
         {
@@ -24,22 +28,46 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(LoginModel credentials)
         {
-            var user = _db.Users.SingleOrDefault(x => x.Email == credentials.Email);
 
-            bool isValidPassword = BCrypt.Net.BCrypt.Verify(credentials.Password, user.Password);
-            
+            if (ModelState.IsValid)
+            {
+                var user = _db.Users.SingleOrDefault(x => x.Email == credentials.UserCred || Convert.ToString(x.Company_ID) == credentials.UserCred);
+                if(user != null)
+                {
+                    bool isValidPassword = BCrypt.Net.BCrypt.Verify(credentials.Password, user.Password);
+                    if (isValidPassword)
+                    {
+                        var identity = new ClaimsIdentity(new[] 
+                        {new Claim(ClaimTypes.Name, user.First_Name + " " + user.Last_Name) },
+                            CookieAuthenticationDefaults.AuthenticationScheme);
+                        var principal = new ClaimsPrincipal(identity);
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                        HttpContext.Session.SetInt32("Id",user.Company_ID);
+                        HttpContext.Session.SetString("Is_Admin", user.Is_Admin.ToString());
+                        return RedirectToAction("Index", "Tool");
+                    }
+                    else
+                    {
+                        TempData["invalidPassword"] = "Invalid Password";
+                        TempData["redPass"] = "redPass";
+                        return View(credentials);
+                    }
+                }
+            }
+            TempData["invalidUser"] = "Email/Company ID not found";
+            TempData["redUser"] = "redUser";
+            return View(credentials);
+        }
 
-            if(isValidPassword)
-            {
-                TableUser u = _db.Users.FirstOrDefault(x => x.Email == credentials.Email && x.Password == credentials.Password);
-                string str = System.Convert.ToString(isValidPassword);
-                return RedirectToAction("Index", "Tool");
-            }
-            else
-            {
-                return Content("JEff");
-            }
-            
+        public void OnGet()
+        {
+
+        }
+
+        public IActionResult LogOut()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
 
 

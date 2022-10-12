@@ -29,6 +29,9 @@ namespace Project_ART.Models
         [DisplayName("Password")]
         public string Password { get; set; }
 
+        [DisplayName("Confirm Password")]
+        public string? Confirm_Password { get; set; }
+
         [DisplayName("Is Admin")]
         public Boolean Is_Admin { get; set; }
         [DisplayName("Profile Picture")]

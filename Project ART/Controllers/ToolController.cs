@@ -15,6 +15,8 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
+            var id = HttpContext.Session.GetInt32("Id");
+            ViewBag.currentUser = _db.Users.SingleOrDefault(x => x.Company_ID == id);
             return View();
         }
 
