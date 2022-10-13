@@ -107,7 +107,7 @@
                                     <h6 class="mt-2">Mobile</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                        <input asp-for="Mobile_Number" min="11" max="11" type="text" class="form-control"
+                                        <input asp-for="Mobile_Number" minlength="11" maxlength="11" type="text" class="form-control"
                                                placeholder="Mobile Number" required>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         
-                                        <input asp-for="Password" min="8" type="password" value="" class="form-control @TempData["error"]">
+                                        <input asp-for="Password" minlength="8" type="password" value="" class="form-control @TempData["error"]">
                                     </div>
                                 </div>
                                 <hr>
@@ -131,7 +131,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary password">
                                         <span class="text-danger small">&nbsp;@TempData["passwordMismatch"]</span>
-                                        <input asp-for="Confirm_Password" min="8" type="password" value="" class="form-control @TempData["error"]">
+                                        <input asp-for="Confirm_Password" minlength="8" type="password" value="" class="form-control @TempData["error"]">
                                         
                                     </div>
                                 </div>
