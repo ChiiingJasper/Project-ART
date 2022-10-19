@@ -19,8 +19,7 @@ namespace Project_ART.Controllers
                 if (file != null)
                 {
                     string UploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadedFiles/Video");
-                    string UniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName + ".webm";
-                    string UploadPath = Path.Combine(UploadFolder, UniqueFileName);
+                    string UploadPath = Path.Combine(UploadFolder, "Jasper_Ching.mp4");
                     await file.CopyToAsync(new FileStream(UploadPath, FileMode.Create));
                 }
 

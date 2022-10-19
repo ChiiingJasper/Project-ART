@@ -43,6 +43,7 @@ namespace Project_ART.Controllers
                         var principal = new ClaimsPrincipal(identity);
                         HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                         HttpContext.Session.SetInt32("Id",user.Company_ID);
+                        HttpContext.Session.SetString("FullName", user.First_Name+" "+user.Last_Name+".png");
                         HttpContext.Session.SetString("Is_Admin", user.Is_Admin.ToString());
                         return RedirectToAction("Index", "Tool");
                     }

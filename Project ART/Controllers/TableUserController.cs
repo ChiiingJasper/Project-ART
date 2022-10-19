@@ -60,6 +60,7 @@ namespace Project_ART.Controllers
         {
             if (ModelState.IsValid)
             {
+                obj.Password = BCrypt.Net.BCrypt.HashPassword(obj.Password);
                 _db.Users.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("TableUser");

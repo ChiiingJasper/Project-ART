@@ -12,8 +12,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\rankings.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Models\NewFile.txt" />
     <None Remove="Models\TableInterview" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\rankings.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +39,10 @@
   <ItemGroup>
     <Folder Include="wwwroot\UploadedFiles\Video\" />
     <Folder Include="wwwroot\UploadedFiles\Resume\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\rankings.js" />
   </ItemGroup>
 
 </Project>

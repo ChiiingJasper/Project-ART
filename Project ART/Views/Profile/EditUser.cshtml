@@ -22,7 +22,21 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Admin" class="rounded-circle pt-4" width="160">
+
+
+                                <a href="#" id="changeImage">
+                                <div class="container-image">
+                                    <img src="~/img/@Model.Profile_Pic" alt="Admin" id="profilePic" class="rounded-circle image-change" width="160">
+                                    <div class="middle">
+                                        <div class="text-change"><i class="bi bi-upload"></i></div>
+                                    </div>
+                                </div>
+                                
+                                <input id='imageUpload' type='file' accept="image/*" hidden />
+                                </a>
+
+
+                                
                                 <div class="mt-3">
                                     <h4>@Model.First_Name @Model.Last_Name</h4>
                                     @if (Model.Is_Admin)
@@ -57,7 +71,7 @@
 
                                     
 
-                                    <input asp-for="Profile_Pic" type="text" hidden class="form-control"
+                                    <input asp-for="Profile_Pic" type="text" id="profpic" hidden class="form-control"
                                            placeholder="Profile Pic" required>
 
                                     <input asp-for="Is_Admin" type="text" hidden class="form-control"
@@ -179,4 +193,5 @@
     </div>
 
 </div>
+<script src="~/js/demo/changeImage.js"></script>
 <script src="~/js/passwordValidator.js"></script>
