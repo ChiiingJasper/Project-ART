@@ -15,15 +15,17 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableDatasheet> objTableDatasheetList = _db.Datasheets;
+            return View(objTableDatasheetList);
         }
 
+        /*
         public IActionResult TableDatasheet()
         {
             IEnumerable<TableDatasheet> objTableDatasheetList = _db.Datasheets;
             return View(objTableDatasheetList);
         }
-
+        */
         public IActionResult CreateDatasheet()
         {
             return View();

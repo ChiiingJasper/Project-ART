@@ -16,14 +16,17 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableSkill> objTableSkillList = _db.Skills;
+            return View(objTableSkillList);
         }
 
+        /*
         public IActionResult TableSkill()
         {
             IEnumerable<TableSkill> objTableSkillList = _db.Skills;
             return View(objTableSkillList);
         }
+        */
 
         public IActionResult CreateSkill()
         {

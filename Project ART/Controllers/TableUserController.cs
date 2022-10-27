@@ -15,14 +15,17 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableUser> objTableUserList = _db.Users;
+            return View(objTableUserList);
         }
 
+        /*
         public IActionResult TableUser()
         {
             IEnumerable<TableUser> objTableUserList = _db.Users;
             return View(objTableUserList);
         }
+        */
 
         public IActionResult CreateUser()
         {

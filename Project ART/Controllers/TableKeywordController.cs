@@ -16,14 +16,17 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableKeyword> objTableKeywordList = _db.KeyWords;
+            return View(objTableKeywordList);
         }
 
+        /*
         public IActionResult TableKeyword()
         {
             IEnumerable<TableKeyword> objTableKeywordList = _db.KeyWords;
             return View(objTableKeywordList);
         }
+        */
 
         public IActionResult CreateKeyword()
         {

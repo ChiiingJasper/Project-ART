@@ -16,14 +16,17 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplication;
+            return View(objTableJobApplicationList);
         }
 
+        /*
         public IActionResult TableJobApplication()
         {
             IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplication;
             return View(objTableJobApplicationList);
         }
+        */
 
         public IActionResult CreateJobApplication()
         {

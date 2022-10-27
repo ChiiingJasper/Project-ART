@@ -16,14 +16,16 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableAssessment> objTableAssessmentList = _db.Assessments;
+            return View(objTableAssessmentList);
         }
-
+        /*
         public IActionResult TableAssessment()
         {
             IEnumerable<TableAssessment> objTableAssessmentList = _db.Assessments;
             return View(objTableAssessmentList);
         }
+        */
 
         public IActionResult CreateAssessment()
         {

@@ -16,14 +16,17 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableIntroduction> objTableIntroductionList = _db.Introductions;
+            return View(objTableIntroductionList);
         }
 
+        /*
         public IActionResult TableIntroduction()
         {
             IEnumerable<TableIntroduction> objTableIntroductionList = _db.Introductions;
             return View(objTableIntroductionList);
         }
+        */
 
         public IActionResult CreateIntroduction()
         {

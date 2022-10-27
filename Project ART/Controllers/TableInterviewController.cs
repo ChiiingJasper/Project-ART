@@ -15,14 +15,17 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableInterview> objTableInterviewList = _db.Interviews;
+            return View(objTableInterviewList);
         }
 
+        /*
         public IActionResult TableInterview()
         {
             IEnumerable<TableInterview> objTableInterviewList = _db.Interviews;
             return View(objTableInterviewList);
         }
+        */
 
         public IActionResult CreateInterview()
         {
