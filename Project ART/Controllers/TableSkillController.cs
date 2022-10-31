@@ -82,14 +82,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetDatasheets()
         {
             var lstDatasheets = new List<SelectListItem>();
-            foreach (var item in _db.Datasheets)
-            {
-                lstDatasheets.Add(new SelectListItem()
-                {
-                    Value = item.Data_Sheet_ID.ToString(),
-                    Text = item.First_Name
-                });
-            }
+           
 
             var defItem = new SelectListItem()
             {

@@ -10,9 +10,9 @@ namespace Project_ART.Models
         [DisplayName("Introduction ID")]
         public int Introduction_ID { get; set; }
 
-        [DisplayName("B5 Trait")]
-        [Required]
-        public string? B5_Trait { get; set; }
+        [DisplayName("Introduction Video")]
+        public string? Introduction_Video { get; set; }
+
 
         [DisplayName("DISC Trait")]
         public string? DISC_Trait { get; set; }

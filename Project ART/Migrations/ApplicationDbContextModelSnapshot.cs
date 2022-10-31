@@ -61,14 +61,11 @@ namespace Project_ART.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Candidate_ID"), 1L, 1);
 
-                    b.Property<int?>("ApplicationID")
+                    b.Property<int?>("Assessment_ID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AssessmentID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CompanyID")
-                        .HasColumnType("int");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -76,40 +73,48 @@ namespace Project_ART.Migrations
                     b.Property<bool?>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("First_Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Is_Hired")
+                    b.Property<int?>("Introduction_ID")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("Is_Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LastName")
+                    b.Property<int?>("Job_Application_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Last_Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MI")
+                    b.Property<string>("Middle_Initital")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Resume")
+                    b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("Province")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Video")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Resume_ID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Website")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Candidate_ID");
 
-                    b.HasIndex("ApplicationID");
+                    b.HasIndex("Assessment_ID");
 
-                    b.HasIndex("AssessmentID");
+                    b.HasIndex("Introduction_ID");
 
-                    b.HasIndex("CompanyID");
+                    b.HasIndex("Job_Application_ID");
+
+                    b.HasIndex("Resume_ID");
 
                     b.ToTable("Candidates");
                 });
@@ -150,7 +155,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Data_Sheet_ID");
 
-                    b.ToTable("Datasheets");
+                    b.ToTable("TableDatasheet");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableExam", b =>
@@ -193,11 +198,10 @@ namespace Project_ART.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Introduction_ID"), 1L, 1);
 
-                    b.Property<string>("B5_Trait")
-                        .IsRequired()
+                    b.Property<string>("DISC_Trait")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DISC_Trait")
+                    b.Property<string>("Introduction_Video")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Introduction_ID");
@@ -236,7 +240,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("IntroductionID");
 
-                    b.ToTable("JobApplication");
+                    b.ToTable("JobApplications");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableKeyword", b =>
@@ -263,27 +267,23 @@ namespace Project_ART.Migrations
                     b.ToTable("KeyWords");
                 });
 
-            modelBuilder.Entity("Project_ART.Models.TableRecruiter", b =>
+            modelBuilder.Entity("Project_ART.Models.TableResume", b =>
                 {
-                    b.Property<int>("Recruiter_ID")
+                    b.Property<int>("Resume_ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Recruiter_ID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Resume_ID"), 1L, 1);
 
-                    b.Property<int>("Company_ID")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("Is_Admin")
+                    b.Property<bool?>("Is_Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
+                    b.Property<string>("Resume")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Recruiter_ID");
+                    b.HasKey("Resume_ID");
 
-                    b.ToTable("Recruiters");
+                    b.ToTable("Resume");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableSkill", b =>
@@ -305,6 +305,35 @@ namespace Project_ART.Migrations
                     b.HasIndex("DatasheetID");
 
                     b.ToTable("Skills");
+                });
+
+            modelBuilder.Entity("Project_ART.Models.TableStatus", b =>
+                {
+                    b.Property<int>("Status_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Status_ID"), 1L, 1);
+
+                    b.Property<int?>("Candidate_ID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CompanyID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Status_ID");
+
+                    b.HasIndex("Candidate_ID");
+
+                    b.HasIndex("CompanyID");
+
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableUser", b =>
@@ -379,23 +408,29 @@ namespace Project_ART.Migrations
 
             modelBuilder.Entity("Project_ART.Models.TableCandidate", b =>
                 {
+                    b.HasOne("Project_ART.Models.TableAssessment", "Assessment")
+                        .WithMany()
+                        .HasForeignKey("Assessment_ID");
+
+                    b.HasOne("Project_ART.Models.TableIntroduction", "Introduction")
+                        .WithMany()
+                        .HasForeignKey("Introduction_ID");
+
                     b.HasOne("Project_ART.Models.TableJobApplication", "JobApplication")
                         .WithMany()
-                        .HasForeignKey("ApplicationID");
+                        .HasForeignKey("Job_Application_ID");
 
-                    b.HasOne("Project_ART.Models.TableAssessment", "Assessments")
+                    b.HasOne("Project_ART.Models.TableResume", "Resume")
                         .WithMany()
-                        .HasForeignKey("AssessmentID");
+                        .HasForeignKey("Resume_ID");
 
-                    b.HasOne("Project_ART.Models.TableUser", "Users")
-                        .WithMany()
-                        .HasForeignKey("CompanyID");
+                    b.Navigation("Assessment");
 
-                    b.Navigation("Assessments");
+                    b.Navigation("Introduction");
 
                     b.Navigation("JobApplication");
 
-                    b.Navigation("Users");
+                    b.Navigation("Resume");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableJobApplication", b =>
@@ -445,6 +480,21 @@ namespace Project_ART.Migrations
                         .IsRequired();
 
                     b.Navigation("Datasheets");
+                });
+
+            modelBuilder.Entity("Project_ART.Models.TableStatus", b =>
+                {
+                    b.HasOne("Project_ART.Models.TableCandidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("Candidate_ID");
+
+                    b.HasOne("Project_ART.Models.TableUser", "User")
+                        .WithMany()
+                        .HasForeignKey("CompanyID");
+
+                    b.Navigation("Candidate");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

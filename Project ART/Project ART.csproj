@@ -37,12 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\UploadedFiles\Video\" />
-    <Folder Include="wwwroot\UploadedFiles\Resume\" />
+    <None Include="wwwroot\js\rankings.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\rankings.js" />
+    <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\UploadedFiles\Jobs\" />
   </ItemGroup>
 
 </Project>

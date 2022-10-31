@@ -92,7 +92,7 @@ namespace Project_ART.Controllers
                 lstIntroductions.Add(new SelectListItem()
                 {
                     Value = item.Introduction_ID.ToString(),
-                    Text = item.B5_Trait
+                    
                 });
             }
 

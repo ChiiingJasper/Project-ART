@@ -16,8 +16,8 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<TableIntroduction> objTableIntroductionList = _db.Introductions;
-            return View(objTableIntroductionList);
+            
+            return View();
         }
 
         /*

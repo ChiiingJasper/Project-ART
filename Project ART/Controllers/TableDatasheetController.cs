@@ -15,8 +15,8 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<TableDatasheet> objTableDatasheetList = _db.Datasheets;
-            return View(objTableDatasheetList);
+           
+            return View();
         }
 
         /*
@@ -35,7 +35,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateDatasheet(TableDatasheet obj)
         {
-            _db.Datasheets.Add(obj);
+           
             _db.SaveChanges();
             return RedirectToAction("TableDatasheet");
         }
@@ -46,7 +46,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var datasheetFromDb = _db.Datasheets.Find(id);
+            var datasheetFromDb = _db.Introductions.Find(id);
 
             if (datasheetFromDb == null)
             {
@@ -61,7 +61,7 @@ namespace Project_ART.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Datasheets.Update(obj);
+                
                 _db.SaveChanges();
                 return RedirectToAction("TableDatasheet");
             }
@@ -72,8 +72,7 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteDatasheet(int? id)
         {
-            var datasheetFromDb = _db.Datasheets.Find(id);
-            _db.Datasheets.Remove(datasheetFromDb);
+          
             _db.SaveChanges();
             return RedirectToAction("TableDatasheet");
         }

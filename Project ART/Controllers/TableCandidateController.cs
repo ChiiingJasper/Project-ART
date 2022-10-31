@@ -87,7 +87,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetApplications()
         {
             var lstApplications = new List<SelectListItem>();
-            foreach (var item in _db.JobApplication)
+            foreach (var item in _db.JobApplications)
             {
                 lstApplications.Add(new SelectListItem()
                 {

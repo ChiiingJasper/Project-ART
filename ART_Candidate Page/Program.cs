@@ -20,8 +20,8 @@ app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
 {
     FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), @"./../ART_Candidate Page/wwwroot/img")),
-    RequestPath = new PathString("/CandidateUpload")
+                Path.Combine(Directory.GetCurrentDirectory(), @"./../Project ART/wwwroot/UploadedFiles")),
+    RequestPath = new PathString("/UserUpload")
 });
 app.UseRouting();
 

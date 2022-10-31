@@ -16,7 +16,7 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplication;
+            IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplications;
             return View(objTableJobApplicationList);
         }
 
@@ -40,7 +40,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateJobApplication(TableJobApplication obj)
         {
-            _db.JobApplication.Add(obj);
+            _db.JobApplications.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableJobApplication");
         }
@@ -51,7 +51,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var jobAppFromDb = _db.JobApplication.Find(id);
+            var jobAppFromDb = _db.JobApplications.Find(id);
 
             if (jobAppFromDb == null)
             {
@@ -68,7 +68,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateJobApplication(TableJobApplication obj)
         {
-            _db.JobApplication.Update(obj);
+            _db.JobApplications.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("TableJobApplication");
 
@@ -77,8 +77,8 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteJobApplication(int? id)
         {
-            var jobAppFromDb = _db.JobApplication.Find(id);
-            _db.JobApplication.Remove(jobAppFromDb);
+            var jobAppFromDb = _db.JobApplications.Find(id);
+            _db.JobApplications.Remove(jobAppFromDb);
             _db.SaveChanges();
             return RedirectToAction("TableJobApplication");
         }
@@ -86,14 +86,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetDatasheets()
         {
             var lstDatasheets = new List<SelectListItem>();
-            foreach (var item in _db.Datasheets)
-            {
-                lstDatasheets.Add(new SelectListItem()
-                {
-                    Value = item.Data_Sheet_ID.ToString(),
-                    Text = item.First_Name
-                });
-            }
+           
 
             var defItem = new SelectListItem()
             {
@@ -115,7 +108,7 @@ namespace Project_ART.Controllers
                 lstIntroductions.Add(new SelectListItem()
                 {
                     Value = item.Introduction_ID.ToString(),
-                    Text = item.B5_Trait
+                    
                 });
             }
 
