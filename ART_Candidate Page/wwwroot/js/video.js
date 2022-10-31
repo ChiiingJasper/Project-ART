@@ -34,9 +34,6 @@ playButton.addEventListener('click', () => {
 
 const downloadButton = document.querySelector('button#download');
 downloadButton.addEventListener('click', () => {
-    const blob = new Blob(recordedBlobs, { type: 'video/webm' });
-    PostBlob(blob);
-
     let introVidLabel = document.getElementById('introductionVideo');
     let firstName = document.getElementById('firstName').value;
     let lastName = document.getElementById('lastName').value;
@@ -143,4 +140,45 @@ document.querySelector('button#stop').addEventListener('click', async () => {
     const mediaStream = video.srcObject;
     await mediaStream.getTracks().forEach(track => track.stop());
     video.srcObject = null;
+});
+
+const submitCandidate = document.querySelector('button#download');
+downloadButton.addEventListener('click', () => {
+    let introVidLabel = document.getElementById('introductionVideo');
+    let firstName = document.getElementById('firstName').value;
+    let lastName = document.getElementById('lastName').value;
+    introVidLabel.innerHTML = firstName + "_" + lastName + ".mp4";
+});
+
+const submitCandidateDetails = document.getElementById('submitButton');
+submitCandidateDetails.addEventListener('click', () => {
+    const blob = new Blob(recordedBlobs, { type: 'video/mp4' });
+    var formData = new FormData();
+    formData.append('First Name', document.getElementById('firstName').value);
+    formData.append('Last Name', document.getElementById('lastName').value);
+    formData.append('Middle Initial', document.getElementById('mi').value);
+    formData.append('Email', document.getElementById('email').value);
+    formData.append('Mobile Number', document.getElementById('mobileNumber').value);
+    formData.append('Website', document.getElementById('website').value);
+    formData.append('Province', document.getElementById('province').value);
+    formData.append('City', document.getElementById('city').value);
+    formData.append('Photo', document.getElementById('PhotoInput').files[0]);
+    formData.append('Resume', document.getElementById('ResumeInput').files[0]);
+    formData.append('Introduction Video', blob);
+    $.ajax({
+        type: 'POST',
+        url: "JobDesc/SaveCandidateDetails",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (result) {
+            if (result) {
+                console.log('Success');
+            }
+        },
+        error: function (result) {
+            console.log(result);
+        }
+    })
 });

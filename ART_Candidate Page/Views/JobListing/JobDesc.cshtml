@@ -100,7 +100,7 @@
                 </div>
                 <div class="apply_job_form white-bg">
                     <h4>Apply for the job</h4>
-                    <form action="#">
+                    <form class="user" method="post">
                         <div class="row">
 
                             <div class="col-md-5">
@@ -117,27 +117,40 @@
 
                             <div class="col-md-2">
                                 <div class="input_field">
-                                    <input type="text" placeholder="MI">
+                                    <input type="text" id="mi" placeholder="MI">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="input_field">
-                                    <input type="text" placeholder="Email">
+                                    <input type="text" id="email" placeholder="Email">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="input_field">
-                                    <input type="tel" placeholder="Mobile Number">
+                                    <input type="tel" id="mobileNumber" placeholder="Mobile Number">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="input_field">
-                                    <input type="text" placeholder="Website/Portfolio link">
+                                    <input type="text" id="website" placeholder="Website/Portfolio link">
                                 </div>
                             </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="input_field">
+                                    <select class="form-control" name="Province" id="province" required></select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <div class="input_field">
+                                    <select class="form-control" name="City" id="city" required></select>
+                                </div>
+                            </div>
+
 
                             <div class="col-md-6">
 
@@ -176,6 +189,8 @@
                                 </div>
                             </div>
 
+
+
                             <div class="col-md-12">
                                 
                                 <div class="input-group">
@@ -196,7 +211,7 @@
                             
                             <div class="col-md-12 mt-5">
                                 <div class="submit_btn">
-                                    <a class="boxed-btn3 w-100" data-toggle="modal" data-target="#successModal">Submit</a>
+                                    <a id="submitButton" class="boxed-btn3 w-100" data-toggle="modal" data-target="#successModal">Submit</a>
                                 </div>
                             </div>
                         </div>
@@ -306,6 +321,6 @@
 <script src="~/js/Photo.js"></script>
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <script src="~/js/video.js" asp-append-version="true" async></script>
-
-
+<script src="~/js/city.js" asp-append-version="true" async></script>
+<script src="~/js/cityFunction.js" asp-append-version="true" async></script>
 
