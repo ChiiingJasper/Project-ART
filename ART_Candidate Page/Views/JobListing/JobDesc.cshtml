@@ -1,0 +1,311 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Job Desc";
+}
+<link rel="stylesheet" href="~/css/customstyle.css">
+<link rel="stylesheet" href="~/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/css/video.css">
+<link rel="stylesheet" href="~/css/animatedCheck.css">
+
+<div class="bradcam_area slider_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Job Description</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="job_details_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="job_details_header">
+                    <div class="single_jobs white-bg d-flex justify-content-between">
+                        <div class="jobs_left d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="~/img/intern.png" alt="">
+                            </div>
+                            <div class="jobs_conetent">
+                                <a href="#">
+                                    <h4>Internship</h4>
+                                </a>
+                                <div class="links_locat d-flex align-items-center">
+                                    <div class="location">
+                                        <p> <i class="fa fa-map-marker"></i> Cebu, Philippines</p>
+                                    </div>
+                                    <div class="location">
+                                        <p> <i class="fa fa-clock-o"></i> Full-time</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs_right">
+                        </div>
+                    </div>
+                </div>
+                <div class="descript_wrap white-bg">
+                    <div class="single_wrap">
+                        <h4>Job description</h4>
+                        <p>
+                            There is no cost to participate in the program. In addition, participants will be given
+                            allowances based on their attendance and timeliness.
+                        </p>
+                        <p>
+                            Assists with development and implementation of projects, with assigned tasks in the
+                            following areas.
+                        </p>
+                    </div>
+                    <div class="single_wrap">
+                        <h4>Responsibility</h4>
+                        <ul>
+                            <li>Development</li>
+                            <li>Quality Assurance and Testing</li>
+                            <li>Analysis and Design</li>
+                            <li>Development</li>
+                        </ul>
+                    </div>
+                    <div class="single_wrap">
+                        <h4>Qualifications</h4>
+                        <ul>
+                            <li>
+                                Enrolled in Computer Science, Computer Engineering, and other IT-related courses.
+                            </li>
+                            <li>Good scholastic record.</li>
+                            <li>Committed to the whole duration of the program.</li>
+                            <li>Organized team player that has attention to details.</li>
+                            <li>Basic proficiency in English. Nihongo is an advantage.</li>
+                        </ul>
+                    </div>
+                    <div class="single_wrap">
+                        <h4>Benefits</h4>
+                        <ul>
+                            <li>IT Related Topics
+                            <p>Projects for IT-related topics such as Software Engineering, Analysis and Design, Testing (with approval from your Chair).</p>
+                            </li>
+                            <li>Flexible Schedule
+                            <p>Flexible schedule that is compatible with the student's academic schedule (e.g. increase number of hours to meet requirements of the school).</p>
+                            </li>
+                            <li>OJT Continuation
+                            <p>Continuation of OJT through part time work at Alliance during the first and second semester.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="apply_job_form white-bg">
+                    <h4>Apply for the job</h4>
+                    <form action="#">
+                        <div class="row">
+
+                            <div class="col-md-5">
+                                <div class="input_field">
+                                    <input type="text" id="firstName" placeholder="First Name">
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="input_field">
+                                    <input type="text" id="lastName" placeholder="Last Name">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="input_field">
+                                    <input type="text" placeholder="MI">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="input_field">
+                                    <input type="text" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="input_field">
+                                    <input type="tel" placeholder="Mobile Number">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="input_field">
+                                    <input type="text" placeholder="Website/Portfolio link">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" id="Photo" disabled>
+                                            <i class="fa fa-camera" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="custom-file">
+
+                                        <input type="file" class="custom-file-input" id="PhotoInput" accept="image/*">
+                                        <label class="custom-file-label" for="Photo" id="PhotoLabel">2x2 Photo</label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" id="Resume" disabled>
+                                            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="ResumeInput" accept=".pdf">
+                                        <label class="custom-file-label" for="Resume" id="ResumeLabel">Upload CV</label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" id="" disabled>
+                                            <i class="fa fa-video" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="custom-file">
+                                        <a data-toggle="modal" data-target="#videoModal">  
+                                            <label class="custom-file-label" id="introductionVideo" for="inputGroupFile03">Introduction Video</label>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="col-md-12 mt-5">
+                                <div class="submit_btn">
+                                    <a class="boxed-btn3 w-100" data-toggle="modal" data-target="#successModal">Submit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                
+                    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Introduction Video</h5>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <div class="text-center">
+                                        <video id="gum" playsinline autoplay muted></video>
+                                    </div>
+                                    <div class="text-center">
+                                        
+                                        <button type="button" id="start" class="btn btn-primary button-video">Start Camera</button>
+                                        <button type="button" id="record" class="btn btn-primary button-video" disabled>Start Recording</button>
+                                        <button type="button" id="play" class="btn btn-primary button-video" data-toggle="modal" data-target="#previewModal" disabled>Preview Video</button>
+
+                                        <button type="button" id="stop" class="btn btn-primary">Stop Camera</button>
+                                    </div>
+                                    </div>
+
+                                <div class="modal-footer">
+                                    
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Preview Introduction Video</h5>
+                                </div>
+                                <div class="modal-body"><video class="video-responsive" id="recorded" playsinline></video></div>
+                                <div class="modal-footer">
+                                    <button id="download" class="btn btn-success" data-dismiss="modal">Submit</button>
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Submitted</h5>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <h5 class="text-center">Your details have been submitted.</h5>
+                                    <svg class="animated-check" viewBox="0 0 24 24">
+                                        
+                                        <path d="M4.1 12.7L9 17.6 20.3 6.3" fill="none" />
+                                        
+                                    </svg>
+                                    <p class="text-center">Confirm your email so we can process your details.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="job_sumary">
+                    <div class="summery_header">
+                        <h3>Job Summary</h3>
+                    </div>
+                    <div class="job_content">
+                        <ul>
+                            <li>Published on: <span>19 Oct, 2022</span></li>
+                            <li>Vacancy: <span>2 Positions</span></li>
+                            <li>Salary: <span>50k - 100k/m</span></li>
+                            <li>Location: <span>Cebu, Philippines</span></li>
+                            <li>Job Nature: <span> Full-time</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/Photo.js"></script>
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="~/js/video.js" asp-append-version="true" async></script>
+
+
+

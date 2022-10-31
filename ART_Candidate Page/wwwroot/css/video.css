@@ -1,0 +1,30 @@
+.video-button {
+  margin: 0 3px 10px 0;
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 150px;
+}
+
+video {
+    vertical-align: top;
+    --width: 30vw;
+    width: var(--width);
+    height: calc(var(--width) * 0.5625);
+    background-image: url("../img/cameraNotWorking.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 10px;
+}
+
+
+video#gumVideo {
+    margin: 0 20px 20px 0;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.video-responsive {
+    border-style: none;
+}
