@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Project_ART.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,7 +43,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), @"./../ART_Candidate Page/wwwroot/img")),
+    RequestPath = new PathString("/CandidateUpload")
+});
 app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
