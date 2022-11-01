@@ -1,4 +1,4 @@
-﻿@model TableSkill
+﻿
 @{
     ViewData["Title"] = "UpdateSkill";
 }
@@ -17,13 +17,13 @@
                             <hr />
                         </div>
                         <form class="user" method="post" asp-action="UpdateSkill">
-                            <input asp-for="Skill_ID"  hidden>
+                            <input   hidden>
                             <div class="form-group row">
-                                <input asp-for="Skill_Name" type="text" class="form-control form-control-user"
+                                <input  type="text" class="form-control form-control-user"
                                        placeholder="Skill Name" required>
                             </div>
                             <div class="form-group row">
-                                <select asp-for="DatasheetID" asp-items="ViewBag.Datasheets" class="form-control  select-form" required></select>
+                                <select  class="form-control  select-form" required></select>
                             </div>
                             
                             <hr>

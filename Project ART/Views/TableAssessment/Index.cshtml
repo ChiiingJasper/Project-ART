@@ -43,11 +43,11 @@
                     @foreach(var obj in Model)
                     {
                         <tr>
-                            <td>@obj.Assessment_ID</td>
-                            <td>@obj.Date_Assessed</td>
-                            <td>@obj.ExamID</td>
-                            <td>@obj.InterviewID</td>
-                            <td>@obj.CompanyID</td>
+                            <td>@obj</td>
+                            <td>@obj</td>
+                            <td>@obj</td>
+                            <td>@obj</td>
+                            <td>@obj</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableAssessment" asp-action="UpdateAssessment" asp-route-id="@obj.Assessment_ID"class="btn btn-info btn-block btn-sm">
@@ -75,7 +75,7 @@
                                     <div class="modal-body">You will be deleting Assessment Number @obj.Assessment_ID</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
-                                        <a class="btn btn-danger" asp-controller="TableAssessment" asp-action="DeleteAssessment" asp-route-id="@obj.Assessment_ID">Delete</a>
+                                        <a class="btn btn-danger" asp-controller="TableAssessment" asp-action="DeleteAssessment" asp-route-id="@obj">Delete</a>
                                     </div>
                                 </div>
                             </div>

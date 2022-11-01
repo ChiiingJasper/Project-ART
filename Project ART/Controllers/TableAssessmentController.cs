@@ -16,7 +16,7 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<TableAssessment> objTableAssessmentList = _db.Assessments;
+            IEnumerable<TableAssessment> objTableAssessmentList = _db.Assessment;
             return View(objTableAssessmentList);
         }
         /*
@@ -39,7 +39,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateAssessment(TableAssessment obj)
         {
-            _db.Assessments.Add(obj);
+            _db.Assessment.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableAssessment");
         }
@@ -50,7 +50,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var assessmentFromDb = _db.Assessments.Find(id);
+            var assessmentFromDb = _db.Assessment.Find(id);
 
             if (assessmentFromDb == null)
             {
@@ -67,7 +67,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateAssessment(TableAssessment obj)
         {
-            _db.Assessments.Update(obj);
+            _db.Assessment.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("TableAssessment");
 
@@ -76,8 +76,8 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteAssessment(int? id)
         {
-            var assessmentFromDb = _db.Assessments.Find(id);
-            _db.Assessments.Remove(assessmentFromDb);
+            var assessmentFromDb = _db.Assessment.Find(id);
+            _db.Assessment.Remove(assessmentFromDb);
             _db.SaveChanges();
             return RedirectToAction("TableAssessment");
         }
@@ -86,7 +86,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetExams()
         {
             var lstExams = new List<SelectListItem>();
-            foreach (var item in _db.Exams)
+            foreach (var item in _db.Exam)
             {
                 lstExams.Add(new SelectListItem()
                 {
@@ -110,7 +110,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetInterviews()
         {
             var lstInterview = new List<SelectListItem>();
-            foreach (var item in _db.Interviews)
+            foreach (var item in _db.Interview)
             {
                 lstInterview.Add(new SelectListItem()
                 {
@@ -134,7 +134,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetUsers()
         {
             var lstUsers = new List<SelectListItem>();
-            foreach (var item in _db.Users)
+            foreach (var item in _db.User)
             {
                 lstUsers.Add(new SelectListItem()
                 {

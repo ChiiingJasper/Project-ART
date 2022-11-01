@@ -11,9 +11,14 @@ namespace Project_ART.Models
         public int Exam_ID { get; set; }
 
         [DisplayName("Exam Score")]
-        [Required]
-        public double Exam_Score { get; set; }
-        
+        public int? Exam_Score { get; set; }
+
+        [DisplayName("Exam Sheet")]
+        public string? Exam_Sheet { get; set; }
+
+        [DisplayName("Is Deleted")]
+        public bool? Is_Deleted { get; set; } = false;
+
 
     }
 }

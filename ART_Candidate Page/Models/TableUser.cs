@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Project_ART.Models
+namespace ART_Candidate_Page.Models
 {
     public class TableUser
     {

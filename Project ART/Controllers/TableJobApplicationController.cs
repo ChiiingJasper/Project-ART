@@ -16,7 +16,7 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplications;
+            IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplication;
             return View(objTableJobApplicationList);
         }
 
@@ -40,7 +40,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateJobApplication(TableJobApplication obj)
         {
-            _db.JobApplications.Add(obj);
+            _db.JobApplication.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableJobApplication");
         }
@@ -51,7 +51,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var jobAppFromDb = _db.JobApplications.Find(id);
+            var jobAppFromDb = _db.JobApplication.Find(id);
 
             if (jobAppFromDb == null)
             {
@@ -68,7 +68,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateJobApplication(TableJobApplication obj)
         {
-            _db.JobApplications.Update(obj);
+            _db.JobApplication.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("TableJobApplication");
 
@@ -77,8 +77,8 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteJobApplication(int? id)
         {
-            var jobAppFromDb = _db.JobApplications.Find(id);
-            _db.JobApplications.Remove(jobAppFromDb);
+            var jobAppFromDb = _db.JobApplication.Find(id);
+            _db.JobApplication.Remove(jobAppFromDb);
             _db.SaveChanges();
             return RedirectToAction("TableJobApplication");
         }
@@ -103,7 +103,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetIntroductions()
         {
             var lstIntroductions = new List<SelectListItem>();
-            foreach (var item in _db.Introductions)
+            foreach (var item in _db.Introduction)
             {
                 lstIntroductions.Add(new SelectListItem()
                 {
@@ -127,7 +127,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetUsers()
         {
             var lstUsers = new List<SelectListItem>();
-            foreach (var item in _db.Users)
+            foreach (var item in _db.User)
             {
                 lstUsers.Add(new SelectListItem()
                 {

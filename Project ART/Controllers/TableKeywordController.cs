@@ -16,7 +16,7 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<TableKeyword> objTableKeywordList = _db.KeyWords;
+            IEnumerable<TableKeyword> objTableKeywordList = _db.KeyWord;
             return View(objTableKeywordList);
         }
 
@@ -38,7 +38,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateKeyword(TableKeyword obj)
         {
-            _db.KeyWords.Add(obj);
+            _db.KeyWord.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableKeyword");
         }
@@ -49,7 +49,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var keywordFromDb = _db.KeyWords.Find(id);
+            var keywordFromDb = _db.KeyWord.Find(id);
 
             if (keywordFromDb == null)
             {
@@ -64,7 +64,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateKeyword(TableKeyword obj)
         {
-            _db.KeyWords.Update(obj);
+            _db.KeyWord.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("TableKeyword");
 
@@ -74,10 +74,10 @@ namespace Project_ART.Controllers
         public IActionResult DeleteIntroduction(int? id)
         {
 
-            var keywordFromDb = _db.KeyWords.Find(id);
+            var keywordFromDb = _db.KeyWord.Find(id);
             if(keywordFromDb != null)
             {
-                _db.KeyWords.Remove(keywordFromDb);
+                _db.KeyWord.Remove(keywordFromDb);
                 _db.SaveChanges();
             }
             
@@ -87,7 +87,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetIntroductions()
         {
             var lstIntroductions = new List<SelectListItem>();
-            foreach (var item in _db.Introductions)
+            foreach (var item in _db.Introduction)
             {
                 lstIntroductions.Add(new SelectListItem()
                 {

@@ -11,10 +11,13 @@ namespace ART_Candidate_Page.Models
         public int Resume_ID { get; set; }
 
         [DisplayName("Resume")]
-        public String? Resume { get; set; }
+        public string? Resume { get; set; }
+
+        [DisplayName("Resume Score")]
+        public int? Resume_Score { get; set; }
 
         [DisplayName("Is Deleted")]
-        public Boolean? Is_Deleted { get; set; } = false;
+        public bool? Is_Deleted { get; set; } = false;
 
     }
 }

@@ -43,19 +43,19 @@
                     @foreach(var obj in Model)
                     {
                         <tr>
-                            <td>@obj.Application_ID</td>
-                            <td>@obj.Is_Approved</td>
-                            <td>@obj.Date_Received</td>
-                            <td>@obj.IntroductionID</td>
-                            <td>@obj.DatasheetID</td>
-                            <td>@obj.CompanyID</td>
+                            <td>@obj.</td>
+                            <td>@obj.</td>
+                            <td>@obj.</td>
+                            <td>@obj.</td>
+                       
+                            <td>@obj.</td>
 
                             <td class="text-center">
-                                <a asp-controller="TableJobApplication" asp-action="UpdateJobApplication" asp-route-id="@obj.Application_ID"class="btn btn-info btn-block btn-sm">
+                                <a asp-controller="TableJobApplication" asp-action="UpdateJobApplication" asp-route-id="@obj."class="btn btn-info btn-block btn-sm">
                                     <i class="bi bi-pencil-square"></i>
                                     Update
                                 </a>
-                                <a data-toggle="modal" data-target="#deleteModal-@obj.Application_ID" class="btn btn-danger btn-block btn-sm">
+                                <a data-toggle="modal" data-target="#deleteModal-@obj." class="btn btn-danger btn-block btn-sm">
                                     <i class="bi bi-trash3"></i>
                                     Delete
                                 </a>
@@ -63,7 +63,7 @@
                         </tr>
                         
                         <!-- Logout Modal-->
-                        <div class="modal fade" id="deleteModal-@obj.Application_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="deleteModal-@obj." tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -73,10 +73,10 @@
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">You will be deleting Job Application Number @obj.Application_ID</div>
+                                    <div class="modal-body">You will be deleting Job Application Number @obj.</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
-                                        <a class="btn btn-danger" asp-controller="TableJobApplication" asp-action="DeleteJobApplication" asp-route-id="@obj.Application_ID">Delete</a>
+                                        <a class="btn btn-danger" asp-controller="TableJobApplication" asp-action="DeleteJobApplication" asp-route-id="@obj.">Delete</a>
                                     </div>
                                 </div>
                             </div>

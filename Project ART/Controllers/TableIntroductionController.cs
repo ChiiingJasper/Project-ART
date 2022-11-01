@@ -37,7 +37,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateIntroduction(TableIntroduction obj)
         {
-            _db.Introductions.Add(obj);
+            _db.Introduction.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableIntroduction");
         }
@@ -48,7 +48,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var introFromDb = _db.Introductions.Find(id);
+            var introFromDb = _db.Introduction.Find(id);
 
             if (introFromDb == null)
             {
@@ -63,7 +63,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateIntroduction(TableIntroduction obj)
         {
-            _db.Introductions.Update(obj);
+            _db.Introduction.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("TableIntroduction");
 
@@ -72,8 +72,8 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteIntroduction(int? id)
         {
-            var introFromDb = _db.Introductions.Find(id);
-            _db.Introductions.Remove(introFromDb);
+            var introFromDb = _db.Introduction.Find(id);
+            _db.Introduction.Remove(introFromDb);
             _db.SaveChanges();
             return RedirectToAction("TableIntroduction");
         }

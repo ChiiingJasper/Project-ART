@@ -13,14 +13,14 @@ namespace Project_ART.Controllers
         {
             _db = db;
         }
-
+        /*
         public IActionResult Index()
         {
             IEnumerable<TableSkill> objTableSkillList = _db.Skills;
             return View(objTableSkillList);
         }
 
-        /*
+        
         public IActionResult TableSkill()
         {
             IEnumerable<TableSkill> objTableSkillList = _db.Skills;
@@ -33,16 +33,16 @@ namespace Project_ART.Controllers
             ViewBag.Datasheets = GetDatasheets();
             return View();
         }
-
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateSkill(TableSkill obj)
+          public IActionResult CreateSkill(TableSkill obj)
         {
             _db.Skills.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableSkill");
         }
-
+        
         public IActionResult UpdateSkill(int? id)
         {
             if (id == null || id == 0)
@@ -59,8 +59,8 @@ namespace Project_ART.Controllers
             ViewBag.Datasheets = GetDatasheets();
             return View(skillFromDb);
         }
-
-        [HttpPost]
+        */
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult UpdateSkill(TableSkill obj)
         {
@@ -69,7 +69,7 @@ namespace Project_ART.Controllers
             return RedirectToAction("TableSkill");
 
         }
-
+        
         [HttpGet]
         public IActionResult DeleteSkill(int? id)
         {
@@ -78,7 +78,7 @@ namespace Project_ART.Controllers
             _db.SaveChanges();
             return RedirectToAction("TableSkill");
         }
-
+        */
         private List<SelectListItem> GetDatasheets()
         {
             var lstDatasheets = new List<SelectListItem>();

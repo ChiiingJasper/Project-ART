@@ -10,12 +10,18 @@ namespace Project_ART.Models
         [DisplayName("Introduction ID")]
         public int Introduction_ID { get; set; }
 
+        [DisplayName("DISC Trait")]
+        public string? DISC_Trait { get; set; }
+
         [DisplayName("Introduction Video")]
         public string? Introduction_Video { get; set; }
 
+        [DisplayName("Introduction Score")]
+        public int? Introduction_Score { get; set; }
 
-        [DisplayName("DISC Trait")]
-        public string? DISC_Trait { get; set; }
+        [DisplayName("Is Deleted")]
+        public bool? Is_Deleted { get; set; } = false;
+
 
     }
 

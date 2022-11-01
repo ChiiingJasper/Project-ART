@@ -10,15 +10,18 @@ namespace ART_Candidate_Page.Models
         [DisplayName("Assessment ID")]
         public int Assessment_ID { get; set; }
 
-        [DisplayName("Date Assessed")]
-        public DateTime Date_Assessed { get; set; }
+        [ForeignKey("Exam")]
+        [DisplayName("Exam ID")]
+        public int Exam_ID { get; set; }
+        public virtual TableExam? Exam { get; set; }
 
-        //Foreign Keys
-        [Required]
-        [ForeignKey("Exams")]
-        public int ExamID { get; set; }
-        public virtual TableExam Exams { get; set; }
+        [ForeignKey("Interview")]
+        [DisplayName("Interview ID")]
+        public int Interview_ID { get; set; }
+        public virtual TableInterview? Interview { get; set; }
 
+        [DisplayName("Is Deleted")]
+        public bool? Is_Deleted { get; set; } = false;
 
     }
 }

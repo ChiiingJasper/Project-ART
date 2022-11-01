@@ -19,17 +19,17 @@
                         <form class="user" method="post" asp-action="UpdateAssessment">
                             <input asp-for="Assessment_ID"  hidden>
                             <div class="form-group row">
-                                <input asp-for="Date_Assessed" type="datetime-local" class="form-control form-control-user"
+                                <input  type="datetime-local" class="form-control form-control-user"
                                        placeholder="Date Assessed" required>
                             </div>
                             <div class="form-group row">
-                                <select asp-for="ExamID" asp-items="ViewBag.Exams" class="form-control  select-form" required></select>
+                                <select asp-items="ViewBag.Exams" class="form-control  select-form" required></select>
                             </div>
                             <div class="form-group row">
-                                <select asp-for="InterviewID" asp-items="ViewBag.Interviews" class="form-control  select-form" required></select>
+                                <select  asp-items="ViewBag.Interviews" class="form-control  select-form" required></select>
                             </div>
                             <div class="form-group row">
-                                <select asp-for="CompanyID" asp-items="ViewBag.Users" class="form-control  select-form" required></select>
+                                <select  asp-items="ViewBag.Users" class="form-control  select-form" required></select>
                             </div>
                             
                             <hr>

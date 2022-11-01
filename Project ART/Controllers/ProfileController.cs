@@ -17,17 +17,17 @@ namespace Project_ART.Controllers
         public IActionResult Index()
         {
             var id = HttpContext.Session.GetInt32("Id");
-            ViewBag.currentUser = _db.Users.SingleOrDefault(x => x.Company_ID == id);
-            var userFromDb = _db.Users.Find(id);
+            ViewBag.currentUser = _db.User.SingleOrDefault(x => x.Company_ID == id);
+            var userFromDb = _db.User.Find(id);
             return View(userFromDb);
         }
 
         public IActionResult EditUser()
         {
             var id = HttpContext.Session.GetInt32("Id");
-            ViewBag.currentUser = _db.Users.SingleOrDefault(x => x.Company_ID == id);
+            ViewBag.currentUser = _db.User.SingleOrDefault(x => x.Company_ID == id);
 
-            var userFromDb = _db.Users.Find(id);
+            var userFromDb = _db.User.Find(id);
             return View(userFromDb);
         }
 
@@ -36,12 +36,12 @@ namespace Project_ART.Controllers
         public IActionResult EditUser(TableUser obj)
         {
             var id = HttpContext.Session.GetInt32("Id");
-            var userFromDb = _db.Users.Find(id);
+            var userFromDb = _db.User.Find(id);
 
             obj.Company_ID = (int)id;
             
 
-            if (obj.Password != obj.Confirm_Password)
+            //if (obj.Password != obj.Confirm_Password)
             {
                 TempData["passwordMismatch"] = "Your Password must match";
                 TempData["error"] = "redborder";
@@ -50,12 +50,12 @@ namespace Project_ART.Controllers
             if (obj.Password == null)
             {
                 obj.Password = userFromDb.Password;
-                obj.Confirm_Password = userFromDb.Password;
+                //obj.Confirm_Password = userFromDb.Password;
             }
             else
             {
                 obj.Password = BCrypt.Net.BCrypt.HashPassword(obj.Password);
-                obj.Confirm_Password = obj.Password;
+                //obj.Confirm_Password = obj.Password;
             }
             if (ModelState.IsValid)
             {

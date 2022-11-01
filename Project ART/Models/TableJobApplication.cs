@@ -7,31 +7,51 @@ namespace Project_ART.Models
     public class TableJobApplication
     {
         [Key]
-        [DisplayName("Application ID")]
-        public int Application_ID { get; set; }
+        [DisplayName("Job Application ID")]
+        public int Job_Application_ID { get; set; }
 
-        [DisplayName("Is Approved")]
-        public Boolean? Is_Approved { get; set; }
+        [DisplayName("Job")]
+        public string? Job { get; set; }
 
-        [DisplayName("Date Received")]
-        public DateTime Date_Received { get; set; }
+        [DisplayName("Job Description")]
+        public string? Job_Description { get; set; }
 
-        //Foreign Keys
-        [Required]
-        [ForeignKey("Introductions")]
-        public int IntroductionID { get; set; }
-        public virtual TableIntroduction Introductions { get; set; }
+        [DisplayName("Icon")]
+        public string? Icon { get; set; }
 
-        [Required]
-        [ForeignKey("Datasheets")]
-        public int DatasheetID { get; set; }
-        public virtual TableDatasheet Datasheets { get; set; }
+        [DisplayName("Date Published")]
+        public string? Date_Published { get; set; }
 
-        [Required]
-        [ForeignKey("Users")]
-        [DisplayName("Approved By")]
-        public int CompanyID { get; set; }
-        public virtual TableUser Users { get; set; }
+        [DisplayName("Date End")]
+        public string? Date_End { get; set; }
+
+        [DisplayName("Vacancy")]
+        public int? Vacancy { get; set; }
+
+        [DisplayName("Salary")]
+        public string? Salary { get; set; }
+
+        [DisplayName("Job Nature")]
+        public string? Job_Nature { get; set; }
+
+        [DisplayName("Province")]
+        public string? Province { get; set; }
+
+        [DisplayName("City")]
+        public string? City { get; set; }
+
+        [DisplayName("Is Open")]
+        public bool? Is_Open { get; set; }
+
+        [DisplayName("Is Deleted")]
+        public bool? Is_Deleted { get; set; } = false;
+
+
+
+
+
+
+
 
 
     }

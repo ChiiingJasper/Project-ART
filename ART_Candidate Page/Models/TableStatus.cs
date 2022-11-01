@@ -17,11 +17,28 @@ namespace ART_Candidate_Page.Models
 
 
         [DisplayName("Status")]
-        public string? Status { get; set; }
+        public string? Status { get; set; } = "Pending";
 
         [DisplayName("Date")]
         public string? Date { get; set; }
 
+        [ForeignKey("User")]
+        [DisplayName("Approved By")]
+        public int? Approved_By { get; set; }
+        public virtual TableUser? Approved_By_ID { get; set; }
+
+        [ForeignKey("User")]
+        [DisplayName("Assessed By")]
+        public int? Assessed_By { get; set; }
+        public virtual TableUser? Assessed_By_ID { get; set; }
+
+        [ForeignKey("User")]
+        [DisplayName("Hired By")]
+        public int? Hired_By { get; set; }
+        public virtual TableUser? Hired_By_ID { get; set; }
+
+        [DisplayName("Is Deleted")]
+        public bool? Is_Deleted { get; set; } = false;
 
     }
 

@@ -15,7 +15,7 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<TableExam> objTableExamList = _db.Exams;
+            IEnumerable<TableExam> objTableExamList = _db.Exam;
             return View(objTableExamList);
         }
 
@@ -37,7 +37,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateExam(TableExam obj)
         {
-            _db.Exams.Add(obj);
+            _db.Exam.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableExam");
         }
@@ -48,7 +48,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var examFromDb = _db.Exams.Find(id);
+            var examFromDb = _db.Exam.Find(id);
 
             if (examFromDb == null)
             {
@@ -62,7 +62,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateExam(TableExam obj)
         {
-            _db.Exams.Update(obj);
+            _db.Exam.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("TableExam");
 
@@ -71,8 +71,8 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteExam(int? id)
         {
-            var examFromDb = _db.Exams.Find(id);
-            _db.Exams.Remove(examFromDb);
+            var examFromDb = _db.Exam.Find(id);
+            _db.Exam.Remove(examFromDb);
             _db.SaveChanges();
             return RedirectToAction("TableExam");
         }

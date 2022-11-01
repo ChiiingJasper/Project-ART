@@ -16,13 +16,13 @@ namespace Project_ART.Controllers
         public IActionResult Index()
         {
             var id = HttpContext.Session.GetInt32("Id");
-            ViewBag.currentUser = _db.Users.SingleOrDefault(x => x.Company_ID == id);
+            ViewBag.currentUser = _db.User.SingleOrDefault(x => x.Company_ID == id);
             return View();
         }
 
         public IActionResult TableEmployee()
         {
-            IEnumerable<TableUser> objTableEmployeeList = _db.Users;
+            IEnumerable<TableUser> objTableEmployeeList = _db.User;
             return View(objTableEmployeeList);
         }
 
@@ -35,7 +35,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateEmployee(TableUser obj)
         {
-            _db.Users.Add(obj);
+            _db.User.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableEmployee");
         }
@@ -46,7 +46,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var userFromDb = _db.Users.Find(id);
+            var userFromDb = _db.User.Find(id);
 
             if (userFromDb == null)
             {
@@ -61,7 +61,7 @@ namespace Project_ART.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Users.Update(obj);
+                _db.User.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("TableEmployee");
             }
@@ -72,8 +72,8 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteEmployee(int? id)
         {
-            var employeeFromDb = _db.Users.Find(id);
-            _db.Users.Remove(employeeFromDb);
+            var employeeFromDb = _db.User.Find(id);
+            _db.User.Remove(employeeFromDb);
             _db.SaveChanges();
             return RedirectToAction("TableEmployee");
         }

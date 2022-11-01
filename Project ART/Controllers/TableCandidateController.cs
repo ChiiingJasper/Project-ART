@@ -16,7 +16,7 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<TableCandidate> objTableCandidateList = _db.Candidates;
+            IEnumerable<TableCandidate> objTableCandidateList = _db.Candidate;
             return View(objTableCandidateList);
         }
 
@@ -40,7 +40,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreateCandidate(TableCandidate obj)
         {
-            _db.Candidates.Add(obj);
+            _db.Candidate.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("TableCandidate");
         }
@@ -51,7 +51,7 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-            var candidateFromDb = _db.Candidates.Find(id);
+            var candidateFromDb = _db.Candidate.Find(id);
 
             if (candidateFromDb == null)
             {
@@ -68,7 +68,7 @@ namespace Project_ART.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateCandidate(TableCandidate obj)
         {
-            _db.Candidates.Update(obj);
+            _db.Candidate.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("TableCandidate");
 
@@ -77,8 +77,8 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteCandidate(int? id)
         {
-            var candidateFromDb = _db.Candidates.Find(id);
-            _db.Candidates.Remove(candidateFromDb);
+            var candidateFromDb = _db.Candidate.Find(id);
+            _db.Candidate.Remove(candidateFromDb);
             _db.SaveChanges();
             return RedirectToAction("TableCandidate");
         }
@@ -87,12 +87,12 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetApplications()
         {
             var lstApplications = new List<SelectListItem>();
-            foreach (var item in _db.JobApplications)
+            foreach (var item in _db.JobApplication)
             {
                 lstApplications.Add(new SelectListItem()
                 {
-                    Value = item.Application_ID.ToString(),
-                    Text = item.Application_ID.ToString()
+                    Value = item.Job_Application_ID.ToString(),
+                    Text = item.Job_Application_ID.ToString()
                 });
             }
 
@@ -111,12 +111,12 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetAssessments()
         {
             var lstAssessments = new List<SelectListItem>();
-            foreach (var item in _db.Assessments)
+            foreach (var item in _db.Assessment)
             {
                 lstAssessments.Add(new SelectListItem()
                 {
                     Value = item.Assessment_ID.ToString(),
-                    Text = item.Date_Assessed.ToString()
+                    //Text = item.Date_Assessed.ToString()
                 });
             }
 
@@ -135,7 +135,7 @@ namespace Project_ART.Controllers
         private List<SelectListItem> GetUsers()
         {
             var lstUsers = new List<SelectListItem>();
-            foreach (var item in _db.Users)
+            foreach (var item in _db.User)
             {
                 lstUsers.Add(new SelectListItem()
                 {

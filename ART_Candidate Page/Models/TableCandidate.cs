@@ -11,34 +11,34 @@ namespace ART_Candidate_Page.Models
         public int Candidate_ID { get; set; }
 
         [DisplayName("First Name")]
-        public String? First_Name { get; set; }
+        public string? First_Name { get; set; }
 
         [DisplayName("Last Name")]
-        public String? Last_Name { get; set; }
+        public string? Last_Name { get; set; }
 
         [DisplayName("Middle Initital")]
-        public String? Middle_Initital { get; set; }
+        public char? Middle_Initital { get; set; }
 
         [DisplayName("Email")]
-        public String? Email { get; set; }
+        public string? Email { get; set; }
 
         [DisplayName("Mobile Number")]
-        public String? MobileNumber { get; set; }
+        public string? Mobile_Number { get; set; }
 
         [DisplayName("Photo")]
-        public String? Photo { get; set; }
+        public string? Photo { get; set; }
 
         [DisplayName("Website")]
-        public String? Website { get; set; }
+        public string? Website { get; set; }
 
         [DisplayName("Province")]
-        public String? Province { get; set; }
+        public string? Province { get; set; }
 
         [DisplayName("City")]
-        public String? City { get; set; }
+        public string? City { get; set; }
 
         [DisplayName("Email Confirmed")]
-        public Boolean? EmailConfirmed { get; set; } = false;
+        public bool? Email_Confirmed { get; set; } = false;
 
 
         [ForeignKey("Resume")]
@@ -62,7 +62,7 @@ namespace ART_Candidate_Page.Models
         public virtual TableJobApplication? JobApplication { get; set; }
 
         [DisplayName("Is Deleted")]
-        public Boolean? Is_Deleted { get; set; } = false;
+        public bool? Is_Deleted { get; set; } = false;
 
     }
 }

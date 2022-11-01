@@ -167,18 +167,18 @@ submitCandidateDetails.addEventListener('click', () => {
     formData.append('Introduction Video', blob);
     $.ajax({
         type: 'POST',
-        url: "JobDesc/SaveCandidateDetails",
+        url: "SaveCandidateDetails",
         data: formData,
         cache: false,
         contentType: false,
         processData: false,
         success: function (result) {
             if (result) {
-                console.log('Success');
+                alert('Success');
             }
         },
         error: function (result) {
             console.log(result);
         }
-    })
+    });
 });

@@ -31,7 +31,7 @@ namespace Project_ART.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = _db.Users.SingleOrDefault(x => x.Email == credentials.UserCred || Convert.ToString(x.Company_ID) == credentials.UserCred);
+                var user = _db.User.SingleOrDefault(x => x.Email == credentials.UserCred || Convert.ToString(x.Company_ID) == credentials.UserCred);
                 if(user != null)
                 {
                     bool isValidPassword = BCrypt.Net.BCrypt.Verify(credentials.Password, user.Password);
