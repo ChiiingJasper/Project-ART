@@ -39,7 +39,7 @@ namespace Project_ART.Controllers
             obj.Password = BCrypt.Net.BCrypt.HashPassword(obj.Password);
             _db.User.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableUser");
+            return RedirectToAction("Index");
         }
 
         public IActionResult UpdateUser(int? id)
