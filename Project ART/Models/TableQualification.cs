@@ -10,8 +10,9 @@ namespace Project_ART.Models
         [DisplayName("Qualification ID")]
         public int Qualification_ID { get; set; }
 
-        [ForeignKey("Job Application")]
-        public int Job_Application_ID { get; set; }
+        [ForeignKey("JobApplication")]
+        [DisplayName("Job Application ID")]
+        public int? Job_Application_ID { get; set; }
         public virtual TableJobApplication? JobApplication { get; set; }
 
         [DisplayName("Qualification")]

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -38,6 +38,55 @@
 
   <ItemGroup>
     <None Include="wwwroot\js\rankings.js" />
+    <None Include="wwwroot\scss\awesome\accordion\_accordion.scss" />
+    <None Include="wwwroot\scss\awesome\alert\_alert.scss" />
+    <None Include="wwwroot\scss\awesome\avatar\_avatar-sizes.scss" />
+    <None Include="wwwroot\scss\awesome\badge\_badge-sizes.scss" />
+    <None Include="wwwroot\scss\awesome\badge\_badge.scss" />
+    <None Include="wwwroot\scss\awesome\blockquote\_blockquote.scss" />
+    <None Include="wwwroot\scss\awesome\button\_button-sizes.scss" />
+    <None Include="wwwroot\scss\awesome\button\_button.scss" />
+    <None Include="wwwroot\scss\awesome\cards\_cards.scss" />
+    <None Include="wwwroot\scss\awesome\charts\_charts-tooltips.scss" />
+    <None Include="wwwroot\scss\awesome\close\_close.scss" />
+    <None Include="wwwroot\scss\awesome\content\_content.scss" />
+    <None Include="wwwroot\scss\awesome\dividers\_dividers.scss" />
+    <None Include="wwwroot\scss\awesome\dropdown\_dropdown.scss" />
+    <None Include="wwwroot\scss\awesome\error\_error.scss" />
+    <None Include="wwwroot\scss\awesome\footer\_footer.scss" />
+    <None Include="wwwroot\scss\awesome\form\_form.scss" />
+    <None Include="wwwroot\scss\awesome\form\_select2.scss" />
+    <None Include="wwwroot\scss\awesome\grid\_grid.scss" />
+    <None Include="wwwroot\scss\awesome\header\_header-error-page.scss" />
+    <None Include="wwwroot\scss\awesome\header\_header-search.scss" />
+    <None Include="wwwroot\scss\awesome\header\_header.scss" />
+    <None Include="wwwroot\scss\awesome\hero\_hero-section.scss" />
+    <None Include="wwwroot\scss\awesome\icon\_icon-sizes.scss" />
+    <None Include="wwwroot\scss\awesome\icon\_icon.scss" />
+    <None Include="wwwroot\scss\awesome\indicators\_indicator-positions.scss" />
+    <None Include="wwwroot\scss\awesome\indicators\_indicator-sizes.scss" />
+    <None Include="wwwroot\scss\awesome\indicators\_indicators.scss" />
+    <None Include="wwwroot\scss\awesome\list-group\_list-group.scss" />
+    <None Include="wwwroot\scss\awesome\mixins\_content-centered.scss" />
+    <None Include="wwwroot\scss\awesome\nav\_nav-tabs.scss" />
+    <None Include="wwwroot\scss\awesome\pager\_pager.scss" />
+    <None Include="wwwroot\scss\awesome\pagination\_pagination.scss" />
+    <None Include="wwwroot\scss\awesome\reboot\_style.scss" />
+    <None Include="wwwroot\scss\awesome\shapes\_shapes.scss" />
+    <None Include="wwwroot\scss\awesome\sidebar\_sidebar-desktop.scss" />
+    <None Include="wwwroot\scss\awesome\sidebar\_sidebar-menu.scss" />
+    <None Include="wwwroot\scss\awesome\sidebar\_sidebar-tablet.scss" />
+    <None Include="wwwroot\scss\awesome\sidebar\_sidebar.scss" />
+    <None Include="wwwroot\scss\awesome\tables\_tables.scss" />
+    <None Include="wwwroot\scss\awesome\utilities\_line-height.scss" />
+    <None Include="wwwroot\scss\awesome\utilities\_links.scss" />
+    <None Include="wwwroot\scss\awesome\utilities\_other.scss" />
+    <None Include="wwwroot\scss\awesome\utilities\_sizing.scss" />
+    <None Include="wwwroot\scss\awesome\utilities\_text.scss" />
+    <None Include="wwwroot\scss\awesome\vendor\_malihu-scrollbar.scss" />
+    <None Include="wwwroot\scss\awesome\_awesome.scss" />
+    <None Include="wwwroot\scss\awesome\_mixins.scss" />
+    <None Include="wwwroot\scss\awesome\_variables.scss" />
   </ItemGroup>
 
   <ItemGroup>

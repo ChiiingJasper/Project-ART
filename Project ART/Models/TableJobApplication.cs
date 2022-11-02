@@ -41,10 +41,10 @@ namespace Project_ART.Models
         public string? City { get; set; }
 
         [DisplayName("Is Open")]
-        public bool? Is_Open { get; set; }
+        public bool Is_Open { get; set; } = true;
 
         [DisplayName("Is Deleted")]
-        public bool? Is_Deleted { get; set; } = false;
+        public bool Is_Deleted { get; set; } = false;
 
 
 

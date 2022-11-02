@@ -65,15 +65,12 @@ namespace Project_ART.Migrations
                     b.Property<bool?>("Is_Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("JobApplicationJob_Application_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Job_Application_ID")
+                    b.Property<int?>("Job_Application_ID")
                         .HasColumnType("int");
 
                     b.HasKey("Benefit_ID");
 
-                    b.HasIndex("JobApplicationJob_Application_ID");
+                    b.HasIndex("Job_Application_ID");
 
                     b.ToTable("Benefit");
                 });
@@ -266,10 +263,10 @@ namespace Project_ART.Migrations
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Is_Deleted")
+                    b.Property<bool>("Is_Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("Is_Open")
+                    b.Property<bool>("Is_Open")
                         .HasColumnType("bit");
 
                     b.Property<string>("Job")
@@ -369,10 +366,7 @@ namespace Project_ART.Migrations
                     b.Property<bool?>("Is_Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("JobApplicationJob_Application_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Job_Application_ID")
+                    b.Property<int?>("Job_Application_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Qualification")
@@ -380,7 +374,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Qualification_ID");
 
-                    b.HasIndex("JobApplicationJob_Application_ID");
+                    b.HasIndex("Job_Application_ID");
 
                     b.ToTable("Qualification");
                 });
@@ -399,10 +393,7 @@ namespace Project_ART.Migrations
                     b.Property<bool?>("Is_Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("JobApplicationJob_Application_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Job_Application_ID")
+                    b.Property<int?>("Job_Application_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Responsibility")
@@ -410,7 +401,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Responsibility_ID");
 
-                    b.HasIndex("JobApplicationJob_Application_ID");
+                    b.HasIndex("Job_Application_ID");
 
                     b.ToTable("Responsibility");
                 });
@@ -551,7 +542,7 @@ namespace Project_ART.Migrations
                 {
                     b.HasOne("Project_ART.Models.TableJobApplication", "JobApplication")
                         .WithMany()
-                        .HasForeignKey("JobApplicationJob_Application_ID");
+                        .HasForeignKey("Job_Application_ID");
 
                     b.Navigation("JobApplication");
                 });
@@ -620,7 +611,7 @@ namespace Project_ART.Migrations
                 {
                     b.HasOne("Project_ART.Models.TableJobApplication", "JobApplication")
                         .WithMany()
-                        .HasForeignKey("JobApplicationJob_Application_ID");
+                        .HasForeignKey("Job_Application_ID");
 
                     b.Navigation("JobApplication");
                 });
@@ -629,7 +620,7 @@ namespace Project_ART.Migrations
                 {
                     b.HasOne("Project_ART.Models.TableJobApplication", "JobApplication")
                         .WithMany()
-                        .HasForeignKey("JobApplicationJob_Application_ID");
+                        .HasForeignKey("Job_Application_ID");
 
                     b.Navigation("JobApplication");
                 });

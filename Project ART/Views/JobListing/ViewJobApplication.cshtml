@@ -1,0 +1,107 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "View " + Model.JobApplication.Job;
+}
+<link rel="stylesheet" href="~/css/customstyle.css">
+<link rel="stylesheet" href="~/css/font-awesome.min.css">
+
+
+
+<div class="job_details_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="job_details_header">
+                    <div class="single_jobs white-bg d-flex justify-content-between">
+                        <div class="jobs_left d-flex align-items-center">
+                            <img class="thumb" src="~/img/@Model.JobApplication.Icon" alt="">
+                            <div class="jobs_conetent">
+                                <a href="#">
+                                    <h4>@Model.JobApplication.Job</h4>
+                                </a>
+                                <div class="links_locat d-flex align-items-center">
+                                    <div class="location">
+                                        <p> <i class="fa fa-map-marker"></i>@Model.JobApplication.City, @Model.JobApplication.Province</p>
+                                    </div>
+                                    <div class="location">
+                                        <p> <i class="fa fa-clock-o"></i>@Model.JobApplication.Job_Nature</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jobs_right">
+                        </div>
+                    </div>
+                </div>
+                <div class="descript_wrap white-bg">
+                    <div class="single_wrap">
+                        <h4>Job description</h4>
+                        @Model.JobApplication.Job_Description
+                    </div>
+                    <div class="single_wrap">
+                        <h4>Responsibility</h4>
+                        <ul>
+                            @foreach(TableResponsibility i in Model.Responsibility){
+                            <li>@i.Responsibility</li>
+                                if (i.Description != null){
+                                    @i.Description
+                                }
+                            }
+                        </ul>
+
+                    </div>
+                    <div class="single_wrap">
+                        <h4>Qualifications</h4>
+                        <ul>
+                            @foreach (TableQualification i in Model.Qualification)
+                            {
+
+
+                                <li>@i.Qualification</li>
+                                if (i.Description != null)
+                                {
+                                    @i.Description
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="single_wrap">
+                        <h4>Benefits</h4>
+                        <ul>
+                            @foreach (TableBenefit i in Model.Benefit)
+                            {
+
+
+                                <li>@i.Benefit</li>
+                                if (i.Description != null)
+                                {
+                                    @i.Description
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="job_sumary">
+                    <div class="summery_header">
+                        <h3>Job Summary</h3>
+                    </div>
+                    <div class="job_content">
+                        <ul>
+                            <li>Published on: <span>@Model.JobApplication.Date_Published</span></li>
+                            <li>Available until: <span>@Model.JobApplication.Date_End</span></li>
+                            <li>Vacancy: <span>@Model.JobApplication.Vacancy Positions</span></li>
+                            <li>Salary: <span>@Model.JobApplication.Salary</span></li>
+                            <li>Location: <span>@Model.JobApplication.City, @Model.JobApplication.Province</span></li>
+                            <li>Job Nature: <span> @Model.JobApplication.Job_Nature</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/city.js" asp-append-version="true" async></script>
+<script src="~/js/cityFunction.js" asp-append-version="true" async></script>

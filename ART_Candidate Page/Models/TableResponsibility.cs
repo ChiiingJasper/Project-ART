@@ -10,9 +10,11 @@ namespace ART_Candidate_Page.Models
         [DisplayName("Responsibility ID")]
         public int Responsibility_ID { get; set; }
 
-        [ForeignKey("Job Application")]
-        public int Job_Application_ID { get; set; }
+        [ForeignKey("JobApplication")]
+        [DisplayName("Job Application ID")]
+        public int? Job_Application_ID { get; set; }
         public virtual TableJobApplication? JobApplication { get; set; }
+
 
         [DisplayName("Responsibility")]
         public string? Responsibility { get; set; }
