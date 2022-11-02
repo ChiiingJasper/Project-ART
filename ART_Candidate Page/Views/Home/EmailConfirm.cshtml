@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model dynamic
 @{
     ViewData["Title"] = "Email Confirm";
 }
@@ -29,19 +27,19 @@
                 <div class="job_details_header">
                     <div class="single_jobs white-bg d-flex justify-content-between">
                         <div class="jobs_left d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="~/img/intern.png" alt="">
-                            </div>
+                   
+                                <img class="thumb" src="/UserUpload/Photo/@Model.JobApplication.Icon">
+                       
                             <div class="jobs_conetent">
                                 <a href="#">
-                                    <h2>Internship</h2>
+                                    <h2>@Model.JobApplication.Job</h2>
                                 </a>
                                 <div class="links_locat d-flex align-items-center">
                                     <div class="location">
-                                        <p> <i class="fa fa-map-marker"></i> Cebu, Philippines</p>
+                                        <p> <i class="fa fa-map-marker"></i>@Model.JobApplication.City, @Model.JobApplication.Province</p>
                                     </div>
                                     <div class="location">
-                                        <p> <i class="fa fa-clock-o"></i> Full-time</p>
+                                        <p> <i class="fa fa-clock-o"></i>@Model.JobApplication.Job_Nature</p>
                                     </div>
                                 </div>
                             </div>

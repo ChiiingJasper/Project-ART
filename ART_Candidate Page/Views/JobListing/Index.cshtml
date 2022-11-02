@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TableCandidate>
+﻿@model IEnumerable<TableJobApplication>
 @{
     ViewData["Title"] = "Job Listing";
 }
@@ -110,24 +110,32 @@
                         </div>
                     </div>
 
+
+
                     <div class="job_lists m-0">
+
+
                         <div class="row">
+
+
+                            @foreach(var obj in Model)
+                            {
                             <div class="col-lg-12 col-md-12">
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
-                                        <div class="thumb">
-                                        <img src="~/img/intern.png" alt="">
-                                        </div>
+                                       
+                                            <img class="thumb" src="~/UserUpload/Photo/@obj.Icon" alt="">
+                                      
                                         <div class="jobs_conetent">
                                             <a href="job_details.html">
-                                                <h4>Internship</h4>
+                                                <h4>@obj.Job</h4>
                                             </a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i>Philippines, Cebu</p>
+                                                    <p> <i class="fa fa-map-marker"></i>@obj.City, @obj.Province</p>
                                                 </div>
                                                 <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i> Full-time</p>
+                                                    <p> <i class="fa fa-clock-o"></i>@obj.Job_Nature</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,44 +143,15 @@
                                     <div class="jobs_right">
                                         <div class="apply_now">
 
-                                        <a asp-controller="JobListing" asp-action="JobDesc" class="boxed-btn3">Apply Now</a>
+                                        <a asp-controller="JobListing" asp-action="JobDesc" asp-route-id="@obj.Job_Application_ID" class="boxed-btn3">Apply Now</a>
                                         </div>
                                         <div class="date">
-                                            <p>Date line: 19 Oct 2022</p>
+                                            <p>Date line: @obj.Date_End</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12">
-                                <div class="single_jobs white-bg d-flex justify-content-between">
-                                    <div class="jobs_left d-flex align-items-center">
-                                        <div class="thumb">
-                                            <img src="~/img/NET.png" alt="">
-                                        </div>
-                                        <div class="jobs_conetent">
-                                            <a href="job_details.html">
-                                                <h4>.NET Developer</h4>
-                                            </a>
-                                            <div class="links_locat d-flex align-items-center">
-                                                <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i>Philippines, Cebu</p>
-                                                </div>
-                                                <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i> Full-time</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="jobs_right">
-                                        <div class="apply_now">
-                                        <a asp-controller="Home" asp-action="EmailConfirm" class="boxed-btn3 danger">Apply Now</a>
-                                        </div>
-                                        <div class="date">
-                                            <p>Date line: 19 Oct 2022</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            }
 
                         </div>
                         <div class="row">

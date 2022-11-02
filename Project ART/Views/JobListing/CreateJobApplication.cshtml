@@ -4,7 +4,7 @@
 }
 <link rel="stylesheet" href="~/css/customstyle.css">
 <link rel="stylesheet" href="~/css/font-awesome.min.css">
-
+<link href="~/css/createJob.css" rel="stylesheet">
 
 
 <div class="job_details_area">
@@ -18,10 +18,20 @@
                 <div class="job_details_header">
                     <div class="single_jobs white-bg d-flex justify-content-between">
                         <div class="jobs_left d-flex align-items-center">
-                            <img class="thumb" src="~/img/ai.png" alt="">
-                            
-                               
-                                    <h3>Job</h3>
+
+
+
+
+
+
+
+                            <a href="#" id="changeImage">
+                                <div class="container-image">
+                                    <img src="~/img/uploadimage.png" id="profilePic" class="thumb image-change">
+                                </div>
+                                <input id='imageUpload' type='file' accept="image/*" hidden />
+                            </a>
+                                    <input id="jobInput" type="text" class="form-control" placeholder="Job"/>
                             
                             
                         </div>
@@ -32,46 +42,80 @@
                 <div class="descript_wrap white-bg">
                     <div class="single_wrap">
                         <h4>Job description</h4>
-                        <textarea id="w3review" name="w3review" class="form-control" rows="4">
-At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-</textarea>
+                        <textarea id="jobDesc" placeholder="Add a short description about the Job"  class="form-control" rows="4"></textarea>
                     </div>
                     <div class="single_wrap">
-                        <h4>Responsibility</h4>
-                        <ul>
 
-                            <li class="text-dark">Responsibility</li>
-                             
-                                
-                                    Description
-                                
-                            
-                        </ul>
+                        <h4>Responsibilities</h4>
+
+
+                        <div id="responsibilityDiv">
+                            <div class="row mb-3">
+                                <div class="col-11">
+                                        <input class="form-control responsibility" id="responsibility"  placeholder="Responsibility" type="text" />
+                                </div>
+                                <div class="col col-1">
+                                    <button class="btn btn-success btn-sm" id="addResponsibility">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="responsibilityDesc" placeholder="Add a short description about the responsibility" class="form-control mb-3 responsibilityDesc" rows="2"></textarea>
+                            <hr>
+                        </div>
+                        <div id="addResponsibilityHere">
+                        </div>
+
 
                     </div>
                     <div class="single_wrap">
                         <h4>Qualifications</h4>
-                        <ul>
-                           
 
-                                <li>.Qualification</li>
-
-                                    Description
-                                
-                            
-                        </ul>
+                        <div id="qualificationDiv">
+                            <div class="row mb-3">
+                                <div class="col-11">
+                                    <input class="form-control qualification" id="qualification" placeholder="Qualification" type="text" />
+                                </div>
+                                <div class="col col-1">
+                                    <button class="btn btn-success btn-sm" id="addQualification">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="qualificationDesc" placeholder="Add a short description about the qualification" class="form-control mb-3 qualificationDesc" rows="2"></textarea>
+                            <hr>
+                        </div>
+                        <div id="addQualificationHere">
+                        </div>
+                  
                     </div>
                     <div class="single_wrap">
                         <h4>Benefits</h4>
-                        <ul>
-                            
+
+                        <div id="benefitDiv">
+                            <div class="row mb-3">
+                                <div class="col-11">
+                                    <input class="form-control benefit" id="benefit" placeholder="Benefit" type="text" />
+                                </div>
+                                <div class="col col-1">
+                                    <button class="btn btn-success btn-sm" id="addBenefit">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="benefitDesc" placeholder="Add a short description about the benefit" class="form-control mb-3 benefitDesc" rows="2"></textarea>
+                            <hr>
+                        </div>
+                        <div id="addBenefitHere">
+                        </div>
 
 
-                                <li>Benefit</li>
-                                
-                                    Description
-                         
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -81,14 +125,38 @@ At w3schools.com you will learn how to make a website. They offer free tutorials
                         <h3>Job Summary</h3>
                     </div>
                     <div class="job_content">
-                        <ul>
-                          
-                            <li>Date End: <span> JobApplication.Date_End</span></li>
-                            <li>Vacancy: <span> JobApplication.Vacancy Positions</span></li>
-                            <li>Salary: <span> JobApplication.Salary</span></li>
-                            <li>Location: <span> JobApplication.City,  JobApplication.Province</span></li>
-                            <li>Job Nature: <span>  JobApplication.Job_Nature</span></li>
-                        </ul>
+
+                        <div class="form-group">
+                            <label for="Date_End">Date End:</label>
+                            <input type="date" class="form-control" id="dateEnd">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vacancy">Vacancy:</label>
+                            <input type="number" class="form-control" placeholder="Number of hires" id="vacancy">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Salary">Salary:</label>
+                            <input name="Salary" type="text" class="form-control" placeholder="Enter Salary Range" id="salary">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Province">Province:</label>
+                            <select name="Province" class="form-control" id="province" required></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="City">City:</label>
+                            <select name="City" class="form-control" id="city" required></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Job_Nature">Job Nature:</label>
+                            <input name="Job_Nature" type="text" class="form-control" placeholder="Enter Job Nature" id="jobNature">
+                        </div>
+                     
                     </div>
 
                 </div>
@@ -96,12 +164,12 @@ At w3schools.com you will learn how to make a website. They offer free tutorials
                    
                     <div class="row">
                         <div class="col col-lg-6">
-                            <a asp-controller="JobListing" asp-action="CreateJobApplication" class="btn btn-success btn-icon-split btn-lg">
+                            <button class="btn btn-success btn-icon-split btn-lg" id="submitJob">
                                 <span class="icon text-white-50">
                                     <i class="bi bi-plus-circle"></i>
                                 </span>
                                 <span class="text">Create</span>
-                            </a>
+                            </button>
                         </div>
 
                         <div class="col col-lg-6">
@@ -125,4 +193,7 @@ At w3schools.com you will learn how to make a website. They offer free tutorials
     </div>
 </div>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="~/js/JobListing.js"></script>
+<script src="~/js/city.js" asp-append-version="true" async></script>
+<script src="~/js/cityFunction.js" asp-append-version="true" async></script>

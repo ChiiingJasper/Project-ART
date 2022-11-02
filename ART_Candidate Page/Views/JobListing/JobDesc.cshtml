@@ -1,8 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model dynamic
 @{
-    ViewData["Title"] = "Job Desc";
+    ViewData["Title"] = Model.JobApplication.Job;
 }
 <link rel="stylesheet" href="~/css/customstyle.css">
 <link rel="stylesheet" href="~/css/font-awesome.min.css">
@@ -21,7 +19,7 @@
     </div>
 </div>
 
-
+<input type="number" hidden id="JobID" value="@Model.JobApplication.Job_Application_ID" />
 <div class="job_details_area">
     <div class="container">
         <div class="row">
@@ -29,19 +27,19 @@
                 <div class="job_details_header">
                     <div class="single_jobs white-bg d-flex justify-content-between">
                         <div class="jobs_left d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="~/img/intern.png" alt="">
-                            </div>
+
+                            <img class="thumb" src="/UserUpload/Photo/@Model.JobApplication.Icon" alt="">
+                     
                             <div class="jobs_conetent">
                                 <a href="#">
-                                    <h4>Internship</h4>
+                                    <h4>@Model.JobApplication.Job</h4>
                                 </a>
                                 <div class="links_locat d-flex align-items-center">
                                     <div class="location">
-                                        <p> <i class="fa fa-map-marker"></i> Cebu, Philippines</p>
+                                        <p> <i class="fa fa-map-marker"></i>@Model.JobApplication.City, @Model.JobApplication.Province</p>
                                     </div>
                                     <div class="location">
-                                        <p> <i class="fa fa-clock-o"></i> Full-time</p>
+                                        <p> <i class="fa fa-clock-o"></i>@Model.JobApplication.Job_Nature</p>
                                     </div>
                                 </div>
                             </div>
@@ -54,47 +52,53 @@
                     <div class="single_wrap">
                         <h4>Job description</h4>
                         <p>
-                            There is no cost to participate in the program. In addition, participants will be given
-                            allowances based on their attendance and timeliness.
+                            @Model.JobApplication.Job_Description
                         </p>
-                        <p>
-                            Assists with development and implementation of projects, with assigned tasks in the
-                            following areas.
-                        </p>
+
                     </div>
                     <div class="single_wrap">
                         <h4>Responsibility</h4>
                         <ul>
-                            <li>Development</li>
-                            <li>Quality Assurance and Testing</li>
-                            <li>Analysis and Design</li>
-                            <li>Development</li>
+
+                            @foreach (TableResponsibility i in Model.Responsibility)
+                            {
+                                <li>@i.Responsibility</li>
+                                if (i.Description != null)
+                                {
+                                    @i.Description
+                                }
+                            }
+
                         </ul>
                     </div>
                     <div class="single_wrap">
                         <h4>Qualifications</h4>
                         <ul>
-                            <li>
-                                Enrolled in Computer Science, Computer Engineering, and other IT-related courses.
-                            </li>
-                            <li>Good scholastic record.</li>
-                            <li>Committed to the whole duration of the program.</li>
-                            <li>Organized team player that has attention to details.</li>
-                            <li>Basic proficiency in English. Nihongo is an advantage.</li>
+                            @foreach (TableQualification i in Model.Qualification)
+                            {
+
+
+                                <li>@i.Qualification</li>
+                                if (i.Description != null)
+                                {
+                                    @i.Description
+                                }
+                            }
                         </ul>
                     </div>
                     <div class="single_wrap">
                         <h4>Benefits</h4>
                         <ul>
-                            <li>IT Related Topics
-                            <p>Projects for IT-related topics such as Software Engineering, Analysis and Design, Testing (with approval from your Chair).</p>
-                            </li>
-                            <li>Flexible Schedule
-                            <p>Flexible schedule that is compatible with the student's academic schedule (e.g. increase number of hours to meet requirements of the school).</p>
-                            </li>
-                            <li>OJT Continuation
-                            <p>Continuation of OJT through part time work at Alliance during the first and second semester.</p>
-                            </li>
+                            @foreach (TableBenefit i in Model.Benefit)
+                            {
+
+
+                                <li>@i.Benefit</li>
+                                if (i.Description != null)
+                                {
+                                    @i.Description
+                                }
+                            }
                         </ul>
                     </div>
                 </div>
@@ -287,16 +291,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
             <div class="col-lg-4">
@@ -306,11 +300,12 @@
                     </div>
                     <div class="job_content">
                         <ul>
-                            <li>Published on: <span>19 Oct, 2022</span></li>
-                            <li>Vacancy: <span>2 Positions</span></li>
-                            <li>Salary: <span>50k - 100k/m</span></li>
-                            <li>Location: <span>Cebu, Philippines</span></li>
-                            <li>Job Nature: <span> Full-time</span></li>
+                            <li>Published on: <span>2022-11-3</span></li>
+                            <li>Available until: <span>@Model.JobApplication.Date_End</span></li>
+                            <li>Vacancy: <span>@Model.JobApplication.Vacancy Positions</span></li>
+                            <li>Salary: <span>@Model.JobApplication.Salary</span></li>
+                            <li>Location: <span>@Model.JobApplication.City, @Model.JobApplication.Province</span></li>
+                            <li>Job Nature: <span> @Model.JobApplication.Job_Nature</span></li>
                         </ul>
                     </div>
                 </div>

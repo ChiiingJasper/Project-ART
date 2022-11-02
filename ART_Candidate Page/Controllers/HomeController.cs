@@ -2,6 +2,7 @@
 using ART_Candidate_Page.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Net;
 
 namespace ART_Candidate_Page.Controllers
@@ -29,12 +30,16 @@ namespace ART_Candidate_Page.Controllers
         }
 
         
-        public IActionResult EmailConfirm(int? id,String? hash)
+        public IActionResult EmailConfirm(int? id,String? hash, int? jobID)
         {
             if (id.HasValue && hash != null)
             {
                 TableCandidate candidate = new TableCandidate();
+                TableJobApplication JobApplication = new TableJobApplication();
+                dynamic obj = new ExpandoObject();
+                
                 candidate = _db.Candidate.SingleOrDefault(x => x.Candidate_ID == id);
+                obj.JobApplication = _db.JobApplication.SingleOrDefault(x => x.Job_Application_ID == jobID);
                 if (candidate != null)
                 {
                     bool isValidHash = BCrypt.Net.BCrypt.Verify(candidate.Candidate_ID+candidate.First_Name+candidate.Last_Name,hash);
@@ -43,7 +48,7 @@ namespace ART_Candidate_Page.Controllers
                         candidate.Email_Confirmed = true;
                         _db.Candidate.Update(candidate);
                         _db.SaveChanges();
-                        return View();
+                        return View(obj);
                     }
                     
                 }

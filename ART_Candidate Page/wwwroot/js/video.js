@@ -162,12 +162,13 @@ submitCandidateDetails.addEventListener('click', () => {
     formData.append('Website', document.getElementById('website').value);
     formData.append('Province', document.getElementById('province').value);
     formData.append('City', document.getElementById('city').value);
+    formData.append('JobID', document.getElementById('JobID').value);
     formData.append('Photo', document.getElementById('PhotoInput').files[0]);
     formData.append('Resume', document.getElementById('ResumeInput').files[0]);
     formData.append('Introduction Video', blob);
     $.ajax({
         type: 'POST',
-        url: "SaveCandidateDetails",
+        url: "../SaveCandidateDetails",
         data: formData,
         cache: false,
         contentType: false,

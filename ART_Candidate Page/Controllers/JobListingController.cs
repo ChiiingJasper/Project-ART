@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Matching;
 using Org.BouncyCastle.Crypto.Generators;
+using System.Dynamic;
 using System.Net;
 using System.Net.Mail;
 
@@ -22,15 +23,42 @@ namespace ART_Candidate_Page.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplication;
+            return View(objTableJobApplicationList);
         }
-        public IActionResult JobDesc()
+        public IActionResult JobDesc(int? id)
         {
-            return View();
+
+            dynamic obj = new ExpandoObject();
+
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            obj.JobApplication = _db.JobApplication.Find(id);
+
+            if (obj.JobApplication == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                obj.Responsibility = _db.Responsibility.Where(x => x.Job_Application_ID == id);
+                obj.Qualification = _db.Qualification.Where(x => x.Job_Application_ID == id);
+                obj.Benefit = _db.Benefit.Where(x => x.Job_Application_ID == id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+
+            return View(obj);
         }
 
+
+
         [HttpPost]
-        
         public async Task<IActionResult> SaveCandidateDetails()
         {
             
@@ -42,7 +70,6 @@ namespace ART_Candidate_Page.Controllers
                 TableResume resume = new TableResume();
                 TableIntroduction introduction = new TableIntroduction();
                 TableCandidate candidate = new TableCandidate { Resume = resume, Introduction = introduction };
-                
 
                 candidate.First_Name = data["First Name"];
                 candidate.Last_Name = data["Last Name"];
@@ -53,6 +80,7 @@ namespace ART_Candidate_Page.Controllers
                 candidate.Website = data["Website"];
                 candidate.Province = data["Province"];
                 candidate.City = data["City"];
+                candidate.Job_Application_ID = int.Parse(data["JobID"]);
                 _db.Candidate.Add(candidate);
                 _db.SaveChanges();
 
@@ -71,7 +99,7 @@ namespace ART_Candidate_Page.Controllers
                 _db.Introduction.Update(introduction);
                 _db.SaveChanges();
                 string hash = BCrypt.Net.BCrypt.HashPassword(candidate.Candidate_ID + candidate.First_Name + candidate.Last_Name);
-                string link = _httpContextAccessor.HttpContext.Request.Host.Value + "/Home/EmailConfirm/?id=" + candidate.Candidate_ID + "&hash=" + hash;
+                string link = _httpContextAccessor.HttpContext.Request.Host.Value + "/Home/EmailConfirm/?id=" + candidate.Candidate_ID + "&hash=" + hash+"&jobID="+ candidate.Job_Application_ID;
                 string subject = "Email Confirmation";
                 string body = "<h3>Hi " + candidate.First_Name +" "+ candidate.Last_Name + "!" +
                     " Thank you for your application, " +
