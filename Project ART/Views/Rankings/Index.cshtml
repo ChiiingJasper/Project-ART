@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<TableCandidate>
 @{
     ViewData["Title"] = "Rankings";
 }
@@ -31,16 +29,18 @@
                   </tr>
                 </thead>
                 <tbody>
+                    @foreach(var obj in Model)
+                    {
                   <tr class="mb-5">         
                     <th scope="row">
                       <div class="media align-items-center">
                           <h4 class="mr-2">#1</h4>
                         <a href="#" class="avatar rounded-circle mr-3">
-                            
-                          <img alt="Image placeholder" src="~/img/Ching Admin.png">
+
+                                                <img alt="Image placeholder" src="~/CandidateUpload/Photos/@obj.Photo">
                         </a>
                         <div class="media-body">
-                          <span class="mb-0 text-sm">Ching, Jasper C.</span>
+                          <span class="mb-0 text-sm">@obj.Last_Name, @obj.First_Name @obj.Middle_Initital</span>
                         </div>
                       </div>
                     </th>
@@ -67,54 +67,50 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                           <a class="dropdown-item" id="approve">Approve</a>
-                                            <a class="dropdown-item" data-toggle="modal" data-target="#resumeModal">Resume</a>
-                                            <a class="dropdown-item" data-toggle="modal" data-target="#videoModal">Video</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#resume_@obj.Candidate_ID">Resume</a>
+                                                <a class="dropdown-item" data-toggle="modal" data-target="#video_@obj.Candidate_ID">Video</a>
                         </div>
                       </div>
                     </td>
                   </tr>
-
-                            <tr class="mb-5">
-                                <th scope="row">
-                                    <div class="media align-items-center">
-                                        <h4 class="mr-2">#2</h4>
-                                        <a href="#" class="avatar rounded-circle mr-3">
-
-                                            <img alt="Image placeholder" src="~/img/Picture2.png">
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="mb-0 text-sm">Castanares, Ben Amiel F.</span>
+                                <!--Modal-->
+                                <div class="modal fade" id="resume_@obj.Candidate_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Resume</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe src="~/CandidateUpload/Resume/@(@obj.Candidate_ID+@obj.Last_Name+"_"+@obj.First_Name+".pdf")" width="100%" height="700px">
+                                                </iframe>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </th>
+                                </div>
 
-                                <td>
-                                    Internship
-                                </td>
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-warning"></i> pending
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-primary"></i> Steadiness
-                                    </span>
-                                </td>
-                               
-                                <td class="text-right">
-                                    <div class="dropdown">
-                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                <!--Modal-->
+                                <div class="modal fade" id="video_@obj.Candidate_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Video</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe src="~/CandidateUpload/Video/@(@obj.Candidate_ID+@obj.Last_Name+"_"+@obj.First_Name+".mp4")" width="100%" height="500px">
+                                                </iframe>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                     }
                  
                 </tbody>
               </table>
@@ -148,43 +144,7 @@
       </div>
 
 
-<!--Modal-->
-<div class="modal fade" id="resumeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Resume</h5>
-            </div>
-            <div class="modal-body">
-                <iframe src="~/UploadedFiles/Resume/Jasper_Ching.pdf" width="100%" height="700px">
-                </iframe>
-                </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!--Modal-->
-<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Video</h5>
-            </div>
-            <div class="modal-body">
-                <iframe src="~/UploadedFiles/Video/Jasper_Ching.mp4" width="100%" height="500px">
-                </iframe>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <script src="~/js/rankings.js"></script>
