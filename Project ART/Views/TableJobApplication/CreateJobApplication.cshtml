@@ -18,33 +18,61 @@
                         </div>
                         <form class="user" method="post">
                             <div class="form-group row">
+                                <input asp-for="Job" type="text" class="form-control form-control-user"
+                                       placeholder="Job" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Job_Description" type="text" class="form-control form-control-user"
+                                       placeholder="Job Description" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Icon" type="text" class="form-control form-control-user"
+                                       placeholder="Icon" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Date_Published" type="date" class="form-control form-control-user"
+                                       placeholder="Date Published" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Date_End" type="date" class="form-control form-control-user"
+                                       placeholder="Date End" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Vacancy" type="number" class="form-control form-control-user"
+                                       placeholder="Number of Hires" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Salary" type="text" class="form-control form-control-user"
+                                       placeholder="Salary" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Job_Nature" type="text" class="form-control form-control-user"
+                                       placeholder="Job Nature" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Province" type="text" class="form-control form-control-user"
+                                       placeholder="Province" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="City" type="text" class="form-control form-control-user"
+                                       placeholder="City" required>
+                            </div>
+                            <div class="form-group row">
                                 <select  class="form-control select-form"
-                                        placeholder="Is_Approved" required>
-                                    <option selected disabled>----Is Approved----</option>
+                                        placeholder="Is Open" required>
+                                    <option selected disabled>----Is Open----</option>
                                     <option value="True">True</option>
                                     <option value="False">False</option>
                                 </select>
                             </div>
-                            <div class="form-group row">
-                                <input  type="datetime-local" class="form-control form-control-user"
-                                       placeholder="Date Received" required>
-                            </div>
-                            <div class="form-group row">
-                                <select  asp-items="ViewBag.Introductions" class="form-control  select-form" required></select>
-                            </div>
-                            <div class="form-group row">
-                                <select  class="form-control  select-form" required></select>
-                            </div>
-                            <div class="form-group row">
-                                <select  asp-items="ViewBag.Users" class="form-control  select-form" required></select>
-                            </div>
+                            
                             
                             <hr>
                             <div class="form-group row">
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a asp-controller="TableJobApplication" asp-action="TableJobApplication" class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableJobApplication" asp-action="Index" class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>

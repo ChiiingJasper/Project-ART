@@ -19,13 +19,6 @@ namespace Project_ART.Controllers
             return View(objTableExamList);
         }
 
-        /*
-        public IActionResult TableExam()
-        {
-            IEnumerable<TableExam> objTableExamList = _db.Exams;
-            return View(objTableExamList);
-        }
-        */
 
         public IActionResult CreateExam()
         {
@@ -39,7 +32,7 @@ namespace Project_ART.Controllers
         {
             _db.Exam.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableExam");
+            return RedirectToAction("Index");
         }
 
         public IActionResult UpdateExam(int? id)
@@ -64,17 +57,21 @@ namespace Project_ART.Controllers
         {
             _db.Exam.Update(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableExam");
+            return RedirectToAction("Index");
 
         }
 
         [HttpGet]
         public IActionResult DeleteExam(int? id)
         {
+            bool examFlag = true;
             var examFromDb = _db.Exam.Find(id);
-            _db.Exam.Remove(examFromDb);
+            var exam = new TableExam() { Exam_ID = examFromDb.Exam_ID, Is_Deleted = examFlag };
+
+            _db.Exam.Attach(exam);
+            _db.Entry(exam).Property(x => x.Is_Deleted).IsModified = true;
             _db.SaveChanges();
-            return RedirectToAction("TableExam");
+            return RedirectToAction("Index");
         }
     }
 }

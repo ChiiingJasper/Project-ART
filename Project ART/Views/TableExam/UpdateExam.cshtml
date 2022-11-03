@@ -19,8 +19,12 @@
                         <form class="user" method="post" asp-action="UpdateExam">
                             <input asp-for="Exam_ID"  hidden>
                             <div class="form-group row">
-                                <input asp-for="Exam_Score" type="text" class="form-control form-control-user"
+                                <input asp-for="Exam_Score" type="number" class="form-control form-control-user"
                                        placeholder="Exam Score" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Exam_Sheet" type="text" class="form-control form-control-user"
+                                       placeholder="Exam Sheet" required>
                             </div>
 
                             
@@ -29,7 +33,7 @@
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a asp-controller="TableExam" asp-action="TableExam"  class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableExam" asp-action="Index"  class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>

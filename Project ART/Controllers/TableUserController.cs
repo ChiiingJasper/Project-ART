@@ -19,14 +19,6 @@ namespace Project_ART.Controllers
             return View(objTableUserList);
         }
 
-        /*
-        public IActionResult TableUser()
-        {
-            IEnumerable<TableUser> objTableUserList = _db.Users;
-            return View(objTableUserList);
-        }
-        */
-
         public IActionResult CreateUser()
         {
             return View();
@@ -66,7 +58,7 @@ namespace Project_ART.Controllers
                 obj.Password = BCrypt.Net.BCrypt.HashPassword(obj.Password);
                 _db.User.Update(obj);
                 _db.SaveChanges();
-                return RedirectToAction("TableUser");
+                return RedirectToAction("Index");
             }
             return View(obj);
 
@@ -75,10 +67,14 @@ namespace Project_ART.Controllers
         [HttpGet]
         public IActionResult DeleteUser(int? id)
         {
+            bool userFlag = true;
             var userFromDb = _db.User.Find(id);
-            _db.User.Remove(userFromDb);
+            var user = new TableUser() { Company_ID = userFromDb.Company_ID, Is_Deleted = userFlag };
+
+            _db.User.Attach(user);
+            _db.Entry(user).Property(x => x.Is_Deleted).IsModified = true;
             _db.SaveChanges();
-            return RedirectToAction("TableUser");
+            return RedirectToAction("Index");
         }
     }
 }

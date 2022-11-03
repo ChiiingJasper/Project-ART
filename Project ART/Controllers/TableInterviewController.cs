@@ -19,13 +19,6 @@ namespace Project_ART.Controllers
             return View(objTableInterviewList);
         }
 
-        /*
-        public IActionResult TableInterview()
-        {
-            IEnumerable<TableInterview> objTableInterviewList = _db.Interviews;
-            return View(objTableInterviewList);
-        }
-        */
 
         public IActionResult CreateInterview()
         {
@@ -39,7 +32,7 @@ namespace Project_ART.Controllers
         {
             _db.Interview.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableInterview");
+            return RedirectToAction("Index");
         }
 
         public IActionResult UpdateInterview(int? id)
@@ -64,17 +57,21 @@ namespace Project_ART.Controllers
         {
             _db.Interview.Update(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableInterview");
+            return RedirectToAction("Index");
 
         }
 
         [HttpGet]
         public IActionResult DeleteInterview(int? id)
         {
+            bool interviewFlag = true;
             var interviewFromDb = _db.Interview.Find(id);
-            _db.Interview.Remove(interviewFromDb);
+            var interview = new TableInterview() { Interview_ID = interviewFromDb.Interview_ID, Is_Deleted = interviewFlag };
+
+            _db.Interview.Attach(interview);
+            _db.Entry(interview).Property(x => x.Is_Deleted).IsModified = true;
             _db.SaveChanges();
-            return RedirectToAction("TableInterview");
+            return RedirectToAction("Index");
         }
     }
 }

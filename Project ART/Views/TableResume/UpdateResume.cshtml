@@ -1,6 +1,6 @@
-﻿@model TableIntroduction
+﻿@model TableResume
 @{
-    ViewData["Title"] = "UpdateIntroduction";
+    ViewData["Title"] = "UpdateResume";
 }
 
 
@@ -13,30 +13,25 @@
                 <div class="col">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Update Introduction</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Update Resume</h1>
                             <hr />
                         </div>
-                        <form class="user" method="post" asp-action="UpdateIntroduction">
-                            <input asp-for="Introduction_ID"  hidden>
+                        <form class="user" method="post" asp-action="UpdateResume">
+                            <input asp-for="Resume_ID"  hidden>
                             <div class="form-group row">
-                                <input asp-for="DISC_Trait" type="text" class="form-control form-control-user"
-                                       placeholder="Disc Trait" required>
+                                <input asp-for="Resume" type="text" class="form-control form-control-user"
+                                       placeholder="Resume" required>
                             </div>
                             <div class="form-group row">
-                                <input asp-for="Introduction_Video" type="text" class="form-control form-control-user"
-                                       placeholder="Introduction Video" required>
+                                <input asp-for="Resume_Score" type="text" class="form-control form-control-user"
+                                       placeholder="Resume Score" required>
                             </div>
-                            <div class="form-group row">
-                                <input asp-for="Introduction_Score" type="text" class="form-control form-control-user"
-                                       placeholder="Introduction Score" required>
-                            </div>
-                            
                             <hr>
                             <div class="form-group row">
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a asp-controller="TableIntroduction" asp-action="Index"  class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableResume" asp-action="Index"  class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>

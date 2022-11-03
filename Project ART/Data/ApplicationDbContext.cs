@@ -13,7 +13,7 @@ namespace Project_ART.Data
         public DbSet<TableAssessment>? Assessment { get; set; }
         public DbSet<TableBenefit>? Benefit { get; set; }
         public DbSet<TableCandidate>? Candidate { get; set; }
-        public DbSet<TableResume>? Data { get; set; }
+        public DbSet<TableData>? Data { get; set; }
         public DbSet<TableExam>? Exam { get; set; }
         public DbSet<TableFAQ>? FAQ { get; set; }
         public DbSet<TableInterview>? Interview { get; set; }

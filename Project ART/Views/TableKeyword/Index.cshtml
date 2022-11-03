@@ -41,10 +41,11 @@
                     @foreach(var obj in Model)
                     {
                         <tr>
-                            <td>@obj.</td>
-                            <td>@obj.</td>
-                            <td>@obj.</td>
-                            <td>@obj.</td>
+                            <td>@obj.Key_Word_ID</td>
+                            <td>@obj.Word</td>
+                            <td>@obj.Time_Stamp</td>
+                            <td>@obj.Introduction_ID</td>
+                            <td>@obj.Is_Deleted</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableKeyword" asp-action="UpdateKeyword" asp-route-id="@obj.Key_Word_ID"class="btn btn-info btn-block btn-sm">
@@ -58,7 +59,7 @@
                             </td>
                         </tr>
                         
-                        <!-- Logout Modal-->
+                        <!-- Delete Modal-->
                         <div class="modal fade" id="deleteModal-@obj.Key_Word_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                             <div class="modal-dialog" role="document">

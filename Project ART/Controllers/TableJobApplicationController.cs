@@ -20,19 +20,8 @@ namespace Project_ART.Controllers
             return View(objTableJobApplicationList);
         }
 
-        /*
-        public IActionResult TableJobApplication()
-        {
-            IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplication;
-            return View(objTableJobApplicationList);
-        }
-        */
-
         public IActionResult CreateJobApplication()
         {
-            ViewBag.Datasheets = GetDatasheets();
-            ViewBag.Introductions = GetIntroductions();
-            ViewBag.Users = GetUsers();
             return View();
         }
 
@@ -42,7 +31,7 @@ namespace Project_ART.Controllers
         {
             _db.JobApplication.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableJobApplication");
+            return RedirectToAction("Index");
         }
 
         public IActionResult UpdateJobApplication(int? id)
@@ -57,10 +46,6 @@ namespace Project_ART.Controllers
             {
                 return NotFound();
             }
-
-            ViewBag.Datasheets = GetDatasheets();
-            ViewBag.Introductions = GetIntroductions();
-            ViewBag.Users = GetUsers();
             return View(jobAppFromDb);
         }
 
@@ -70,82 +55,23 @@ namespace Project_ART.Controllers
         {
             _db.JobApplication.Update(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableJobApplication");
+            return RedirectToAction("Index");
 
         }
 
         [HttpGet]
         public IActionResult DeleteJobApplication(int? id)
         {
+            bool jobAppFlag = true;
             var jobAppFromDb = _db.JobApplication.Find(id);
-            _db.JobApplication.Remove(jobAppFromDb);
+            var jobApplication = new TableJobApplication() { Job_Application_ID = jobAppFromDb.Job_Application_ID, Is_Deleted = jobAppFlag };
+
+            _db.JobApplication.Attach(jobApplication);
+            _db.Entry(jobApplication).Property(x => x.Is_Deleted).IsModified = true;
             _db.SaveChanges();
-            return RedirectToAction("TableJobApplication");
+
+            return RedirectToAction("Index");
         }
 
-        private List<SelectListItem> GetDatasheets()
-        {
-            var lstDatasheets = new List<SelectListItem>();
-           
-
-            var defItem = new SelectListItem()
-            {
-                Value = "",
-                Text = "----Select Datasheet----"
-
-            };
-
-            lstDatasheets.Insert(0, defItem);
-
-            return lstDatasheets;
-        }
-
-        private List<SelectListItem> GetIntroductions()
-        {
-            var lstIntroductions = new List<SelectListItem>();
-            foreach (var item in _db.Introduction)
-            {
-                lstIntroductions.Add(new SelectListItem()
-                {
-                    Value = item.Introduction_ID.ToString(),
-                    
-                });
-            }
-
-            var defItem = new SelectListItem()
-            {
-                Value = "",
-                Text = "----Select Introduction----"
-
-            };
-
-            lstIntroductions.Insert(0, defItem);
-
-            return lstIntroductions;
-        }
-
-        private List<SelectListItem> GetUsers()
-        {
-            var lstUsers = new List<SelectListItem>();
-            foreach (var item in _db.User)
-            {
-                lstUsers.Add(new SelectListItem()
-                {
-                    Value = item.Company_ID.ToString(),
-                    Text = item.First_Name
-                });
-            }
-
-            var defItem = new SelectListItem()
-            {
-                Value = "",
-                Text = "----Select User----"
-
-            };
-
-            lstUsers.Insert(0, defItem);
-
-            return lstUsers;
-        }
     }
 }

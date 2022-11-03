@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TableInterview>
 @{
-    ViewData["Title"] = "TableInterview";
+    ViewData["Title"] = "Index";
 }
 
 
@@ -30,6 +30,7 @@
                     <tr>
                         <th>Interview ID</th>
                         <th>Interview Score</th>
+                        <th>Interview Video</th>
 
                         <th style="text-align:center">Actions</th>
                     </tr>
@@ -41,6 +42,7 @@
                         <tr>
                             <td>@obj.Interview_ID</td>
                             <td>@obj.Interview_Score</td>
+                            <td>@obj.Interview</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableInterview" asp-action="UpdateInterview" asp-route-id="@obj.Interview_ID"class="btn btn-info btn-block btn-sm">

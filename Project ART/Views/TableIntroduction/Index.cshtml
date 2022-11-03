@@ -29,8 +29,9 @@
                 <thead>
                     <tr>
                         <th>Introduction ID</th>
-                        <th>B5 Trait</th>
                         <th>Disc Trait</th>
+                        <th>Introduction Video</th>
+                        <th>Introduction Score</th>
 
                         <th style="text-align:center">Actions</th>
                     </tr>
@@ -41,8 +42,9 @@
                     {
                         <tr>
                             <td>@obj.Introduction_ID</td>
-                            
                             <td>@obj.DISC_Trait</td>
+                            <td>@obj.Introduction_Video</td>
+                            <td>@obj.Introduction_Score</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableIntroduction" asp-action="UpdateIntroduction" asp-route-id="@obj.Introduction_ID"class="btn btn-info btn-block btn-sm">

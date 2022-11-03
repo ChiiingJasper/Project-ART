@@ -40,7 +40,7 @@ namespace Project_ART.Controllers
         {
             _db.KeyWord.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableKeyword");
+            return RedirectToAction("Index");
         }
 
         public IActionResult UpdateKeyword(int? id)
@@ -66,7 +66,7 @@ namespace Project_ART.Controllers
         {
             _db.KeyWord.Update(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableKeyword");
+            return RedirectToAction("Index");
 
         }
 
@@ -81,7 +81,7 @@ namespace Project_ART.Controllers
                 _db.SaveChanges();
             }
             
-            return RedirectToAction("TableKeyword");
+            return RedirectToAction("Index");
         }
 
         private List<SelectListItem> GetIntroductions()

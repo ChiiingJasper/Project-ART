@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TableExam>
+﻿@model IEnumerable<TableResume>
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,11 +9,11 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col pt-2">
-                <h3 class="m-0 font-weight-bold text-primary">Exam Table</h3>
+                <h3 class="m-0 font-weight-bold text-primary">User Table</h3>
             </div>
 
             <div class="col col-lg-2" align="right">
-                <a asp-controller="TableExam" asp-action="CreateExam" class="btn btn-success btn-icon-split btn-lg">
+                <a asp-controller="TableResume" asp-action="CreateResume" class="btn btn-success btn-icon-split btn-lg">
                     <span class="icon text-white-50">
                         <i class="bi bi-plus-circle"></i>
                     </span>
@@ -28,10 +28,9 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                 <thead>
                     <tr>
-                        <th>Exam ID</th>
-                        <th>Exam Score</th>
-                        <th>Exam Sheet</th>
-
+                        <th>Resume ID</th>
+                        <th>Resume</th>
+                        <th>Resume Score</th>
                         <th style="text-align:center">Actions</th>
                     </tr>
                 </thead>
@@ -40,24 +39,23 @@
                     @foreach(var obj in Model)
                     {
                         <tr>
-                            <td>@obj.Exam_ID</td>
-                            <td>@obj.Exam_Score</td>
-                            <td>@obj.Exam_Sheet</td>
-
+                            <td>@obj.Resume_ID</td>
+                            <td>@obj.Resume</td>
+                            <td>@obj.Resume_Score</td>
                             <td class="text-center">
-                                <a asp-controller="TableExam" asp-action="UpdateExam" asp-route-id="@obj.Exam_ID"class="btn btn-info btn-block btn-sm">
+                                <a asp-controller="TableResume" asp-action="UpdateResume" asp-route-id="@obj.Resume_ID"class="btn btn-info btn-block btn-sm">
                                     <i class="bi bi-pencil-square"></i>
                                     Update
                                 </a>
-                                <a data-toggle="modal" data-target="#deleteModal-@obj.Exam_ID" class="btn btn-danger btn-block btn-sm">
+                                <a data-toggle="modal" data-target="#deleteModal-@obj.Resume_ID" class="btn btn-danger btn-block btn-sm">
                                     <i class="bi bi-trash3"></i>
                                     Delete
                                 </a>
                             </td>
                         </tr>
                         
-                        <!-- Logout Modal-->
-                        <div class="modal fade" id="deleteModal-@obj.Exam_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        <!--Modal-->
+                        <div class="modal fade" id="deleteModal-@obj.Resume_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -67,10 +65,10 @@
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">You will be deleting Exam Number @obj.Exam_ID</div>
+                                    <div class="modal-body">You will be deleting Resume Number @obj.Resume_ID</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
-                                        <a class="btn btn-danger" asp-controller="TableExam" asp-action="DeleteExam" asp-route-id="@obj.Exam_ID">Delete</a>
+                                        <a class="btn btn-danger" asp-controller="TableResume" asp-action="DeleteResume" asp-route-id="@obj.Resume_ID">Delete</a>
                                     </div>
                                 </div>
                             </div>

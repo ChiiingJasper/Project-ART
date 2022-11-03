@@ -16,8 +16,8 @@ namespace Project_ART.Controllers
 
         public IActionResult Index()
         {
-            
-            return View();
+            IEnumerable<TableIntroduction> objTableIntroductionList = _db.Introduction;
+            return View(objTableIntroductionList);
         }
 
         /*
@@ -39,7 +39,7 @@ namespace Project_ART.Controllers
         {
             _db.Introduction.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableIntroduction");
+            return RedirectToAction("Index");
         }
 
         public IActionResult UpdateIntroduction(int? id)
@@ -65,17 +65,22 @@ namespace Project_ART.Controllers
         {
             _db.Introduction.Update(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableIntroduction");
+            return RedirectToAction("Index");
 
         }
 
         [HttpGet]
         public IActionResult DeleteIntroduction(int? id)
         {
+            bool introductionFlag = true;
             var introFromDb = _db.Introduction.Find(id);
-            _db.Introduction.Remove(introFromDb);
+            var introduction = new TableIntroduction() { Introduction_ID = introFromDb.Introduction_ID, Is_Deleted = introductionFlag };
+
+            _db.Introduction.Attach(introduction);
+            _db.Entry(introduction).Property(x => x.Is_Deleted).IsModified = true;
             _db.SaveChanges();
-            return RedirectToAction("TableIntroduction");
+
+            return RedirectToAction("Index");
         }
     }
 }

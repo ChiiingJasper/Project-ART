@@ -18,12 +18,16 @@
                         </div>
                         <form class="user" method="post">
                             <div class="form-group row">
-                                <input  type="text" class="form-control form-control-user"
-                                       placeholder="B5 Trait" required>
-                            </div>
-                            <div class="form-group row">
                                 <input asp-for="DISC_Trait" type="text" class="form-control form-control-user"
                                        placeholder="Disc Trait" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Introduction_Video" type="text" class="form-control form-control-user"
+                                       placeholder="Introduction Video" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Introduction_Score" type="text" class="form-control form-control-user"
+                                       placeholder="Introduction Score" required>
                             </div>
                             
                             <hr>
@@ -31,7 +35,7 @@
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a asp-controller="TableIntroduction" asp-action="TableIntroduction" class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableIntroduction" asp-action="Index" class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>
