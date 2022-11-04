@@ -19,19 +19,11 @@ namespace Project_ART.Controllers
             IEnumerable<TableAssessment> objTableAssessmentList = _db.Assessment;
             return View(objTableAssessmentList);
         }
-        /*
-        public IActionResult TableAssessment()
-        {
-            IEnumerable<TableAssessment> objTableAssessmentList = _db.Assessments;
-            return View(objTableAssessmentList);
-        }
-        */
 
         public IActionResult CreateAssessment()
         {
             ViewBag.Exams = GetExams();
             ViewBag.Interviews = GetInterviews();
-            ViewBag.Users = GetUsers();
             return View();
         }
 
@@ -41,7 +33,7 @@ namespace Project_ART.Controllers
         {
             _db.Assessment.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableAssessment");
+            return RedirectToAction("Index");
         }
 
         public IActionResult UpdateAssessment(int? id)
@@ -59,7 +51,6 @@ namespace Project_ART.Controllers
 
             ViewBag.Exams = GetExams();
             ViewBag.Interviews = GetInterviews();
-            ViewBag.Users = GetUsers();
             return View(assessmentFromDb);
         }
 
@@ -69,17 +60,22 @@ namespace Project_ART.Controllers
         {
             _db.Assessment.Update(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableAssessment");
+            return RedirectToAction("Index");
 
         }
 
         [HttpGet]
         public IActionResult DeleteAssessment(int? id)
         {
-            var assessmentFromDb = _db.Assessment.Find(id);
-            _db.Assessment.Remove(assessmentFromDb);
+            bool assessFlag = true;
+            var assessFromDb = _db.Assessment.Find(id);
+            var assessment = new TableAssessment() { Assessment_ID = assessFromDb.Assessment_ID, Is_Deleted = assessFlag };
+
+            _db.Assessment.Attach(assessment);
+            _db.Entry(assessment).Property(x => x.Is_Deleted).IsModified = true;
             _db.SaveChanges();
-            return RedirectToAction("TableAssessment");
+
+            return RedirectToAction("Index");
         }
 
         //TO GET LISTS
@@ -131,28 +127,5 @@ namespace Project_ART.Controllers
             return lstInterview;
         }
 
-        private List<SelectListItem> GetUsers()
-        {
-            var lstUsers = new List<SelectListItem>();
-            foreach (var item in _db.User)
-            {
-                lstUsers.Add(new SelectListItem()
-                {
-                    Value = item.Company_ID.ToString(),
-                    Text = item.First_Name
-                });
-            }
-
-            var defItem = new SelectListItem()
-            {
-                Value = "",
-                Text = "----Select User----"
-
-            };
-
-            lstUsers.Insert(0, defItem);
-
-            return lstUsers;
-        }
     }
 }

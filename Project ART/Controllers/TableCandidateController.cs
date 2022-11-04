@@ -20,15 +20,7 @@ namespace Project_ART.Controllers
             return View(objTableCandidateList);
         }
 
-        /*
-        public IActionResult TableCandidate()
-        {
-            IEnumerable<TableCandidate> objTableCandidateList = _db.Candidates;
-            return View(objTableCandidateList);
-        }
-        */
-
-        public IActionResult CreateCandidate()
+        /*public IActionResult CreateCandidate()
         {
             ViewBag.Applications = GetApplications();
             ViewBag.Assessments = GetAssessments();
@@ -42,8 +34,8 @@ namespace Project_ART.Controllers
         {
             _db.Candidate.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableCandidate");
-        }
+            return RedirectToAction("Index");
+        }*/
 
         public IActionResult UpdateCandidate(int? id)
         {
@@ -60,7 +52,8 @@ namespace Project_ART.Controllers
 
             ViewBag.Applications = GetApplications();
             ViewBag.Assessments = GetAssessments();
-            ViewBag.Users = GetUsers();
+            ViewBag.Resumes = GetResume();
+            ViewBag.Introductions = GetIntroduction();
             return View(candidateFromDb);
         }
 
@@ -70,7 +63,7 @@ namespace Project_ART.Controllers
         {
             _db.Candidate.Update(obj);
             _db.SaveChanges();
-            return RedirectToAction("TableCandidate");
+            return RedirectToAction("Index");
 
         }
 
@@ -80,7 +73,7 @@ namespace Project_ART.Controllers
             var candidateFromDb = _db.Candidate.Find(id);
             _db.Candidate.Remove(candidateFromDb);
             _db.SaveChanges();
-            return RedirectToAction("TableCandidate");
+            return RedirectToAction("Index");
         }
 
         //TO GET LISTS
@@ -132,15 +125,15 @@ namespace Project_ART.Controllers
             return lstAssessments;
         }
 
-        private List<SelectListItem> GetUsers()
+        private List<SelectListItem> GetResume()
         {
-            var lstUsers = new List<SelectListItem>();
-            foreach (var item in _db.User)
+            var lstResume = new List<SelectListItem>();
+            foreach (var item in _db.Resume)
             {
-                lstUsers.Add(new SelectListItem()
+                lstResume.Add(new SelectListItem()
                 {
-                    Value = item.Company_ID.ToString(),
-                    Text = item.First_Name
+                    Value = item.Resume_ID.ToString(),
+                    Text = item.Resume
                 });
             }
 
@@ -151,9 +144,33 @@ namespace Project_ART.Controllers
 
             };
 
-            lstUsers.Insert(0, defItem);
+            lstResume.Insert(0, defItem);
 
-            return lstUsers;
+            return lstResume;
+        }
+
+        private List<SelectListItem> GetIntroduction()
+        {
+            var lstIntro = new List<SelectListItem>();
+            foreach (var item in _db.Introduction)
+            {
+                lstIntro.Add(new SelectListItem()
+                {
+                    Value = item.Introduction_ID.ToString(),
+                    Text = item.Introduction_Video
+                });
+            }
+
+            var defItem = new SelectListItem()
+            {
+                Value = "",
+                Text = "----Select User----"
+
+            };
+
+            lstIntro.Insert(0, defItem);
+
+            return lstIntro;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Interview_ID");
 
-                    b.ToTable("Assessment");
+                    b.ToTable("Assessment", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableBenefit", b =>
@@ -72,7 +72,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Job_Application_ID");
 
-                    b.ToTable("Benefit");
+                    b.ToTable("Benefit", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableCandidate", b =>
@@ -138,7 +138,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Resume_ID");
 
-                    b.ToTable("Candidate");
+                    b.ToTable("Candidate", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableData", b =>
@@ -162,7 +162,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Resume_ID");
 
-                    b.ToTable("Data");
+                    b.ToTable("Data", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableExam", b =>
@@ -184,7 +184,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Exam_ID");
 
-                    b.ToTable("Exam");
+                    b.ToTable("Exam", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableFAQ", b =>
@@ -217,7 +217,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("User_ID");
 
-                    b.ToTable("FAQ");
+                    b.ToTable("FAQ", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableInterview", b =>
@@ -239,7 +239,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Interview_ID");
 
-                    b.ToTable("Interview");
+                    b.ToTable("Interview", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableIntroduction", b =>
@@ -264,7 +264,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Introduction_ID");
 
-                    b.ToTable("Introduction");
+                    b.ToTable("Introduction", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableJobApplication", b =>
@@ -313,7 +313,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Job_Application_ID");
 
-                    b.ToTable("JobApplication");
+                    b.ToTable("JobApplication", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableKeyword", b =>
@@ -340,7 +340,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Introduction_ID");
 
-                    b.ToTable("KeyWord");
+                    b.ToTable("KeyWord", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableLog", b =>
@@ -373,7 +373,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("User_ID");
 
-                    b.ToTable("Log");
+                    b.ToTable("Log", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableQualification", b =>
@@ -400,7 +400,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Job_Application_ID");
 
-                    b.ToTable("Qualification");
+                    b.ToTable("Qualification", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableResponsibility", b =>
@@ -427,7 +427,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Job_Application_ID");
 
-                    b.ToTable("Responsibility");
+                    b.ToTable("Responsibility", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableResume", b =>
@@ -449,7 +449,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Resume_ID");
 
-                    b.ToTable("Resume");
+                    b.ToTable("Resume", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableStatus", b =>
@@ -500,7 +500,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Hired_By_IDCompany_ID");
 
-                    b.ToTable("Status");
+                    b.ToTable("Status", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableUser", b =>
@@ -540,7 +540,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Company_ID");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableAssessment", b =>

@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TableCandidate>
 @{
-    ViewData["Title"] = "TableCandidate";
+    ViewData["Title"] = "Index";
 }
 
 
@@ -29,10 +29,20 @@
                 <thead>
                     <tr>
                         <th>Candidate ID</th>
-                        <th>Hired</th>
-                        <th>Application ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Middle Initial</th>
+                        <th>Email</th>
+                        <th>Mobile Number</th>
+                        <th>Photo</th>
+                        <th>Website</th>
+                        <th>Province</th>
+                        <th>City</th>
+                        <th>Email Confirmed</th>
+                        <th>ResumeID</th>
+                        <th>Introduction ID</th>
                         <th>Assessment ID</th>
-                        <th>Company ID</th>
+                        <th>Job Application ID</th>
 
 
                         <th style="text-align:center">Actions</th>
@@ -44,6 +54,21 @@
                     {
                         <tr>
                             <td>@obj.Candidate_ID</td>
+                            <td>@obj.First_Name</td>
+                            <td>@obj.Last_Name</td>
+                            <td>@obj.Middle_Initital</td>
+                            <td>@obj.Email</td>
+                            <td>@obj.Mobile_Number</td>
+                            <td>@obj.Photo</td>
+                            <td>@obj.Website</td>
+                            <td>@obj.Province</td>
+                            <td>@obj.City</td>
+                            <td>@obj.Email_Confirmed</td>
+                            <td>@obj.Resume_ID</td>
+                            <td>@obj.Introduction_ID</td>
+                            <td>@obj.Assessment_ID</td>
+                            <td>@obj.Job_Application_ID</td>
+
                         
 
                             <td class="text-center">

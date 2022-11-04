@@ -93,6 +93,7 @@
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\UploadedFiles\Jobs\" />
     <Folder Include="wwwroot\UploadedFiles\Photo\" />
+    <Folder Include="wwwroot\UploadedFiles\Photo\" />
     <Folder Include="wwwroot\UploadedFiles\Resume\" />
     <Folder Include="wwwroot\UploadedFiles\Video\" />
   </ItemGroup>

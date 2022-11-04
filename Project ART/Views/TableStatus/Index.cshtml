@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TableAssessment>
+﻿@model IEnumerable<TableStatus>
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,16 +9,16 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col pt-2">
-                <h3 class="m-0 font-weight-bold text-primary">Assessment Table</h3>
+                <h3 class="m-0 font-weight-bold text-primary">Status Table</h3>
             </div>
 
             <div class="col col-lg-2" align="right">
-                <a asp-controller="TableAssessment" asp-action="CreateAssessment" class="btn btn-success btn-icon-split btn-lg">
+                <!--<a asp-controller="TableStatus" asp-action="CreateCandidate" class="btn btn-success btn-icon-split btn-lg">
                     <span class="icon text-white-50">
                         <i class="bi bi-plus-circle"></i>
                     </span>
                     <span class="text">Add</span>
-                </a>
+                </a>-->
             </div>
         </div>
 
@@ -28,9 +28,13 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                 <thead>
                     <tr>
-                        <th>Assessment ID</th>
-                        <th>Exam ID</th>
-                        <th>Interview ID</th>
+                        <th>Status ID</th>
+                        <th>Candidate ID</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Approved By</th>
+                        <th>Assessed By</th>
+                        <th>Hired By</th>
 
 
                         <th style="text-align:center">Actions</th>
@@ -41,24 +45,30 @@
                     @foreach(var obj in Model)
                     {
                         <tr>
-                            <td>@obj.Assessment_ID</td>
-                            <td>@obj.Exam_ID</td>
-                            <td>@obj.Interview_ID</td>
+                            <td>@obj.Status_ID</td>
+                            <td>@obj.Candidate_ID</td>
+                            <td>@obj.Status</td>
+                            <td>@obj.Date</td>
+                            <td>@obj.Approved_By_ID</td>
+                            <td>@obj.Assessed_By_ID</td>
+                            <td>@obj.Hired_By_ID</td>
+
+                        
 
                             <td class="text-center">
-                                <a asp-controller="TableAssessment" asp-action="UpdateAssessment" asp-route-id="@obj.Assessment_ID"class="btn btn-info btn-block btn-sm">
+                                <a asp-controller="TableStatus" asp-action="UpdateStatus" asp-route-id="@obj.Status_ID"class="btn btn-info btn-block btn-sm">
                                     <i class="bi bi-pencil-square"></i>
                                     Update
                                 </a>
-                                <a data-toggle="modal" data-target="#deleteModal-@obj.Assessment_ID" class="btn btn-danger btn-block btn-sm">
+                                <a data-toggle="modal" data-target="#deleteModal-@obj.Status_ID" class="btn btn-danger btn-block btn-sm">
                                     <i class="bi bi-trash3"></i>
                                     Delete
                                 </a>
                             </td>
                         </tr>
                         
-                        <!-- Logout Modal-->
-                        <div class="modal fade" id="deleteModal-@obj.Assessment_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        <!-- Delete Modal-->
+                        <div class="modal fade" id="deleteModal-@obj.Status_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -68,10 +78,10 @@
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">You will be deleting Assessment Number @obj.Assessment_ID</div>
+                                    <div class="modal-body">You will be deleting Status Number @obj.Status_ID</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
-                                        <a class="btn btn-danger" asp-controller="TableAssessment" asp-action="DeleteAssessment" asp-route-id="@obj">Delete</a>
+                                        <a class="btn btn-danger" asp-controller="TableStatus" asp-action="DeleteStatus" asp-route-id="@obj.Status_ID">Delete</a>
                                     </div>
                                 </div>
                             </div>

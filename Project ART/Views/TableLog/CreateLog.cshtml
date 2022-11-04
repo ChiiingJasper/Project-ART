@@ -1,6 +1,6 @@
-﻿
+﻿@model TableLog
 @{
-    ViewData["Title"] = "CreateSkill";
+    ViewData["Title"] = "CreateLog";
 }
 
 
@@ -13,23 +13,32 @@
                 <div class="col">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create Skill</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Create Log</h1>
                             <hr />
                         </div>
-                        
+                        <form class="user" method="post" asp-action="CreateLog">
                             <div class="form-group row">
-                                
+                                <input asp-for="Table_ID" type="number" class="form-control form-control-user"
+                                       placeholder="Table ID" required>
                             </div>
                             <div class="form-group row">
-                                <select  class="form-control  select-form" required></select>
+                                <input asp-for="Table" type="text" class="form-control form-control-user"
+                                       placeholder="Table" required>
                             </div>
-                            
+                            <div class="form-group row">
+                                <input asp-for="Date_Time" type="datetime-local" class="form-control form-control-user"
+                                       placeholder="Date" required>
+                            </div>
+                            <div class="form-group row">
+                                <select  asp-items="ViewBag.Updated" class="form-control  select-form" required></select>
+                            </div>
+
                             <hr>
                             <div class="form-group row">
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a  class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableLog" asp-action="Index"  class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>
@@ -39,7 +48,7 @@
                             </div>
                             
 
-                        
+                        </form>
 
                     </div>
                 </div>
@@ -48,4 +57,6 @@
     </div>
 
 </div>
+
+
 

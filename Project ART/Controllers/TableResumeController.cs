@@ -1,7 +1,11 @@
 ﻿using Project_ART.Data;
 using Project_ART.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing.Matching;
+using System.Dynamic;
+using System.Net;
+using System.Net.Mail;
 
 
 namespace Project_ART.Controllers
@@ -9,17 +13,21 @@ namespace Project_ART.Controllers
     public class TableResumeController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public TableResumeController(ApplicationDbContext db)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public TableResumeController(ApplicationDbContext db, IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
+            _httpContextAccessor = httpContextAccessor;
         }
+        
         public IActionResult Index()
         {
             IEnumerable<TableResume> objTableResumeList = _db.Resume;
             return View(objTableResumeList);
         }
 
-        public IActionResult CreateResume()
+        /*public IActionResult CreateResume()
         {
             return View();
         }
@@ -60,7 +68,7 @@ namespace Project_ART.Controllers
             }
             return View(obj);
 
-        }
+        }*/
 
         [HttpGet]
         public IActionResult DeleteResume(int? id)

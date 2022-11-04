@@ -1,6 +1,6 @@
-﻿@model TableKeyword
+﻿@model TableResponsibility
 @{
-    ViewData["Title"] = "UpdateKeyword";
+    ViewData["Title"] = "UpdateResponsibility";
 }
 
 
@@ -13,18 +13,18 @@
                 <div class="col">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Update Keyword</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Update Responsibility</h1>
                             <hr />
                         </div>
-                        <form class="user" method="post" asp-action="UpdateKeyword">
-                            <input asp-for="Key_Word_ID"  hidden>
+                        <form class="user" method="post" asp-action="UpdateResponsibility">
+                            <input asp-for="Responsibility_ID"  hidden>
                             <div class="form-group row">
-                                <input asp-for="Word" type="text" class="form-control form-control-user"
-                                       placeholder="Word" required>
+                                <input asp-for="Responsibility" type="text" class="form-control form-control-user"
+                                       placeholder="Responsibility" required>
                             </div>
                             <div class="form-group row">
-                                <input asp-for="Time_Stamp" type="datetime-local" class="form-control form-control-user"
-                                       placeholder="Time Stamp" required>
+                                <input asp-for="Description" type="text" class="form-control form-control-user"
+                                       placeholder="Description" required>
                             </div>
                             
                             <hr>
@@ -32,7 +32,7 @@
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a asp-controller="TableKeyword" asp-action="Index"  class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableResponsibility" asp-action="Index"  class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>

@@ -94,6 +94,18 @@ namespace ART_Candidate_Page.Controllers
                 candidate.Photo = fileName + ".png";
                 introduction.Introduction_Video = fileName+".mp4";
                 resume.Resume = fileName + ".pdf";
+
+
+                //FOR TableData Create
+                TableData dataTable = new TableData();
+                dataTable.Resume_ID = resume.Resume_ID;
+                dataTable.Data = resume.Resume;
+                _db.Data.Add(dataTable);
+
+                //FOR TableKeyword Create
+                //To Be Created
+                
+
                 _db.Candidate.Update(candidate);
                 _db.Resume.Update(resume);
                 _db.Introduction.Update(introduction);

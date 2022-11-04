@@ -1,6 +1,6 @@
-﻿@model TableKeyword
+﻿@model TableBenefit
 @{
-    ViewData["Title"] = "CreateKeyword";
+    ViewData["Title"] = "UpdateBenefit";
 }
 
 
@@ -13,20 +13,18 @@
                 <div class="col">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create Keyword</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Update Benefit</h1>
                             <hr />
                         </div>
-                        <form class="user" method="post">
+                        <form class="user" method="post" asp-action="UpdateBenefit">
+                            <input asp-for="Benefit_ID"  hidden>
                             <div class="form-group row">
-                                <input asp-for="Word" type="text" class="form-control form-control-user"
-                                       placeholder="Word" required>
+                                <input asp-for="Benefit" type="text" class="form-control form-control-user"
+                                       placeholder="Benefit" required>
                             </div>
                             <div class="form-group row">
-                                <input asp-for="Time_Stamp" type="datetime-local" class="form-control form-control-user"
-                                       placeholder="Time Stamp" required>
-                            </div>
-                            <div class="form-group row">
-                                <select  asp-items="ViewBag.Introductions" class="form-control  select-form" required></select>
+                                <input asp-for="Description" type="text" class="form-control form-control-user"
+                                       placeholder="Description" required>
                             </div>
                             
                             <hr>
@@ -34,12 +32,12 @@
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a asp-controller="TableKeyword" asp-action="Index" class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableBenefit" asp-action="Index"  class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Create</button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">Update</button>
                                 </div>
                             </div>
                             

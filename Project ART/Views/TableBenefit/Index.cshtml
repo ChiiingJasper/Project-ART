@@ -1,6 +1,6 @@
-﻿
+﻿@model IEnumerable<TableBenefit>
 @{
-    ViewData["Title"] = "TableSkill";
+    ViewData["Title"] = "Index";
 }
 
 
@@ -9,16 +9,16 @@
     <div class="card-header py-3">
         <div class="row">
             <div class="col pt-2">
-                <h3 class="m-0 font-weight-bold text-primary">Skill Table</h3>
+                <h3 class="m-0 font-weight-bold text-primary">Benefit Table</h3>
             </div>
 
             <div class="col col-lg-2" align="right">
-                <a asp-controller="TableSkill" asp-action="CreateSkill" class="btn btn-success btn-icon-split btn-lg">
+                <!--<a asp-controller="TableBenefit" asp-action="CreateAssessment" class="btn btn-success btn-icon-split btn-lg">
                     <span class="icon text-white-50">
                         <i class="bi bi-plus-circle"></i>
                     </span>
                     <span class="text">Add</span>
-                </a>
+                </a>-->
             </div>
         </div>
 
@@ -28,9 +28,11 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                 <thead>
                     <tr>
-                        <th>Skill ID</th>
-                        <th>Skill Name</th>
-                        <th>Datasheet ID</th>
+                        <th>Benefit ID</th>
+                        <th>Job Application ID</th>
+                        <th>Benefit</th>
+                        <th>Description</th>
+
 
                         <th style="text-align:center">Actions</th>
                     </tr>
@@ -40,16 +42,17 @@
                     @foreach(var obj in Model)
                     {
                         <tr>
-                            <td>@obj.Skill_ID</td>
-                            <td>@obj.Skill_Name</td>
-                            
+                            <td>@obj.Benefit_ID</td>
+                            <td>@obj.Job_Application_ID</td>
+                            <td>@obj.Benefit</td>
+                            <td>@obj.Description</td>
 
                             <td class="text-center">
-                                <a asp-controller="TableSkill" asp-action="UpdateSkill" asp-route-id="@obj.Skill_ID"class="btn btn-info btn-block btn-sm">
+                                <a asp-controller="TableBenefit" asp-action="UpdateBenefit" asp-route-id="@obj.Benefit_ID"class="btn btn-info btn-block btn-sm">
                                     <i class="bi bi-pencil-square"></i>
                                     Update
                                 </a>
-                                <a data-toggle="modal" data-target="#deleteModal-@obj.Skill_ID" class="btn btn-danger btn-block btn-sm">
+                                <a data-toggle="modal" data-target="#deleteModal-@obj.Benefit_ID" class="btn btn-danger btn-block btn-sm">
                                     <i class="bi bi-trash3"></i>
                                     Delete
                                 </a>
@@ -57,7 +60,7 @@
                         </tr>
                         
                         <!-- Logout Modal-->
-                        <div class="modal fade" id="deleteModal-@obj.Skill_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="deleteModal-@obj.Benefit_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -67,10 +70,10 @@
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">You will be deleting Skill Number @obj.Skill_ID</div>
+                                    <div class="modal-body">You will be deleting Benefit Number @obj.Benefit_ID</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
-                                        <a class="btn btn-danger" asp-controller="TableSkill" asp-action="DeleteSkill" asp-route-id="@obj.Skill_ID">Delete</a>
+                                        <a class="btn btn-danger" asp-controller="TableBenefit" asp-action="DeleteBenefit" asp-route-id="@obj">Delete</a>
                                     </div>
                                 </div>
                             </div>
