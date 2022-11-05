@@ -19,12 +19,18 @@ namespace Project_ART.Controllers
         {
             _db = db;
             _httpContextAccessor = httpContextAccessor;
+
         }
         
         public IActionResult Index()
         {
-            IEnumerable<TableResume> objTableResumeList = _db.Resume;
-            return View(objTableResumeList);
+            dynamic obj = new ExpandoObject();
+            bool deleteFlag = false;
+            String tableName = "TableResume";
+            obj.Resume = _db.Resume.Where(x => x.Is_Deleted == deleteFlag);
+            obj.Log = _db.Log.Where(x => x.Is_Deleted == deleteFlag && x.Table == tableName);
+
+            return View(obj);
         }
 
         public IActionResult CreateResume()
@@ -38,6 +44,20 @@ namespace Project_ART.Controllers
         {
             _db.Resume.Add(obj);
             _db.SaveChanges();
+
+            int? SessionId = _httpContextAccessor.HttpContext.Session.GetInt32("Id");
+            DateTime now = DateTime.Now;
+            String tableName = "TableResume";
+            String logDesc = "Created Resume";
+            TableLog tableLog = new TableLog();
+            tableLog.Table = tableName;
+            tableLog.Table_ID = obj.Resume_ID;
+            tableLog.Description = logDesc;
+            tableLog.Date_Time = now.ToString("F");
+            tableLog.User_ID = (int)SessionId;
+            _db.Log.Add(tableLog);
+            _db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -64,6 +84,19 @@ namespace Project_ART.Controllers
             {
                 _db.Resume.Update(obj);
                 _db.SaveChanges();
+
+                int? SessionId = _httpContextAccessor.HttpContext.Session.GetInt32("Id");
+                DateTime now = DateTime.Now;
+                String tableName = "TableResume";
+                String logDesc = "Updated Resume";
+                TableLog tableLog = new TableLog();
+                tableLog.Table = tableName;
+                tableLog.Table_ID = obj.Resume_ID;
+                tableLog.Description = logDesc;
+                tableLog.Date_Time = now.ToString("F");
+                tableLog.User_ID = (int)SessionId;
+                _db.Log.Add(tableLog);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -80,6 +113,19 @@ namespace Project_ART.Controllers
            
             _db.Resume.Attach(resume);
             _db.Entry(resume).Property(x => x.Is_Deleted).IsModified = true;
+            _db.SaveChanges();
+
+            int? SessionId = _httpContextAccessor.HttpContext.Session.GetInt32("Id");
+            DateTime now = DateTime.Now;
+            String tableName = "TableResume";
+            String logDesc = "Deleted Resume";
+            TableLog tableLog = new TableLog();
+            tableLog.Table = tableName;
+            tableLog.Table_ID = resumeFromDb.Resume_ID;
+            tableLog.Description = logDesc;
+            tableLog.Date_Time = now.ToString("F");
+            tableLog.User_ID = (int)SessionId;
+            _db.Log.Add(tableLog);
             _db.SaveChanges();
 
             return RedirectToAction("Index");

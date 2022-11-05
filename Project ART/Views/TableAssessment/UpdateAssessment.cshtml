@@ -19,10 +19,10 @@
                         <form class="user" method="post" asp-action="UpdateAssessment">
                             <input asp-for="Assessment_ID"  hidden>
                             <div class="form-group row">
-                                <select asp-items="ViewBag.Exams" class="form-control  select-form" required></select>
+                                <select asp-for="Exam_ID" asp-items="ViewBag.Exams" class="form-control  select-form" required></select>
                             </div>
                             <div class="form-group row">
-                                <select  asp-items="ViewBag.Interviews" class="form-control  select-form" required></select>
+                                <select asp-for="Interview_ID" asp-items="ViewBag.Interviews" class="form-control  select-form" required></select>
                             </div>
                             
                             <hr>

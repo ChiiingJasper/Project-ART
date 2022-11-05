@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TableKeyword>
+﻿@model dynamic
 @{
     ViewData["Title"] = "TableKeyword";
 }
@@ -32,21 +32,19 @@
                         <th>Word</th>
                         <th>Time Stamp</th>
                         <th>Introduction ID</th>
-                        <th>Deleted</th>
 
                         <th style="text-align:center">Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach(var obj in Model)
+                    @foreach(TableKeyword obj in Model.Keyword)
                     {
                         <tr>
                             <td>@obj.Key_Word_ID</td>
                             <td>@obj.Word</td>
                             <td>@obj.Time_Stamp</td>
                             <td>@obj.Introduction_ID</td>
-                            <td>@obj.Is_Deleted</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableKeyword" asp-action="UpdateKeyword" asp-route-id="@obj.Key_Word_ID"class="btn btn-info btn-block btn-sm">
@@ -75,6 +73,98 @@
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
                                         <a class="btn btn-danger" asp-controller="TableKeyword" asp-action="DeleteKeyword" asp-route-id="@obj.Key_Word_ID">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+                   
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- LOG TABLE -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col pt-2">
+                <h3 class="m-0 font-weight-bold text-primary">Log Table</h3>
+            </div>
+
+            <div class="col col-lg-2" align="right">
+                <!--<a asp-controller="TableLog" asp-action="CreateLog" class="btn btn-success btn-icon-split btn-lg">
+                    <span class="icon text-white-50">
+                        <i class="bi bi-plus-circle"></i>
+                    </span>
+                    <span class="text">Add</span>
+                </a>-->
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                    <tr>
+                        <th>Log ID</th>
+                        <th>Table ID</th>
+                        <th>Table</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Updated By</th>
+
+
+            
+
+                        <th style="text-align:center">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach(TableLog obj in Model.Log)
+                    {
+                        <tr>
+                            <td>@obj.Log_ID</td>
+                            <td>@obj.Table_ID</td>
+                            <td>@obj.Table</td>
+                            <td>@obj.Description</td>
+                            <td>@obj.Date_Time</td>
+                            <td>@obj.User_ID</td>
+                            
+
+                            <td class="text-center">
+                                <a asp-controller="TableLog" asp-action="UpdateLog" asp-route-id="@obj.Log_ID"class="btn btn-info btn-block btn-sm">
+                                    <i class="bi bi-pencil-square"></i>
+                                    Update
+                                </a>
+                                <a data-toggle="modal" data-target="#deleteModal-@obj.Log_ID" class="btn btn-danger btn-block btn-sm">
+                                    <i class="bi bi-trash3"></i>
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                        
+                        <!-- Delete Modal-->
+                        <div class="modal fade" id="deleteModal-@obj.Log_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to Delete?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">You will be deleting Log Number @obj.Log_ID</div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
+                                        <a class="btn btn-danger" asp-controller="TableLog" asp-action="DeleteLog" asp-route-id="@obj.Log_ID">Delete</a>
                                     </div>
                                 </div>
                             </div>

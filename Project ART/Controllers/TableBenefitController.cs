@@ -1,22 +1,35 @@
 ﻿using Project_ART.Data;
 using Project_ART.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Routing.Matching;
+using System.Dynamic;
+using System.Net;
+using System.Net.Mail;
+
 
 namespace Project_ART.Controllers
 {
     public class TableBenefitController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TableBenefitController(ApplicationDbContext db)
+        public TableBenefitController(ApplicationDbContext db, IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
+            _httpContextAccessor = httpContextAccessor;
         }
         public IActionResult Index()
         {
-            IEnumerable<TableBenefit> objTableBenefitList = _db.Benefit;
-            return View(objTableBenefitList);
+            dynamic obj = new ExpandoObject();
+            bool deleteFlag = false;
+            String tableName = "TableBenefit";
+            obj.Benefit = _db.Benefit.Where(x => x.Is_Deleted == deleteFlag);
+            obj.Log = _db.Log.Where(x => x.Is_Deleted == deleteFlag && x.Table == tableName);
+
+            return View(obj);
         }
 
         public IActionResult CreateBenefit()
@@ -37,6 +50,20 @@ namespace Project_ART.Controllers
             benefitTable.Benefit = obj.Benefit;
             benefitTable.Description = obj.Description;
             _db.Benefit.Add(benefitTable);
+            _db.SaveChanges();
+
+            //ADD LOG
+            int? SessionId = _httpContextAccessor.HttpContext.Session.GetInt32("Id");
+            DateTime now = DateTime.Now;
+            String tableName = "TableBenefit";
+            String logDesc = "Created Benefit";
+            TableLog tableLog = new TableLog();
+            tableLog.Table = tableName;
+            tableLog.Table_ID = benefitTable.Benefit_ID;
+            tableLog.Description = logDesc;
+            tableLog.Date_Time = now.ToString("F");
+            tableLog.User_ID = (int)SessionId;
+            _db.Log.Add(tableLog);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -65,6 +92,20 @@ namespace Project_ART.Controllers
         {
             _db.Benefit.Update(obj);
             _db.SaveChanges();
+
+            //ADD LOG
+            int? SessionId = _httpContextAccessor.HttpContext.Session.GetInt32("Id");
+            DateTime now = DateTime.Now;
+            String tableName = "TableBenefit";
+            String logDesc = "Updated Benefit";
+            TableLog tableLog = new TableLog();
+            tableLog.Table = tableName;
+            tableLog.Table_ID = obj.Benefit_ID;
+            tableLog.Description = logDesc;
+            tableLog.Date_Time = now.ToString("F");
+            tableLog.User_ID = (int)SessionId;
+            _db.Log.Add(tableLog);
+            _db.SaveChanges();
             return RedirectToAction("Index");
 
         }
@@ -80,6 +121,19 @@ namespace Project_ART.Controllers
             _db.Entry(benefit).Property(x => x.Is_Deleted).IsModified = true;
             _db.SaveChanges();
 
+            //ADD LOG
+            int? SessionId = _httpContextAccessor.HttpContext.Session.GetInt32("Id");
+            DateTime now = DateTime.Now;
+            String tableName = "TableBenefit";
+            String logDesc = "Deleted Benefit";
+            TableLog tableLog = new TableLog();
+            tableLog.Table = tableName;
+            tableLog.Table_ID = benefitFromDb.Benefit_ID;
+            tableLog.Description = logDesc;
+            tableLog.Date_Time = now.ToString("F");
+            tableLog.User_ID = (int)SessionId;
+            _db.Log.Add(tableLog);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
