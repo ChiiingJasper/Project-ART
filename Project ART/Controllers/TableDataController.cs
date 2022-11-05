@@ -20,6 +20,21 @@ namespace Project_ART.Controllers
             return View(objTableDataList);
         }
 
+        public IActionResult CreateData()
+        {
+            ViewBag.Resumes = GetResume();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateData(TableData obj)
+        {
+            _db.Data.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult UpdateData(int? id)
         {
             if (id == null || id == 0)
@@ -70,6 +85,7 @@ namespace Project_ART.Controllers
                 lstResumes.Add(new SelectListItem()
                 {
                     Value = item.Resume_ID.ToString(),
+                    Text = item.Resume
 
                 });
             }

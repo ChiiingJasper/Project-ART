@@ -20,13 +20,6 @@ namespace Project_ART.Controllers
             return View(objTableKeywordList);
         }
 
-        /*
-        public IActionResult TableKeyword()
-        {
-            IEnumerable<TableKeyword> objTableKeywordList = _db.KeyWords;
-            return View(objTableKeywordList);
-        }
-        */
 
         public IActionResult CreateKeyword()
         {
@@ -71,16 +64,17 @@ namespace Project_ART.Controllers
         }
 
         [HttpGet]
-        public IActionResult DeleteIntroduction(int? id)
+        public IActionResult DeleteKeyword(int? id)
         {
 
-            var keywordFromDb = _db.KeyWord.Find(id);
-            if(keywordFromDb != null)
-            {
-                _db.KeyWord.Remove(keywordFromDb);
-                _db.SaveChanges();
-            }
-            
+            bool keyFlag = true;
+            var keyFromDb = _db.KeyWord.Find(id);
+            var keyword = new TableKeyword() { Key_Word_ID = keyFromDb.Key_Word_ID, Is_Deleted = keyFlag };
+
+            _db.KeyWord.Attach(keyword);
+            _db.Entry(keyword).Property(x => x.Is_Deleted).IsModified = true;
+            _db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -92,6 +86,7 @@ namespace Project_ART.Controllers
                 lstIntroductions.Add(new SelectListItem()
                 {
                     Value = item.Introduction_ID.ToString(),
+                    Text = item.Introduction_Video
                     
                 });
             }

@@ -19,6 +19,28 @@ namespace Project_ART.Controllers
             return View(objTableBenefitList);
         }
 
+        public IActionResult CreateBenefit()
+        {
+            ViewBag.Application = GetJobApplication();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateBenefit(TableBenefit obj)
+        {
+            TableBenefit benefitTable = new TableBenefit();
+            if(obj.Job_Application_ID != null)
+            {
+                benefitTable.Job_Application_ID = obj.Job_Application_ID;
+            }
+            benefitTable.Benefit = obj.Benefit;
+            benefitTable.Description = obj.Description;
+            _db.Benefit.Add(benefitTable);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult UpdateBenefit(int? id)
         {

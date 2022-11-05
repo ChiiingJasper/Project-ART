@@ -19,6 +19,27 @@ namespace Project_ART.Controllers
             return View(objTableResponsibilityList);
         }
 
+        public IActionResult CreateResponsibility()
+        {
+            ViewBag.Application = GetJobApplication();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateResponsibility(TableResponsibility obj)
+        {
+            TableResponsibility respoTable = new TableResponsibility();
+            if (obj.Job_Application_ID != null)
+            {
+                respoTable.Job_Application_ID = obj.Job_Application_ID;
+            }
+            respoTable.Responsibility = obj.Responsibility;
+            respoTable.Description = obj.Description;
+            _db.Responsibility.Add(respoTable);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         public IActionResult UpdateResponsibility(int? id)
         {

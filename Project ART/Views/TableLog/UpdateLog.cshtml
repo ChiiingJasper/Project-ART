@@ -18,7 +18,7 @@
                         </div>
                         <form class="user" method="post" asp-action="UpdateLog">
                             <input asp-for="Log_ID"  hidden>
-                            <div>
+                            <div class="form-group row">
                                 <input asp-for="Table_ID" type="number" class="form-control form-control-user"
                                        placeholder="Table ID" required>
                             </div>
@@ -31,7 +31,7 @@
                                        placeholder="Date" required>
                             </div>
                             <div class="form-group row">
-                                <select  asp-items="ViewBag.Updated" class="form-control  select-form" required></select>
+                                <select asp-for="User_ID" asp-items="ViewBag.Updated" class="form-control  select-form" required></select>
                             </div>
 
                             <hr>

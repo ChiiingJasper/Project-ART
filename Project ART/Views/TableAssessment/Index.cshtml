@@ -31,6 +31,7 @@
                         <th>Assessment ID</th>
                         <th>Exam ID</th>
                         <th>Interview ID</th>
+                        <th>Deleted</th>
 
 
                         <th style="text-align:center">Actions</th>
@@ -44,6 +45,7 @@
                             <td>@obj.Assessment_ID</td>
                             <td>@obj.Exam_ID</td>
                             <td>@obj.Interview_ID</td>
+                            <td>@obj.Is_Deleted</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableAssessment" asp-action="UpdateAssessment" asp-route-id="@obj.Assessment_ID"class="btn btn-info btn-block btn-sm">
@@ -71,7 +73,7 @@
                                     <div class="modal-body">You will be deleting Assessment Number @obj.Assessment_ID</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
-                                        <a class="btn btn-danger" asp-controller="TableAssessment" asp-action="DeleteAssessment" asp-route-id="@obj">Delete</a>
+                                        <a class="btn btn-danger" asp-controller="TableAssessment" asp-action="DeleteAssessment" asp-route-id="@obj.Assessment_ID">Delete</a>
                                     </div>
                                 </div>
                             </div>

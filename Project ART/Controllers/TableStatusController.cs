@@ -20,6 +20,24 @@ namespace Project_ART.Controllers
             return View(objTableStatusList);
         }
 
+        public IActionResult CreateStatus()
+        {
+            ViewBag.Candidate = GetCandidate();
+            ViewBag.Approved = GetApproved();
+            ViewBag.Assessed = GetAssessed();
+            ViewBag.Hired = GetHired();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateStatus(TableStatus obj)
+        {
+            _db.Status.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult UpdateStatus(int? id)
         {
@@ -68,10 +86,10 @@ namespace Project_ART.Controllers
         //TO GET LISTS
         private List<SelectListItem> GetCandidate()
         {
-            var lstApplications = new List<SelectListItem>();
+            var lstCandidates = new List<SelectListItem>();
             foreach (var item in _db.Candidate)
             {
-                lstApplications.Add(new SelectListItem()
+                lstCandidates.Add(new SelectListItem()
                 {
                     Value = item.Candidate_ID.ToString(),
                     Text = item.First_Name
@@ -85,9 +103,9 @@ namespace Project_ART.Controllers
 
             };
 
-            lstApplications.Insert(0, defItem);
+            lstCandidates.Insert(0, defItem);
 
-            return lstApplications;
+            return lstCandidates;
         }
 
         private List<SelectListItem> GetApproved()

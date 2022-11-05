@@ -1,6 +1,6 @@
 ﻿@model TableKeyword
 @{
-    ViewData["Title"] = "UpdateKeyword";
+    ViewData["Title"] = "CreateKeyword";
 }
 
 
@@ -13,12 +13,14 @@
                 <div class="col">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Update Keyword</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Create Keyword</h1>
                             <hr />
                         </div>
-                        <form class="user" method="post" asp-action="UpdateKeyword">
-                            <input asp-for="Key_Word_ID"  hidden>
-                            <input asp-for="Introduction_ID"  hidden>
+                        <form class="user" method="post">
+
+                            <div class="form-group row">
+                                <select asp-for="Introduction_ID" asp-items="ViewBag.Introductions" class="form-control  select-form" required></select>
+                            </div>
                             <div class="form-group row">
                                 <input asp-for="Word" type="text" class="form-control form-control-user"
                                        placeholder="Word" required>
@@ -27,7 +29,7 @@
                                 <input asp-for="Time_Stamp" type="time" class="form-control form-control-user"
                                        placeholder="Time Stamp" required>
                             </div>
-                            
+
                             <hr>
                             <div class="form-group row">
 
@@ -38,7 +40,7 @@
                                     </a>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Update</button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">Create</button>
                                 </div>
                             </div>
                             

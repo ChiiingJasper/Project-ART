@@ -40,6 +40,7 @@
                         <th>Province</th>
                         <th>City</th>
                         <th>Is Open</th>
+                        <th>Deleted</th>
 
 
                         <th style="text-align:center">Actions</th>
@@ -62,6 +63,7 @@
                             <td>@obj.Province</td>
                             <td>@obj.City</td>
                             <td>@obj.Is_Open</td>
+                            <td>@obj.Is_Deleted</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableJobApplication" asp-action="UpdateJobApplication" asp-route-id="@obj.Job_Application_ID"class="btn btn-info btn-block btn-sm">

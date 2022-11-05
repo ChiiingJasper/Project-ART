@@ -32,6 +32,7 @@
                         <th>Disc Trait</th>
                         <th>Introduction Video</th>
                         <th>Introduction Score</th>
+                        <th>Deleted</th>
 
                         <th style="text-align:center">Actions</th>
                     </tr>
@@ -45,6 +46,7 @@
                             <td>@obj.DISC_Trait</td>
                             <td>@obj.Introduction_Video</td>
                             <td>@obj.Introduction_Score</td>
+                            <td>@obj.Is_Deleted</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableIntroduction" asp-action="UpdateIntroduction" asp-route-id="@obj.Introduction_ID"class="btn btn-info btn-block btn-sm">

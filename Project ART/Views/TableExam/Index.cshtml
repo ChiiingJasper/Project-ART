@@ -31,6 +31,7 @@
                         <th>Exam ID</th>
                         <th>Exam Score</th>
                         <th>Exam Sheet</th>
+                        <th>Deleted</th>
 
                         <th style="text-align:center">Actions</th>
                     </tr>
@@ -43,6 +44,7 @@
                             <td>@obj.Exam_ID</td>
                             <td>@obj.Exam_Score</td>
                             <td>@obj.Exam_Sheet</td>
+                            <td>@obj.Is_Deleted</td>
 
                             <td class="text-center">
                                 <a asp-controller="TableExam" asp-action="UpdateExam" asp-route-id="@obj.Exam_ID"class="btn btn-info btn-block btn-sm">

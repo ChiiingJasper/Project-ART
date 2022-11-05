@@ -20,11 +20,8 @@ namespace Project_ART.Controllers
             return View(objTableCandidateList);
         }
 
-        /*public IActionResult CreateCandidate()
+        public IActionResult CreateCandidate()
         {
-            ViewBag.Applications = GetApplications();
-            ViewBag.Assessments = GetAssessments();
-            ViewBag.Users = GetUsers();
             return View();
         }
 
@@ -35,7 +32,7 @@ namespace Project_ART.Controllers
             _db.Candidate.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
-        }*/
+        }
 
         public IActionResult UpdateCandidate(int? id)
         {
@@ -140,7 +137,7 @@ namespace Project_ART.Controllers
             var defItem = new SelectListItem()
             {
                 Value = "",
-                Text = "----Select User----"
+                Text = "----Select Resume----"
 
             };
 
@@ -164,7 +161,7 @@ namespace Project_ART.Controllers
             var defItem = new SelectListItem()
             {
                 Value = "",
-                Text = "----Select User----"
+                Text = "----Select Introduction Video----"
 
             };
 

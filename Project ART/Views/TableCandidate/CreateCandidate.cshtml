@@ -18,29 +18,57 @@
                         </div>
                         <form class="user" method="post">
                             <div class="form-group row">
-                                <select class="form-control select-form"
-                                        placeholder="Is_Hired" required>
-                                    <option selected disabled value="">----Is Hired----</option>
+                                <input asp-for="First_Name" type="text" class="form-control form-control-user"
+                                       placeholder="First Name" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Last_Name" type="text" class="form-control form-control-user"
+                                       placeholder="Last Name" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Middle_Initital" type="text" class="form-control form-control-user"
+                                       placeholder="Middle Initital" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Email" type="email" class="form-control form-control-user"
+                                       placeholder="Email" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Mobile_Number" type="text" class="form-control form-control-user"
+                                       placeholder="Mobile Number" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Photo" type="text" class="form-control form-control-user"
+                                       placeholder="Photo" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Website" type="text" class="form-control form-control-user"
+                                       placeholder="Website" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="Province" type="text" class="form-control form-control-user"
+                                       placeholder="Province" required>
+                            </div>
+                            <div class="form-group row">
+                                <input asp-for="City" type="text" class="form-control form-control-user"
+                                       placeholder="City" required>
+                            </div>
+                            <div class="form-group row">
+                                <select  class="form-control select-form"
+                                        placeholder="Email_Confirmed" required>
+                                    <option selected disabled>----Is Hired----</option>
                                     <option value="True">True</option>
                                     <option value="False">False</option>
                                 </select>
                             </div>
-                            <div class="form-group row">
-                                <select  asp-items="ViewBag.Applications" class="form-control  select-form" required></select>
-                            </div>
-                            <div class="form-group row">
-                                <select  asp-items="ViewBag.Assessments" class="form-control  select-form" required></select>
-                            </div>
-                            <div class="form-group row">
-                                <select  asp-items="ViewBag.Users" class="form-control  select-form" required></select>
-                            </div>
+                            
                             
                             <hr>
                             <div class="form-group row">
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <a asp-controller="TableCandidate" asp-action="TableCandidate" class="btn btn-danger btn-user btn-block">
+                                    <a asp-controller="TableCandidate" asp-action="Index" class="btn btn-danger btn-user btn-block">
                                         Cancel
                                     </a>
                                 </div>

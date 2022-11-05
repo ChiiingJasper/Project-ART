@@ -19,6 +19,28 @@ namespace Project_ART.Controllers
             return View(objTableQualificationList);
         }
 
+        public IActionResult CreateQualification()
+        {
+            ViewBag.Application = GetJobApplication();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CreateQualification(TableQualification obj)
+        {
+            TableQualification qualiTable = new TableQualification();
+            if (obj.Job_Application_ID != null)
+            {
+                qualiTable.Job_Application_ID = obj.Job_Application_ID;
+            }
+            qualiTable.Qualification = obj.Qualification;
+            qualiTable.Description = obj.Description;
+            _db.Qualification.Add(qualiTable);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult UpdateQualification(int? id)
         {

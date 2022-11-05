@@ -27,7 +27,7 @@ namespace Project_ART.Controllers
             return View(objTableResumeList);
         }
 
-        /*public IActionResult CreateResume()
+        public IActionResult CreateResume()
         {
             return View();
         }
@@ -68,7 +68,7 @@ namespace Project_ART.Controllers
             }
             return View(obj);
 
-        }*/
+        }
 
         [HttpGet]
         public IActionResult DeleteResume(int? id)

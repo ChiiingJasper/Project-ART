@@ -13,12 +13,12 @@
             </div>
 
             <div class="col col-lg-2" align="right">
-                <!--<a asp-controller="TableKeyword" asp-action="CreateKeyword" class="btn btn-success btn-icon-split btn-lg">
+                <a asp-controller="TableKeyword" asp-action="CreateKeyword" class="btn btn-success btn-icon-split btn-lg">
                     <span class="icon text-white-50">
                         <i class="bi bi-plus-circle"></i>
                     </span>
                     <span class="text">Add</span>
-                </a>-->
+                </a>
             </div>
         </div>
 
@@ -32,6 +32,7 @@
                         <th>Word</th>
                         <th>Time Stamp</th>
                         <th>Introduction ID</th>
+                        <th>Deleted</th>
 
                         <th style="text-align:center">Actions</th>
                     </tr>
@@ -73,7 +74,7 @@
                                     <div class="modal-body">You will be deleting Keyword Number @obj.Key_Word_ID</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal" >Cancel</button>
-                                        <a class="btn btn-danger" asp-controller="TableKeyword" asp-action="UpdateKeyword" asp-route-id="@obj.Key_Word_ID">Delete</a>
+                                        <a class="btn btn-danger" asp-controller="TableKeyword" asp-action="DeleteKeyword" asp-route-id="@obj.Key_Word_ID">Delete</a>
                                     </div>
                                 </div>
                             </div>

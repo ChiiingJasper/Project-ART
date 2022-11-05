@@ -31,6 +31,8 @@
                         <th>Resume ID</th>
                         <th>Resume</th>
                         <th>Resume Score</th>
+                        <th>Deleted</th>
+
                         <th style="text-align:center">Actions</th>
                     </tr>
                 </thead>
@@ -42,6 +44,8 @@
                             <td>@obj.Resume_ID</td>
                             <td>@obj.Resume</td>
                             <td>@obj.Resume_Score</td>
+                            <td>@obj.Is_Deleted</td>
+
                             <td class="text-center">
                                 <a asp-controller="TableResume" asp-action="UpdateResume" asp-route-id="@obj.Resume_ID"class="btn btn-info btn-block btn-sm">
                                     <i class="bi bi-pencil-square"></i>

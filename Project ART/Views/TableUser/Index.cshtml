@@ -36,6 +36,7 @@
                         <th>Mobile Number</th>
                         <th>Admin</th>
                         <th>Profile Picture</th>
+                        <th>Deleted</th>
                         <th style="text-align:center">Actions</th>
                     </tr>
                 </thead>
@@ -52,6 +53,7 @@
                             <td>@obj.Mobile_Number</td>
                             <td>@obj.Is_Admin</td>
                             <td>@obj.Profile_Pic</td>
+                            <td>@obj.Is_Deleted</td>
                             <td class="text-center">
                                 <a asp-controller="TableUser" asp-action="UpdateUser" asp-route-id="@obj.Company_ID"class="btn btn-info btn-block btn-sm">
                                     <i class="bi bi-pencil-square"></i>
