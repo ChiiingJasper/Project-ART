@@ -32,7 +32,7 @@ playButton.addEventListener('click', () => {
 });
 
 
-document.getElementById("close").addEventListener("click", stopVideo);
+//document.getElementById("close").addEventListener("click", stopVideo);
 
 
 const downloadButton = document.querySelector('button#download');
