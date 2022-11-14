@@ -74,13 +74,14 @@ namespace ART_Candidate_Page.Controllers
                 candidate.First_Name = data["First Name"];
                 candidate.Last_Name = data["Last Name"];
                 string MI = data["Middle Initial"];
-                candidate.Middle_Initital = MI.ToCharArray()[0];
+                candidate.Middle_Initital = MI.ToUpper().ToCharArray()[0];
                 candidate.Email = data["Email"];
                 candidate.Mobile_Number = data["Mobile Number"];
                 candidate.Website = data["Website"];
                 candidate.Province = data["Province"];
                 candidate.City = data["City"];
                 candidate.Job_Application_ID = int.Parse(data["JobID"]);
+                candidate.Email_Confirmed = true;
                 _db.Candidate.Add(candidate);
                 _db.SaveChanges();
 
@@ -118,15 +119,15 @@ namespace ART_Candidate_Page.Controllers
                     "please click the link below to confirm your email so we can process your details.<br><br>"
                     + "<a href=https://" +link+ ">Click here to Confirm Your Email</a>"  +
                     "<br><br>Sincerly Yours, <br>Alliance Recruitment Team</h3>";
-                SendMail(candidate.Email, subject, body);
+                //SendMail(candidate.Email, subject, body);
 
-
+                
 
                 var photo = Request.Form.Files["Photo"];
                 var cv = Request.Form.Files["Resume"];
                 var video = Request.Form.Files["Introduction Video"];
                 
-                if ((photo ?? cv ?? video) != null)
+                if (photo !=null && cv != null && video != null)
                 {
 
                     string UploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadedFiles");
@@ -172,6 +173,7 @@ namespace ART_Candidate_Page.Controllers
             using (var message = new MailMessage(sysAddress, receiverAddress) { Subject = subject, Body = body })
             {
                 message.IsBodyHtml = true;  
+                smtp.EnableSsl = true;
                 smtp.Send(message);
             }
 

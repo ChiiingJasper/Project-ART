@@ -11,14 +11,6 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDistributedMemoryCache();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(option =>
-    {
-        option.ExpireTimeSpan = TimeSpan.FromMinutes(120);
-        option.LoginPath = "/index";
-        option.AccessDeniedPath = "/index";
-    });
-
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(120);

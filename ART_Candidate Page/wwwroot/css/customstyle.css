@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_extend.scss */
+
+
+
 .flex-center-start {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -115,12 +118,17 @@ p {
 
 /* line 69, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 label {
-  color: #7e7e7e;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 400;
+    position: absolute;
+    top: -10px;
+    left: 25px;
+    background-color: white;
+    color: red;
+    padding: 0 5px;
+    font-size: small;
 }
-
+.upload {
+    left: 10px;
+}
 /* line 75, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 *::-moz-selection {
   background: #444;
@@ -7428,4 +7436,8 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+.red-border{
+    border: 1px solid red !important;
 }

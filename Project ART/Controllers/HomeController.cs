@@ -37,13 +37,9 @@ namespace Project_ART.Controllers
                     bool isValidPassword = BCrypt.Net.BCrypt.Verify(credentials.Password, user.Password);
                     if (isValidPassword)
                     {
-                        var identity = new ClaimsIdentity(new[] 
-                        {new Claim(ClaimTypes.Name, user.First_Name + " " + user.Last_Name) },
-                            CookieAuthenticationDefaults.AuthenticationScheme);
-                        var principal = new ClaimsPrincipal(identity);
-                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                         HttpContext.Session.SetInt32("Id",user.Company_ID);
-                        HttpContext.Session.SetString("FullName", user.First_Name+" "+user.Last_Name+".png");
+                        HttpContext.Session.SetString("Name", user.First_Name+" "+user.Last_Name);
+                        HttpContext.Session.SetString("Picture", user.Profile_Pic);
                         HttpContext.Session.SetString("Is_Admin", user.Is_Admin.ToString());
                         return RedirectToAction("Index", "Tool");
                     }
@@ -67,7 +63,7 @@ namespace Project_ART.Controllers
 
         public IActionResult LogOut()
         {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 

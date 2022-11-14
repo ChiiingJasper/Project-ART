@@ -11,3 +11,14 @@ Approve.addEventListener("click", function () {
 
     
 });
+
+
+
+
+var video = document.getElementById("videoPlayer");
+function stopVideo() {
+    video.pause();
+    video.currentTime = 0;
+}
+
+document.getElementById("close").addEventListener("click", stopVideo);

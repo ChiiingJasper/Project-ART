@@ -101,11 +101,12 @@
                                                 <h5 class="modal-title" id="exampleModalLabel">Video</h5>
                                             </div>
                                             <div class="modal-body">
-                                                <iframe src="~/CandidateUpload/Video/@(@obj.Candidate_ID+@obj.Last_Name+"_"+@obj.First_Name+".mp4")" width="100%" height="500px">
-                                                </iframe>
+
+                                                <video id="videoPlayer" src="~/CandidateUpload/Video/@(@obj.Candidate_ID+@obj.Last_Name+"_"+@obj.First_Name+".mp4")" type="video/mp4" controls>
+                                                </video>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                                                <button id="close" class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>

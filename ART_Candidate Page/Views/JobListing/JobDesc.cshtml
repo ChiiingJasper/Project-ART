@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="~/css/font-awesome.min.css">
 <link rel="stylesheet" href="~/css/video.css">
 <link rel="stylesheet" href="~/css/animatedCheck.css">
+<link rel="stylesheet" href="~/css/timer.css">
 
 <div class="bradcam_area slider_bg_1">
     <div class="container">
@@ -104,71 +105,79 @@
                 </div>
                 <div class="apply_job_form white-bg">
                     <h4>Apply for the job</h4>
-                    <form class="user" method="post">
+                    <p class="pb-1 small">Required Information *</p>
+                    <form class="user" id="userDetails" method="post">
+                        
                         <div class="row">
-
                             <div class="col-md-5">
                                 <div class="input_field">
-                                    <input type="text" id="firstName" placeholder="First Name">
+                                    <label id="validateFirstName"></label>
+                                    <input type="text" class="userInput" id="firstName" placeholder="First Name *">
                                 </div>
                             </div>
 
                             <div class="col-md-5">
                                 <div class="input_field">
-                                    <input type="text" id="lastName" placeholder="Last Name">
+                                    <label id="validateLastName"></label>
+                                    <input type="text" class="userInput" id="lastName" placeholder="Last Name *">
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="input_field">
-                                    <input type="text" id="mi" placeholder="MI">
+                                    <input type="text" class="userInput" id="mi" maxlength="1" placeholder="MI">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="input_field">
-                                    <input type="text" id="email" placeholder="Email">
+                                    <label id="validateEmail"></label>
+                                    <input type="text" class="userInput" id="email" placeholder="Email *">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="input_field">
-                                    <input type="tel" id="mobileNumber" placeholder="Mobile Number">
+                                    <label id="validateMobileNumber"></label>
+                                    <input type="number" class="userInput" id="mobileNumber" placeholder="Mobile Number *">
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="input_field">
-                                    <input type="text" id="website" placeholder="Website/Portfolio link">
+                                    <input type="text" class="userInput" id="website" placeholder="Website/Portfolio link">
                                 </div>
                             </div>
                             
                             <div class="col-md-6 mb-4">
                                 <div class="input_field">
-                                    <select class="form-control" name="Province" id="province" required></select>
+                                    <label id="validateProvince"></label>
+                                    <select class="form-control userInput" name="Province" id="province" required></select>
                                 </div>
                             </div>
 
                             <div class="col-md-6 mb-4">
                                 <div class="input_field">
-                                    <select class="form-control" name="City" id="city" required></select>
+                                    <label id="validateCity"></label>
+                                    <select class="form-control userInput" name="City" id="city" required></select>
                                 </div>
                             </div>
 
 
                             <div class="col-md-6">
 
-                                <div class="input-group">
+                                <div id="photoBorder" class="input-group">
                                     <div class="input-group-prepend">
+                                        <label class="upload" id="validatePhoto"></label>
                                         <button type="button" id="Photo" disabled>
                                             <i class="fa fa-camera" aria-hidden="true"></i>
                                         </button>
                                     </div>
 
                                     <div class="custom-file">
-
-                                        <input type="file" class="custom-file-input" id="PhotoInput" accept="image/*">
-                                        <label class="custom-file-label" for="Photo" id="PhotoLabel">2x2 Photo</label>
+                                        
+                                        <input type="file" class="custom-file-input userInput" id="PhotoInput" accept="image/*">
+                                        <label class="custom-file-label" for="Photo" id="PhotoLabel">2x2 Photo *</label>
                                     </div>
 
 
@@ -177,16 +186,17 @@
 
                             <div class="col-md-6">
 
-                                <div class="input-group">
+                                <div id="resumeBorder" class="input-group">
                                     <div class="input-group-prepend">
+                                        <label class="upload" id="validateResume"></label>
                                         <button type="button" id="Resume" disabled>
                                             <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                                         </button>
                                     </div>
 
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="ResumeInput" accept=".pdf">
-                                        <label class="custom-file-label" for="Resume" id="ResumeLabel">Upload CV</label>
+                                        <input type="file" class="custom-file-input userInput" id="ResumeInput" accept=".pdf">
+                                        <label class="custom-file-label" for="Resume" id="ResumeLabel">Upload CV *</label>
                                     </div>
 
 
@@ -197,8 +207,9 @@
 
                             <div class="col-md-12">
                                 
-                                <div class="input-group">
+                                <div id="videoBorder" class="input-group">
                                     <div class="input-group-prepend">
+                                        <label class="upload" id="validateVideo"></label>
                                         <button type="button" id="" disabled>
                                             <i class="fa fa-video" aria-hidden="true"></i>
                                         </button>
@@ -206,7 +217,7 @@
                                     
                                     <div class="custom-file">
                                         <a data-toggle="modal" data-target="#videoModal">  
-                                            <label class="custom-file-label" id="introductionVideo" for="inputGroupFile03">Introduction Video</label>
+                                            <label class="custom-file-label" id="introductionVideo" for="inputGroupFile03">Introduction Video *</label>
                                         </a>
                                     </div>
                                 </div>
@@ -215,7 +226,9 @@
                             
                             <div class="col-md-12 mt-5">
                                 <div class="submit_btn">
-                                    <a id="submitButton" class="boxed-btn3 w-100" data-toggle="modal" data-target="#successModal">Submit</a>
+                                    <a id="submitButton" class="boxed-btn3 w-100">
+                                        Submit
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -228,25 +241,37 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Introduction Video</h5>
+
+                                    
+
                                 </div>
                                 
                                 <div class="modal-body">
+                                    
+                                    
+                                    <div id="container">
+                                        <div id="inputArea">
+                                        </div>
+
+                                        <h1 id="time">0:00</h1>
+                                    </div>
+
                                     <div class="text-center">
                                         <video id="gum" playsinline autoplay muted></video>
                                     </div>
+                                    
+
                                     <div class="text-center">
-                                        
                                         <button type="button" id="start" class="btn btn-primary button-video">Start Camera</button>
                                         <button type="button" id="record" class="btn btn-primary button-video" disabled>Start Recording</button>
                                         <button type="button" id="play" class="btn btn-primary button-video" data-toggle="modal" data-target="#previewModal" disabled>Preview Video</button>
-
                                         <button type="button" id="stop" class="btn btn-primary">Stop Camera</button>
                                     </div>
                                     </div>
 
                                 <div class="modal-footer">
                                     
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-secondary" id="closeVideo" type="button" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -262,11 +287,13 @@
                                 <div class="modal-body"><video class="video-responsive" id="recorded" playsinline></video></div>
                                 <div class="modal-footer">
                                     <button id="download" class="btn btn-success" data-dismiss="modal">Submit</button>
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                                    <button id="stopVideo" class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    
 
                     <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
