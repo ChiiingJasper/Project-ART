@@ -21,6 +21,12 @@ namespace ART_Candidate_Page.Controllers
 
         public IActionResult Index()
         {
+            var count = _db.JobApplication
+            .Where(o => o.Is_Open == true && o.Is_Deleted == false)
+            .Count();
+
+            ViewBag.Count = count;
+
             return View();
         }
 
@@ -29,7 +35,12 @@ namespace ART_Candidate_Page.Controllers
             return View();
         }
 
-        
+        public IActionResult ConfirmPassword()
+        {
+            return View();
+        }
+
+
         public IActionResult EmailConfirm(int? id,String? hash, int? jobID)
         {
             if (id.HasValue && hash != null)

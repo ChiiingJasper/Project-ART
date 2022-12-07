@@ -1,0 +1,92 @@
+﻿{
+  "Scenario": "TextClassification",
+  "DataSource": {
+    "Type": "SQL",
+    "Version": 1,
+    "ColumnProperties": [
+      {
+        "ColumnName": "Candidate_Details_ID",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 3
+      },
+      {
+        "ColumnName": "Introduction_Video_Data",
+        "ColumnPurpose": "Text",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 3
+      },
+      {
+        "ColumnName": "DISC_Personality",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 3
+      }
+    ],
+    "ConnectionString": "Data Source=(localdb)\\Local;Initial Catalog=ART;Integrated Security=True",
+    "CommandString": "SELECT CAST([Candidate_Details_ID] as REAL), [Introduction_Video_Data], [DISC_Personality] FROM [dbo].[PersonalityPrediction]",
+    "DatabaseName": "ART",
+    "SelectedTableDbo": "dbo",
+    "TableName": "PersonalityPrediction"
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 2,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "TextClassifcationMulti",
+        "Score": 0.0,
+        "RuntimeInSeconds": 6.777,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2",
+          "e0": {
+            "OutputColumnName": "DISC_Personality",
+            "InputColumnName": "DISC_Personality"
+          },
+          "e1": {
+            "LabelColumnName": "DISC_Personality",
+            "Sentence1ColumnName": "Introduction_Video_Data",
+            "ScoreColumnName": "Score",
+            "OutputColumnName": "PredictedLabel",
+            "BatchSize": 32,
+            "MaxEpochs": 10,
+            "Architecture": "Roberta"
+          },
+          "e2": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "MapValueToKey",
+      "e1": "TextClassifcationMulti",
+      "e2": "MapKeyToValue"
+    },
+    "Schema": "e0 * e1 * e2",
+    "MetricName": "MacroAccuracy"
+  },
+  "Type": "TrainingConfig",
+  "Version": 3,
+  "TrainingOption": {
+    "Version": 0,
+    "Type": "TextClassficationTrainingOption",
+    "TrainingTime": 2147483647,
+    "LabelColumn": "DISC_Personality",
+    "TextColumn": "Introduction_Video_Data",
+    "Seed": 0
+  }
+}

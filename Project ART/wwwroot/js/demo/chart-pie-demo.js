@@ -11,7 +11,7 @@ var myPieChart = new Chart(ctx, {
   data: {
       labels: ["Dominance", "Influence", "Conscientiousness", "Steadiness"],
     datasets: [{
-      data: [40, 30, 20, 10],
+      data: [1, 0, 0, 0],
         backgroundColor: ['#1cc88a', '#e74a3b', '#f6c23e','#4e73df'],
         hoverBackgroundColor: ['#169c6b', '#e32d1c', '#f4b20b','#2854d7'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

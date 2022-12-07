@@ -1,43 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Project_ART</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Models\Datasheet.cs" />
   </ItemGroup>
-
   <ItemGroup>
-    <Content Remove="wwwroot\js\rankings.js" />
+    <Content Remove="wwwroot\js\videoPlayer.js" />
   </ItemGroup>
-
   <ItemGroup>
     <None Remove="Models\NewFile.txt" />
     <None Remove="Models\TableInterview" />
   </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\js\rankings.js" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.ML" Version="2.0.0" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="2.0.0" />
+    <PackageReference Include="Microsoft.ML.TorchSharp" Version="0.20.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="TorchSharp-cpu" Version="0.98.1" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Include="wwwroot\js\rankings.js" />
+    <None Include="wwwroot\js\videoPlayer.js" />
     <None Include="wwwroot\scss\awesome\accordion\_accordion.scss" />
     <None Include="wwwroot\scss\awesome\alert\_alert.scss" />
     <None Include="wwwroot\scss\awesome\avatar\_avatar-sizes.scss" />
@@ -88,14 +82,23 @@
     <None Include="wwwroot\scss\awesome\_mixins.scss" />
     <None Include="wwwroot\scss\awesome\_variables.scss" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\UploadedFiles\Jobs\" />
     <Folder Include="wwwroot\UploadedFiles\Photo\" />
-    <Folder Include="wwwroot\UploadedFiles\Photo\" />
     <Folder Include="wwwroot\UploadedFiles\Resume\" />
     <Folder Include="wwwroot\UploadedFiles\Video\" />
   </ItemGroup>
-
+  <ItemGroup Label="MLCandidateRanking">
+    <None Include="MLCandidateRanking.consumption.cs">
+      <DependentUpon>MLCandidateRanking.mbconfig</DependentUpon>
+    </None>
+    <None Include="MLCandidateRanking.training.cs">
+      <DependentUpon>MLCandidateRanking.mbconfig</DependentUpon>
+    </None>
+    <None Include="MLCandidateRanking.zip">
+      <DependentUpon>MLCandidateRanking.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

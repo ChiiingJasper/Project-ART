@@ -35,6 +35,7 @@
                                 <a href="#">
                                     <h4>@Model.JobApplication.Job</h4>
                                 </a>
+                                
                                 <div class="links_locat d-flex align-items-center">
                                     <div class="location">
                                         <p> <i class="fa fa-map-marker"></i>@Model.JobApplication.City, @Model.JobApplication.Province</p>
@@ -63,7 +64,7 @@
 
                             @foreach (TableResponsibility i in Model.Responsibility)
                             {
-                                <li>@i.Responsibility</li>
+                                <li class="my-2">@i.Responsibility</li>
                                 if (i.Description != null)
                                 {
                                     @i.Description
@@ -79,7 +80,7 @@
                             {
 
 
-                                <li>@i.Qualification</li>
+                                <li class="my-2">@i.Qualification</li>
                                 if (i.Description != null)
                                 {
                                     @i.Description
@@ -94,7 +95,7 @@
                             {
 
 
-                                <li>@i.Benefit</li>
+                                <li class="my-2">@i.Benefit</li>
                                 if (i.Description != null)
                                 {
                                     @i.Description
@@ -109,6 +110,7 @@
                     <form class="user" id="userDetails" method="post">
                         
                         <div class="row">
+
                             <div class="col-md-5">
                                 <div class="input_field">
                                     <label id="validateFirstName"></label>
@@ -216,7 +218,7 @@
                                     </div>
                                     
                                     <div class="custom-file">
-                                        <a data-toggle="modal" data-target="#videoModal">  
+                                        <a data-toggle="modal" data-target="#videoModal" id="videoButton">  
                                             <label class="custom-file-label" id="introductionVideo" for="inputGroupFile03">Introduction Video *</label>
                                         </a>
                                     </div>
@@ -252,8 +254,8 @@
                                     <div id="container">
                                         <div id="inputArea">
                                         </div>
-
-                                        <h1 id="time">0:00</h1>
+                                        <h5 id="question" class="display-4">Tell us about yourself</h5>
+                                        <h1 id="time" class="display-4">1:00</h1>
                                     </div>
 
                                     <div class="text-center">
@@ -322,12 +324,12 @@
             </div>
             <div class="col-lg-4">
                 <div class="job_sumary">
-                    <div class="summery_header">
+                    <div class="summary_header">
                         <h3>Job Summary</h3>
                     </div>
                     <div class="job_content">
                         <ul>
-                            <li>Published on: <span>2022-11-3</span></li>
+                            <li>Published on: <span>@Model.JobApplication.Date_Published</span></li>
                             <li>Available until: <span>@Model.JobApplication.Date_End</span></li>
                             <li>Vacancy: <span>@Model.JobApplication.Vacancy Positions</span></li>
                             <li>Salary: <span>@Model.JobApplication.Salary</span></li>
@@ -341,6 +343,7 @@
     </div>
 </div>
 <script src="~/js/Photo.js"></script>
+<script src="https://cdn.webrtc-experiment.com/RecordRTC.js"> </script>
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 <script src="~/js/video.js" asp-append-version="true" async></script>
 <script src="~/js/city.js" asp-append-version="true" async></script>

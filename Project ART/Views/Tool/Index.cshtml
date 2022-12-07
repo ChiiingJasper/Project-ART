@@ -18,7 +18,7 @@
                         <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                             New Applicants
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -39,7 +39,7 @@
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Applicants Approved
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ApprovedCount</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-thumbs-up fa-2x text-gray-300"></i>
@@ -58,7 +58,7 @@
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Applicants Assessed
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.AssessedCount</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-file fa-2x text-gray-300"></i>
@@ -78,7 +78,7 @@
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                             Applicants Hired
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.HiredCount</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-briefcase fa-2x text-gray-300"></i>
@@ -98,7 +98,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Assessment Activity</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Applicant Activity</h6>
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

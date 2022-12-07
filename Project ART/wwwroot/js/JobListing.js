@@ -1,35 +1,49 @@
-﻿var responsibilityList = {};
-var appendNum = 1;
+﻿
     $("#addResponsibility").click(function () {
-        appendNum++;
         child = $("#responsibilityDiv").clone();
-        child.attr("id", "responsibilityDiv" + appendNum);
-        child.find('input[type=text]').val('');
-        child.find("button").removeClass("btn-success").addClass("btn-danger");
-        child.find("button").addEventListener("click", Delete(this));
+        child.find('input').val('');
+        child.find('textarea').val('');
+        child.find("button").removeClass("btn-success").addClass("btn-danger delete");
         child.find("i").removeClass("bi-plus").addClass("bi-x");
-        child.find("#addResponsibility").prop("id", "deleteResponsibility" + appendNum);
-        child.find("#responsibility").prop("id", "responsibility" + appendNum);
-        child.appendTo("#addResponsibilityHere");
-        appendNum++;
+        $(child).hide().appendTo("#addResponsibilityHere").fadeIn();
+        Delete();
     });
 
     $("#addQualification").click(function () {
         child = $("#qualificationDiv").clone();
-        child.find("button").removeClass("btn-success").addClass("btn-danger");
+        child.find('input').val('');
+        child.find('textarea').val('');
+        child.find("button").removeClass("btn-success").addClass("btn-danger delete");
         child.find("i").removeClass("bi-plus").addClass("bi-x");
-        child.appendTo("#addQualificationHere");
+        $(child).hide().appendTo("#addQualificationHere").fadeIn();
+        Delete();
     });
 
     $("#addBenefit").click(function () {
         child = $("#benefitDiv").clone();
-        child.find("button").removeClass("btn-success").addClass("btn-danger");
+        child.find('input').val('');
+        child.find('textarea').val('');
+        child.find("button").removeClass("btn-success").addClass("btn-danger delete");
         child.find("i").removeClass("bi-plus").addClass("bi-x");
-        child.appendTo("#addBenefitHere");
+        $(child).hide().appendTo("#addBenefitHere").fadeIn();
+        Delete();
     });
 
-function Delete(elem) {
-    console.log(elem.value);
+
+
+
+function Delete() {
+    var deleteElement = document.getElementsByClassName("delete");
+    var i;
+    for (i = 0; i < deleteElement.length; i++) {
+        deleteElement[i].onclick = function () {
+            var div = this.parentElement.parentElement.parentElement;
+            $(div).fadeOut(500, function () {
+                div.remove();
+            });
+            
+        }
+    }
 }
 
 
@@ -59,14 +73,37 @@ submit.addEventListener('click', () => {
     formData.append('jobInput', document.getElementById('jobInput').value);
     formData.append('jobDesc', document.getElementById('jobDesc').value);
 
-    formData.append('responsibility', document.getElementById('responsibility').value);
-    formData.append('responsibilityDesc', document.getElementById('responsibilityDesc').value);
+    var responsiblity = document.getElementsByClassName("responsibility");
+    var responsiblityDesc = document.getElementsByClassName("responsibilityDesc");
     
-    formData.append('qualification', document.getElementById('qualification').value);
-    formData.append('qualificationDesc', document.getElementById('qualificationDesc').value);
+    for (var i = 0; i < responsiblity.length; i++) {
+        formData.append('responsibility'+i, responsiblity[i].value);
+        formData.append('responsibilityDesc'+i, responsiblityDesc[i].value);
+    }
 
-    formData.append('benefit', document.getElementById('benefit').value);
-    formData.append('benefitDesc', document.getElementById('benefitDesc').value);
+    formData.append('responsibilityCount', responsiblity.length);
+
+
+
+    var qualification = document.getElementsByClassName("qualification");
+    var qualificationDesc = document.getElementsByClassName("qualificationDesc");
+    for (var i = 0; i < qualification.length; i++) {
+        formData.append('qualification' + i, qualification[i].value);
+        formData.append('qualificationDesc' + i, qualificationDesc[i].value);
+    }
+
+    formData.append('qualificationCount', qualification.length);
+
+
+
+    var benefit = document.getElementsByClassName("benefit");
+    var benefitDesc = document.getElementsByClassName("benefitDesc");
+    for (var i = 0; i < benefit.length; i++) {
+        formData.append('benefit' + i, benefit[i].value);
+        formData.append('benefitDesc' + i, benefitDesc[i].value);
+    }
+    formData.append('benefitCount', benefit.length);
+
 
     formData.append('dateEnd', document.getElementById('dateEnd').value);
     formData.append('vacancy', document.getElementById('vacancy').value);
@@ -85,7 +122,7 @@ submit.addEventListener('click', () => {
         processData: false,
         success: function (result) {
             if (result) {
-                alert('Success');
+                document.getElementById('cancelbtn').click();
             }
         },
         error: function (result) {

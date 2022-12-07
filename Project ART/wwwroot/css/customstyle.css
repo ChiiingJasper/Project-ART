@@ -102,7 +102,6 @@ p {
   font-weight: 400;
   line-height: 28px;
   color: #7A838B;
-  margin-bottom: 13px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -3842,7 +3841,6 @@ h3 {
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
 .job_details_area {
   background: #F5F7FA;
-  padding-top: 100px;
   padding-bottom: 100px;
 }
 
@@ -4187,20 +4185,20 @@ h3 {
 }
 
 /* line 241, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
-.job_details_area .job_sumary .summery_header {
+.job_details_area .job_sumary .summary_header {
   border-bottom: 1px solid #EAEAEA;
   padding: 40px;
 }
 
 @media (max-width: 767px) {
   /* line 241, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
-  .job_details_area .job_sumary .summery_header {
+  .job_details_area .job_sumary .summary_header {
     padding: 30px;
   }
 }
 
 /* line 247, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
-.job_details_area .job_sumary .summery_header h3 {
+.job_details_area .job_sumary .summary_header h3 {
   font-size: 24px;
   color: #001D38;
   font-weight: 400;
@@ -4208,7 +4206,7 @@ h3 {
 
 /* line 253, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
 .job_details_area .job_sumary .job_content {
-  padding: 40px;
+  padding: 20px;
 }
 
 @media (max-width: 767px) {
@@ -4303,14 +4301,8 @@ h3 {
   display: none !important;
 }
 
-/*=================== contact banner start ====================*/
-/* line 3, ../../Arafath/CL/December/235. Job board/HTML/scss/_contact.scss */
-.dropdown .dropdown-menu {
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-}
+
+
 
 /* line 10, ../../Arafath/CL/December/235. Job board/HTML/scss/_contact.scss */
 .contact-info {
@@ -7416,4 +7408,40 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+
+.card-clicker {
+    border-radius: 4px;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+}
+
+    .card-clicker:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
+
+@media(max-width: 990px) {
+    .card-clicker {
+        margin: 20px;
+    }
+}
+
+
+
+.Dominance {
+    color: green;
+}
+
+.Influence {
+    color: red;
+}
+
+.Compliance {
+    color: yellow;
+}
+
+.Steadiness {
+    color: blue;
 }

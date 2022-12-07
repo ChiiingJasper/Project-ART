@@ -1,0 +1,233 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "View " + Model.JobApplication.Job;
+}
+
+<link href="~/css/customstyle.css" rel="stylesheet">
+
+<div class="job_details_area">
+
+    <div class="container">
+        <div class="share_wrap">
+
+            <div class="row">
+                <div class="col col-lg-3 ">
+                    <a asp-route-id="@Model.JobApplication.Job_Application_ID" asp-controller="JobListing" asp-action="ViewJobApplication">
+                        <div class="card card-clicker border-bottom-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                            Job Listing
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.JobApplication.Job</div>
+
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-file-circle-check fa-2x text-gray-300"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col col-lg-3">
+                    <a asp-route-id="@Model.JobApplication.Job_Application_ID" asp-controller="JobListing" asp-action="Pending">
+                    <div class="card card-clicker border-bottom-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        Pending Candidates
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.PendingCount</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa-solid fa-user fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col col-lg-3">
+                   
+                        <div class="card border-bottom-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                            Approved Candidates
+                                        </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ApprovedCount</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-thumbs-up fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+
+
+                <div class="col col-lg-3">
+                    <a asp-controller="JobListing" asp-action="Hired" asp-route-id="@Model.JobApplication.Job_Application_ID">
+                        <div class="card card-clicker border-bottom-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                            Hired Candidates
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.HiredCount</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- DataTables Example -->
+        <div class="card shadow">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col pt-2">
+                        <h3 class="m-0 font-weight-bold text-primary">Approved Candidates</h3>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+
+                                <th><i class="fa-solid fa-crown"></i> Rankings </th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var obj in ViewBag.Candidates)
+                            {
+                                <tr>
+
+
+                                    <td>
+                                        <div class="row-sm-6">
+                                            <!-- Dropdown Card Example -->
+                                            <div class="card shadow mb-4">
+                                                <!-- Card Header - Dropdown -->
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h3 class="m-0  text-dark">
+                                                        #@(@ViewBag.Candidates.IndexOf(obj) + 1)
+                                                        @{
+                                                            if (@ViewBag.Candidates.IndexOf(obj) == 0)
+                                                            {
+                                                                <i class="fa-solid fa-medal " style="color:gold"></i>
+                                                            }
+                                                            if (@ViewBag.Candidates.IndexOf(obj) == 1)
+                                                            {
+                                                                <i class="fa-solid fa-medal " style="color:silver"></i>
+                                                            }
+                                                            if (@ViewBag.Candidates.IndexOf(obj) == 2)
+                                                            {
+                                                                <i class="fa-solid fa-medal " style="color:sandybrown"></i>
+                                                            }
+                                                        }
+                                                    </h3>
+                                                    <div class="dropdown no-arrow">
+                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                         aria-labelledby="dropdownMenuLink">
+                                                            <div class="dropdown-header">Action</div>
+                                                            <a class="dropdown-item" asp-controller="JobListing" asp-action="ApprovedCandidate" asp-route-id="@obj.Candidate_ID">View</a>
+
+
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="card-body">
+                                                    <div class="row justify-content-center">
+                                                        <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
+                                                             <img class="rounded-circle w-25 h-25 mr-3" src="~/CandidateUpload/Photos/@obj.Photo" />
+                                                            @(@obj.Last_Name + ", " + @obj.First_Name + " " + @obj.Middle_Initial)
+
+                                                        </div>
+
+
+                                                        <div class="d-inline-flex col-sm-1 align-self-center flex-center-start text-right justify-content-center">
+                                                            <i class="bi bi-dot dominance fa-3x"> </i>
+                                                            @obj.DISC
+                                                        </div>
+                                                         <div class="col-sm-2 text-center">
+                                                            Resume:<h3>@(@obj.Resume_Score+"%")</h3>
+                                                        </div>
+                                                         <div class="col-sm-2 text-center">
+                                                            Assessment:<h3>50%</h3>
+                                                        </div>
+                                                         <div class="col-sm-2 text-center">
+                                                            Interview:<h3>90%</h3>
+                                                        </div>
+                                                         <div class="col-sm-2 text-center">
+                                                            Total:<h3>83%</h3>
+                                                        </div>
+
+                                                       
+
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    <!-- Page level plugins -->
+    <script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/js/demo/datatables-demo.js"></script>
+
+}

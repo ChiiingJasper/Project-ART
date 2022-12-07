@@ -24,6 +24,8 @@ namespace ART_Candidate_Page.Data
         public DbSet<TableQualification>? Qualification { get; set; }
         public DbSet<TableResponsibility>? Responsibility { get; set; }
         public DbSet<TableResume>? Resume { get; set; }
+
+        public DbSet<TableSkill>? Skill { get; set; }
         public DbSet<TableStatus>? Status { get; set; }
         public DbSet<TableUser>? User { get; set; }
 

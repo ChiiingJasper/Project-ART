@@ -3,12 +3,102 @@
     ViewData["Title"] = "View " + Model.JobApplication.Job;
 }
 <link rel="stylesheet" href="~/css/customstyle.css">
-<link rel="stylesheet" href="~/css/font-awesome.min.css">
-
 
 
 <div class="job_details_area">
-    <div class="container">
+
+    <div class="container-xl">
+        <div class="share_wrap">
+
+            <div class="row">
+                <div class="col col-lg-3 ">
+                  
+                        <div class="card border-bottom-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                            Job Listing
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.JobApplication.Job</div>
+
+                                    </div>
+
+                                    <div class="col-auto">
+                                    <i class="fa-solid fa-file-circle-check fa-2x text-gray-300"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+
+                <div class="col col-lg-3">
+                    <a asp-controller="JobListing" asp-action="Pending" asp-route-id="@Model.JobApplication.Job_Application_ID">
+                    <div class="card card-clicker border-bottom-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        Pending Candidates
+                                    </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.PendingCount</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa-solid fa-user fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="col col-lg-3">
+                    <a asp-controller="JobListing" asp-action="Approved" asp-route-id="@Model.JobApplication.Job_Application_ID">
+                    <div class="card card-clicker border-bottom-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        Approved Candidates
+                                    </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ApprovedCount</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-thumbs-up fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+
+                <div class="col col-lg-3">
+                    <a asp-controller="JobListing" asp-action="Hired" asp-route-id="@Model.JobApplication.Job_Application_ID">
+                    <div class="card card-clicker border-bottom-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">
+                                        Hired Candidates
+                                    </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.HiredCount</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-briefcase fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-8">
                 <div class="job_details_header">
@@ -21,10 +111,10 @@
                                 </a>
                                 <div class="links_locat d-flex align-items-center">
                                     <div class="location">
-                                        <p> <i class="fa fa-map-marker"></i>@Model.JobApplication.City, @Model.JobApplication.Province</p>
+                                        <p> <i class="bi bi-geo-alt"></i>@Model.JobApplication.City, @Model.JobApplication.Province</p>
                                     </div>
                                     <div class="location">
-                                        <p> <i class="fa fa-clock-o"></i>@Model.JobApplication.Job_Nature</p>
+                                        <p> <i class="bi bi-clock"></i></i>@Model.JobApplication.Job_Nature</p>
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +126,9 @@
                 <div class="descript_wrap white-bg">
                     <div class="single_wrap">
                         <h4>Job description</h4>
-                        @Model.JobApplication.Job_Description
+                        <p style="white-space: pre-wrap;">@Model.JobApplication.Job_Description</p>
+                        
+                        
                     </div>
                     <div class="single_wrap">
                         <h4>Responsibility</h4>
@@ -84,7 +176,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="job_sumary">
-                    <div class="summery_header">
+                    <div class="summary_header">
                         <h3>Job Summary</h3>
                     </div>
                     <div class="job_content">
@@ -98,9 +190,49 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="share_wrap d-flex">
+                   
+                    <div class="row">
+                        @if (Model.JobApplication.Is_Open)
+                        {
+                            <div class="col col-lg-6">
+                                <button class="btn btn-danger btn-icon-split btn-lg" id="submitJob">
+                                    <span class="icon text-white-50">
+                                        <i class="bi bi-x-circle"></i>
+                                    </span>
+                                    <span class="text mr-1">Close</span>
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+     <div class="col col-lg-6">
+                                    <button class="btn btn-info btn-icon-split btn-lg" id="submitJob">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </span>
+                                        <span class="text mr-1">Open</span>
+                                    </button>
+                                </div>
+                        }
+
+
+                        <div class="col col-lg-6">
+                            <a asp-controller="JobListing" asp-action="Index" class="btn btn-warning btn-icon-split btn-lg">
+                                <span class="icon text-white-50">
+                                    <i class="bi bi-arrow-return-left"></i>
+                                </span>
+                                <span class="text mr-2">Back</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
 </div>
 
 

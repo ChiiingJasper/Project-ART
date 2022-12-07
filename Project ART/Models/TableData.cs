@@ -17,6 +17,9 @@ namespace Project_ART.Models
         public int Resume_ID { get; set; }
         public virtual TableResume? Resume { get; set; }
 
+        [DisplayName("Skill Matched")]
+        public bool? Skill_Matched { get; set; } = false;
+
         [DisplayName("Is Deleted")]
         public bool? Is_Deleted { get; set; } = false;
     }

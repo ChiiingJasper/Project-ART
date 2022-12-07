@@ -139,14 +139,14 @@
                                 </div>
                                 <hr>
 
-                                <div class="row ">
+                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mt-2">Confirm Password</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary password">
-                                        <span class="text-danger small">&nbsp;@TempData["passwordMismatch"]</span>
-                                        <input minlength="8" type="password" value="" class="form-control @TempData["error"]">
                                         
+                                        <h6 class="mt-2"> Confirm Password</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        
+                                        <input asp-for="Password" minlength="8" type="password" value="" class="form-control @TempData["error"]">
                                     </div>
                                 </div>
                                 <hr>

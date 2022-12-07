@@ -24,7 +24,7 @@ recordButton.addEventListener('click', () => {
 
 const playButton = document.querySelector('button#play');
 playButton.addEventListener('click', () => {
-    const superBuffer = new Blob(recordedBlobs, { type: 'video/mp4' });
+    const superBuffer = new Blob(recordedBlobs, { type: 'video/webm' });
     recordedVideo.src = null;
     recordedVideo.srcObject = null;
     recordedVideo.src = window.URL.createObjectURL(superBuffer);

@@ -1,29 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>ART_Candidate_Page</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="MailKit" Version="3.4.2" />
+    <PackageReference Include="MediaToolkit" Version="1.1.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.ML" Version="2.0.0" />
+    <PackageReference Include="Microsoft.ML.TorchSharp" Version="0.20.0" />
     <PackageReference Include="MimeKit" Version="3.4.2" />
+    <PackageReference Include="System.Speech" Version="7.0.0" />
+    <PackageReference Include="TorchSharp-cpu" Version="0.98.1" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\UploadedFiles\Speech\" />
     <Folder Include="wwwroot\UploadedFiles\Resume\" />
     <Folder Include="wwwroot\UploadedFiles\Photos\" />
     <Folder Include="wwwroot\UploadedFiles\Video\" />
   </ItemGroup>
-
+  <ItemGroup Label="PersonalityML">
+    <None Include="PersonalityML.consumption.cs">
+      <DependentUpon>PersonalityML.mbconfig</DependentUpon>
+    </None>
+    <None Include="PersonalityML.training.cs">
+      <DependentUpon>PersonalityML.mbconfig</DependentUpon>
+    </None>
+    <None Include="PersonalityML.zip">
+      <DependentUpon>PersonalityML.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

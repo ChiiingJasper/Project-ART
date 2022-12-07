@@ -1,7 +1,16 @@
 'use strict';
-
+$("#time").hide();
 /* globals MediaRecorder */
 
+$("#videoButton").click(function () {
+    setTimeout(function () {
+        $("#question").fadeOut(500, function () {
+            $("#time").fadeIn(500);
+        });
+        
+    }, 3000);
+});
+document.querySelector('button#stop').disabled = true;
 let mediaRecorder;
 let recordedBlobs;
 
@@ -23,16 +32,17 @@ recordButton.addEventListener('click', () => {
 
 const playButton = document.querySelector('button#play');
 playButton.addEventListener('click', () => {
-    const superBuffer = new Blob(recordedBlobs, { type: 'video/mp4' });
+    const superBuffer = new Blob(recordedBlobs, { type: 'video/webm' });
     recordedVideo.src = null;
     recordedVideo.srcObject = null;
     recordedVideo.src = window.URL.createObjectURL(superBuffer);
     recordedVideo.controls = true;
     recordedVideo.play();
+    document.getElementById("close").addEventListener("click", stopVideo);
 });
 
 
-//document.getElementById("close").addEventListener("click", stopVideo);
+
 
 
 const downloadButton = document.querySelector('button#download');
@@ -40,7 +50,7 @@ downloadButton.addEventListener('click', () => {
     let introVidLabel = document.getElementById('introductionVideo');
     let firstName = document.getElementById('firstName').value;
     let lastName = document.getElementById('lastName').value;
-    introVidLabel.innerHTML = firstName + "_" + lastName + ".mp4";
+    introVidLabel.innerHTML = firstName + "_" + lastName + ".webm";
     recorded.pause();
     recorded.currentTime = 0;
 });
@@ -54,17 +64,16 @@ function handleDataAvailable(event) {
 
 function startRecording() {
     recordedBlobs = [];
-    let options = { mimeType: 'video/webm;codecs=vp9,opus' };
 
     try {
-        mediaRecorder = new MediaRecorder(window.stream, options);
+        mediaRecorder = new MediaRecorder(window.stream);
     } catch (e) {
         console.error('Exception while creating MediaRecorder:', e);
         errorMsgElement.innerHTML = `Exception while creating MediaRecorder: ${JSON.stringify(e)}`;
         return;
     }
 
-    console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+    console.log('Created MediaRecorder', mediaRecorder, 'with options');
     recordButton.textContent = 'Stop Recording';
     playButton.disabled = true;
     downloadButton.disabled = true;
@@ -95,7 +104,6 @@ function PostBlob(blob) {
     //FormData
     var formData = new FormData();
     formData.append('video-blob', blob);
-
     // POST the Blob
     $.ajax({
         type: 'POST',
@@ -126,12 +134,21 @@ async function init(constraints) {
 }
 
 document.querySelector('button#start').addEventListener('click', async () => {
+    document.querySelector('button#record').disabled = false;
     document.querySelector('button#start').disabled = true;
     document.querySelector('button#stop').disabled = false;
     const constraints = {
         audio: true,
         video: {
-            width: 1280, height: 720
+            "width": {
+                "max": "480"
+            },
+            "height": {
+                "max": "360"
+            },
+            "frameRate": {
+                "max": "30"
+            }
         }
     };
     console.log('Using media constraints:', constraints);
@@ -139,6 +156,11 @@ document.querySelector('button#start').addEventListener('click', async () => {
 });
 
 document.querySelector('button#stop').addEventListener('click', async () => {
+    if (recordButton.innerHTML === "Stop Recording") {
+        recordButton.click();
+    }
+    
+    document.querySelector('button#record').disabled = true;
     document.querySelector('button#stop').disabled = true;
     document.querySelector('button#start').disabled = false;
     const video = document.querySelector('video#gum');
@@ -148,12 +170,16 @@ document.querySelector('button#stop').addEventListener('click', async () => {
 });
 
 document.querySelector('button#closeVideo').addEventListener('click', async () => {
+    document.querySelector('button#stop').click();
     document.querySelector('button#stop').disabled = true;
     document.querySelector('button#start').disabled = false;
     const video = document.querySelector('video#gum');
-    const mediaStream = video.srcObject;
-    await mediaStream.getTracks().forEach(track => track.stop());
     video.srcObject = null;
+    if (recordButton.innerHTML === "Stop Recording") {
+        recordButton.click();
+        document.querySelector('button#start').disabled = true;
+    }
+    document.querySelector('button#record').disabled = true;
 });
 
 const submitCandidate = document.querySelector('button#download');
@@ -161,9 +187,8 @@ downloadButton.addEventListener('click', () => {
     let introVidLabel = document.getElementById('introductionVideo');
     let firstName = document.getElementById('firstName').value;
     let lastName = document.getElementById('lastName').value;
-    introVidLabel.innerHTML = firstName + "_" + lastName + ".mp4";
+    introVidLabel.innerHTML = firstName + "_" + lastName + ".webm";
 });
-
 var firstName = document.getElementById('firstName');
 var lastName = document.getElementById('lastName');
 var mi = document.getElementById('mi');
@@ -227,8 +252,8 @@ function validateMobileNumber() {
         document.getElementById("validateMobileNumber").innerHTML = "Please enter your mobile number";
         return 0;
     }
-
-    var validMobileNumberRegex = /((^(\+)(\d){12}$)|(^\d{11}$))/;
+   
+    var validMobileNumberRegex =/^(09|639)\d{9}$/;
     if (!mobileNumber.value.match(validMobileNumberRegex)) {
         mobileNumber.classList.add("red-border");
         document.getElementById("validateMobileNumber").innerHTML = "Please enter a valid mobile number";
@@ -329,7 +354,7 @@ submitCandidateDetails.addEventListener('click', () => {
     validateVideo();
 
     if (Boolean(validateFirstName()) && Boolean(validateLastName()) && Boolean(validateEmail()) && Boolean(validateMobileNumber()) && Boolean(validateProvince()) && Boolean(validateCity()) && Boolean(validatePhoto()) && Boolean(validateResume()) && Boolean(validateVideo())) {
-        const blob = new Blob(recordedBlobs, { type: 'video/mp4' });
+        const blob = new Blob(recordedBlobs, { type: 'video/webm' });
         var formData = new FormData();
         formData.append('First Name', firstName.value);
         formData.append('Last Name', lastName.value);
@@ -349,6 +374,7 @@ submitCandidateDetails.addEventListener('click', () => {
         formData.append('Photo', PhotoInput.files[0]);
         formData.append('Resume', ResumeInput.files[0]);
         formData.append('Introduction Video', blob);
+
         $.ajax({
             type: 'POST',
             url: "../SaveCandidateDetails",
@@ -408,18 +434,21 @@ function tick() {
     timeDisplay.innerHTML = message;
 
     // stop is down to zero
-    if (secondsRemaining <= 10) {
+    if (secondsRemaining <= 10 && secondsRemaining % 2 == 0) {
         timeDisplay.classList.add("text-danger");
+    } else {
+        timeDisplay.classList.remove("text-danger");
     }
 
     if (secondsRemaining === 0) {
         clearInterval(intervalHandle);
-        recordButton.click()
+        recordButton.click();
     }
 
 
     //subtract from seconds remaining
     secondsRemaining--;
+    
 
 }
 
@@ -439,3 +468,5 @@ function stopVideo() {
 $("#stopVideo").on('click', function () {
     stopVideo();
 });
+
+

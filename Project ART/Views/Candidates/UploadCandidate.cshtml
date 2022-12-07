@@ -1,0 +1,228 @@
+﻿@{
+    ViewData["Title"] = "EditUser";
+}
+
+
+<div class="main-body">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 ">
+            <div class="row">
+                <div class="col pt-2 mb-3">
+                    <h3 class="m-0 font-weight-bold text-primary">Create User</h3>
+                </div>
+            </div>
+
+
+            <div class="row gutters-md ">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body my-5 py-5">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                
+                                <a href="#" id="changeImage" class="">
+
+                                    <div class="container-image">
+
+                                        <img src="~/img/default.png" alt="Admin" id="profilePic" class="rounded-circle image-change" width="160" height="160">
+                                        <div class="middle">
+                                            <div class="text-change"><i class="bi bi-upload"></i></div>
+                                        </div>
+                                    </div>
+
+                                    <input id='imageUpload' type='file' accept="image/*" hidden />
+                                </a>
+                                <h5 class="text-secondary">Add Profile Picture</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <form class="user" method="post" asp-action="EditUser" onsubmit="validatePasswords(event)">
+                                <div class="row mb-3">
+
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">First Name</h6>
+                                    </div>
+
+
+
+
+
+                                    <input  type="text" id="profpic" hidden class="form-control"
+                                           placeholder="Profile Pic" required>
+
+                                    <input  type="text" hidden class="form-control"
+                                           placeholder="Is Admin" required>
+
+                                    <div class="col-sm-9 text-secondary">
+                                        <input  type="text" class="form-control"
+                                               placeholder="First Name" required>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Last Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control"
+                                               placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Middle Initial</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input a type="text" class="form-control"
+                                               placeholder="Middle Initial" required>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input  type="email" class="form-control"
+                                               placeholder="Email" required>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Mobile</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input  minlength="11" maxlength="11" type="text" class="form-control"
+                                               placeholder="Mobile Number" required>
+                                    </div>
+                                </div>
+                                <hr>
+
+
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Website</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control"
+                                               placeholder="Website" required>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Province</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <select name="Province" class="form-control" id="province" required></select>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">City</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <select name="City" class="form-control" id="city" required></select>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Resume</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input  type="file" class="form-control"
+                                               placeholder="Resume" required accept=".pdf">
+                                    </div>
+                                </div>
+                                <hr>
+                                 <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Video</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input  type="file" class="form-control"
+                                               placeholder="Video" required accept=".webm">
+                                    </div>
+                                </div>
+                                <hr>
+                              
+                                
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mt-2">Privilege</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <select name="cars" class="form-control"  id="cars">
+                                            <option value="volvo">Internship</option>
+                                            <option value="saab">Software Engineer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                 
+
+
+
+                                <div class="row align-items-end">
+                                    <div class="col-lg-8">
+                                    </div>
+                                    <div class="col col-lg-2">
+                                        <a asp-controller="UserManagement" asp-action="Index" class="btn btn-danger btn-icon-split btn-lg">
+                                            <span class="icon text-white-50">
+                                                <i class="bi bi-x-square"></i>
+                                            </span>
+                                            <span class="text">Cancel</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="col col-lg-2">
+                                        <button type="submit" class="btn btn-success btn-icon-split btn-lg" id="btnSubmit">
+                                            <span class="icon text-white-50">
+                                                <i class="bi bi-check2-square"></i>
+                                            </span>
+                                            <span class="text ml-2 mr-2">Add</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="~/js/demo/changeImage.js"></script>
+<script src="~/js/passwordValidator.js"></script>
+<script src="~/js/city.js" asp-append-version="true" async></script>
+<script src="~/js/cityFunction.js" asp-append-version="true" async></script>

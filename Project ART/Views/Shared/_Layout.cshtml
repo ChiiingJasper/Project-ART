@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewData["Title"] - Project Art</title>
     <!-- Custom fonts for this template-->
-    <link href="~/lib/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
     <!-- Custom styles for this template-->
-    <link href="~/css/sidebar.min.css" rel="stylesheet">
+    <link href="~/css/sidebar.css" rel="stylesheet">
     <link href="~/css/custom.css" rel="stylesheet">
     <link rel="shortcut icon" type="x-icon" href="~/img/icon.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -22,7 +22,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <li class="my-3">
@@ -58,57 +58,22 @@
             <li>
                 <hr class="sidebar-divider my-0">
             </li>
-            <!-- Nav Item - Assessment -->
+           
+           
+           
+            <!-- Nav Item - Application -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="bi bi-card-checklist"></i>
-                    <span>Assessment</span>
+                <a class="nav-link" asp-controller="Candidates" asp-action="Index">
+                    <i class="bi bi-person-fill"></i>
+                    <span>Candidates</span>
                 </a>
             </li>
+
             <li>
-                <hr class="sidebar-divider my-0">
+                <hr class="sidebar-divider">
             </li>
-            <!-- Nav Item - Rankings -->
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Rankings" asp-action="Index" >
-                    <i class="bi bi-bar-chart-line"></i>
-                    <span>Rankings</span>
-                </a>
-            </li>
-            <li>
-                <hr class="sidebar-divider my-0">
-            </li>
-            <!-- Nav Item - Manage -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="bi bi-person"></i>
-                    <span>Manage</span>
-                </a>
-            </li>
-            <li>
-                <hr class="sidebar-divider my-0">
-            </li>
-            <!-- Nav Item - Upload Details -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUploadPages" aria-expanded="true"
-                   aria-controls="collapseUploadPages">
-                    <i class="bi bi-cloud-upload"></i>
-                    <span>Upload Details</span>
-                </a>
-                <div id="collapseUploadPages" class="collapse" aria-labelledby="headingPages"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Manage Tables</h6>
-                        <a class="collapse-item" asp-controller="UploadDetails" asp-action="Video">Introduction Video</a>
-                        <a class="collapse-item" asp-controller="UploadDetails" asp-action="Resume">Resume</a>
-                    </div>
-                </div>
-            </li>
-            
-            <!-- Divider -->
-            <li>
-            <hr class="sidebar-divider">
-            </li>
+
+           
 
             <!-- Heading -->
             @{
@@ -123,6 +88,30 @@
             </div>
             </li>
 
+
+                    <!-- Nav Item - Manage -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUploadPages" aria-expanded="true"
+                       aria-controls="collapseUploadPages">
+                            <i class="fas fa-tasks"></i>
+                            <span>Management</span>
+                        </a>
+                        <div id="collapseUploadPages" class="collapse" aria-labelledby="headingPages"
+                         data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Manage</h6>
+                                <a class="collapse-item" asp-controller="UserManagement" asp-action="Index">Users</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Divider -->
+                    <li>
+                        <hr class="sidebar-divider">
+                    </li>
+
+
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
@@ -133,23 +122,31 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Manage Tables</h6>
+                        <h6 class="collapse-header">Users</h6>
                         <a class="collapse-item" asp-controller="TableUser" asp-action="Index">Users</a>
+                        <a class="collapse-item" asp-controller="TableLog" asp-action="Index">Logs</a>
+
+                        <h6 class="collapse-header">Candidates</h6>
+                        <a class="collapse-item" asp-controller="TableCandidate" asp-action="Index">Candidates</a>
+                        <a class="collapse-item" asp-controller="TableResume" asp-action="Index">Resumes</a>
                         <a class="collapse-item" asp-controller="TableData" asp-action="Index">Data</a>
                         <a class="collapse-item" asp-controller="TableIntroduction" asp-action="Index">Introductions</a>
                         <a class="collapse-item" asp-controller="TableKeyword" asp-action="Index">Keywords</a>
-                        <a class="collapse-item" asp-controller="TableJobApplication" asp-action="Index">Applications</a>
+                        
+                        
+                        <h6 class="collapse-header">Approved Candidates</h6>
                         <a class="collapse-item" asp-controller="TableExam" asp-action="Index">Exams</a>
                         <a class="collapse-item" asp-controller="TableInterview" asp-action="Index">Interviews</a>
                         <a class="collapse-item" asp-controller="TableAssessment" asp-action="Index">Assessments</a>
-                        <a class="collapse-item" asp-controller="TableCandidate" asp-action="Index">Candidates</a>
-                        <a class="collapse-item" asp-controller="TableResume" asp-action="Index">Resumes</a>
+                        <a class="collapse-item" asp-controller="TableStatus" asp-action="Index">Status</a>
+
+                        <h6 class="collapse-header">Job Application</h6>
+                                <a class="collapse-item" asp-controller="TableJobApplication" asp-action="Index">Applications</a>
                         <a class="collapse-item" asp-controller="TableResponsibility" asp-action="Index">Responsibilities</a>
                         <a class="collapse-item" asp-controller="TableQualification" asp-action="Index">Qualifications</a>
                         <a class="collapse-item" asp-controller="TableBenefit" asp-action="Index">Benefits</a>
-                        <a class="collapse-item" asp-controller="TableStatus" asp-action="Index">Status</a>
-                        <a class="collapse-item" asp-controller="TableFAQ" asp-action="Index">FAQs</a>
-                        <a class="collapse-item" asp-controller="TableLog" asp-action="Index">Logs</a>
+                        
+                        
                     </div>
                 </div>
             </li>
@@ -180,8 +177,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 fixed-top shadow">
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -226,7 +222,7 @@
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid pt-5 mt-5">
                         @RenderBody()
                 </div>
 
@@ -278,10 +274,6 @@
 
     <!-- Core plugin JavaScript-->
     <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="~/js/sidebar.min.js"></script>
-
 
     <!-- Custom scripts for all pages-->
     <script src="~/js/sidebar.min.js"></script>

@@ -45,7 +45,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Interview_ID");
 
-                    b.ToTable("Assessment", (string)null);
+                    b.ToTable("Assessment");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableBenefit", b =>
@@ -72,7 +72,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Job_Application_ID");
 
-                    b.ToTable("Benefit", (string)null);
+                    b.ToTable("Benefit");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableCandidate", b =>
@@ -138,7 +138,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Resume_ID");
 
-                    b.ToTable("Candidate", (string)null);
+                    b.ToTable("Candidate");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableData", b =>
@@ -158,11 +158,14 @@ namespace Project_ART.Migrations
                     b.Property<int>("Resume_ID")
                         .HasColumnType("int");
 
+                    b.Property<bool?>("Skill_Matched")
+                        .HasColumnType("bit");
+
                     b.HasKey("Data_ID");
 
                     b.HasIndex("Resume_ID");
 
-                    b.ToTable("Data", (string)null);
+                    b.ToTable("Data");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableExam", b =>
@@ -184,7 +187,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Exam_ID");
 
-                    b.ToTable("Exam", (string)null);
+                    b.ToTable("Exam");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableFAQ", b =>
@@ -217,7 +220,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("User_ID");
 
-                    b.ToTable("FAQ", (string)null);
+                    b.ToTable("FAQ");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableInterview", b =>
@@ -239,7 +242,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Interview_ID");
 
-                    b.ToTable("Interview", (string)null);
+                    b.ToTable("Interview");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableIntroduction", b =>
@@ -264,7 +267,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Introduction_ID");
 
-                    b.ToTable("Introduction", (string)null);
+                    b.ToTable("Introduction");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableJobApplication", b =>
@@ -313,7 +316,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Job_Application_ID");
 
-                    b.ToTable("JobApplication", (string)null);
+                    b.ToTable("JobApplication");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableKeyword", b =>
@@ -340,7 +343,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Introduction_ID");
 
-                    b.ToTable("KeyWord", (string)null);
+                    b.ToTable("KeyWord");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableLog", b =>
@@ -373,7 +376,26 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("User_ID");
 
-                    b.ToTable("Log", (string)null);
+                    b.ToTable("Log");
+                });
+
+            modelBuilder.Entity("Project_ART.Models.TablePersonalityPrediction", b =>
+                {
+                    b.Property<int>("Candidate_Details_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Candidate_Details_ID"), 1L, 1);
+
+                    b.Property<string>("DISC_Personality")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Introduction_Video_Data")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Candidate_Details_ID");
+
+                    b.ToTable("PersonalityPrediction");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableQualification", b =>
@@ -400,7 +422,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Job_Application_ID");
 
-                    b.ToTable("Qualification", (string)null);
+                    b.ToTable("Qualification");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableResponsibility", b =>
@@ -427,7 +449,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Job_Application_ID");
 
-                    b.ToTable("Responsibility", (string)null);
+                    b.ToTable("Responsibility");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableResume", b =>
@@ -449,7 +471,29 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Resume_ID");
 
-                    b.ToTable("Resume", (string)null);
+                    b.ToTable("Resume");
+                });
+
+            modelBuilder.Entity("Project_ART.Models.TableSkill", b =>
+                {
+                    b.Property<int>("Skill_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Skill_ID"), 1L, 1);
+
+                    b.Property<string>("Data")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("Is_Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("Skill_Matched")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Skill_ID");
+
+                    b.ToTable("Skill");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableStatus", b =>
@@ -500,7 +544,7 @@ namespace Project_ART.Migrations
 
                     b.HasIndex("Hired_By_IDCompany_ID");
 
-                    b.ToTable("Status", (string)null);
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableUser", b =>
@@ -540,7 +584,7 @@ namespace Project_ART.Migrations
 
                     b.HasKey("Company_ID");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableAssessment", b =>

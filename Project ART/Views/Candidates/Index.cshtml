@@ -1,0 +1,416 @@
+﻿@model IEnumerable<TableCandidate>
+@{
+    ViewData["Title"] = "Job Listing";
+}
+<link href="~/css/customstyle.css" rel="stylesheet">
+
+<!-- DataTables Example -->
+<div class="card shadow m-5">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col pt-2">
+                <h3 class="m-0 font-weight-bold text-primary">Candidates</h3>
+            </div>
+
+            <div class="col col-lg-2" align="right">
+                <a asp-controller="Candidates" asp-action="UploadCandidate" class="btn btn-success btn-icon-split btn-lg">
+                    <span class="icon text-white-50">
+                        <i class="bi bi-plus-circle"></i>
+                    </span>
+                    <span class="text">Create</span>
+                </a>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered"  width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>&nbsp</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    
+                        <tr>
+
+
+                            <td>
+                                <div class="row-sm-6">
+                                    <!-- Dropdown Card Example -->
+                                    <div class="card shadow mb-4">
+                                        <!-- Card Header - Dropdown -->
+                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h3 class="m-0  text-dark">Ching, Jasper C.</h3>
+                                            <div class="dropdown no-arrow">
+                                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                    <div class="dropdown-header">Action</div>
+                                                    <a >View</a>
+
+
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body">
+                                            <div class="row justify-content-center">
+                                                <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
+                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/140Ching_Jasper.png" />
+                                                    chingyu2727@gmail.com
+                                                </div>
+                                                 <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                    Internship
+                                                </div>
+
+                                                <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                <i class="bi bi-dot fa-3x" style="color:green"> </i>
+                                                    Dominance
+                                                </div>
+                                                <div class="col-sm-1 text-center">
+                                                    Resume:<h3>80%</h3>
+                                                </div>
+                                                <div class="col-sm-1 text-center">
+                                                    Assessment:<h3>50%</h3>
+                                                </div>
+                                                <div class="col-sm-1 text-center">
+                                                    Interview:<h3>90%</h3>
+                                                </div>
+
+                                                <div class="col-sm-1 text-center">
+                                                    Total:<h3>83%</h3>
+                                                </div>
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </td>
+
+
+                        </tr>
+
+
+
+
+                    <tr>
+
+
+                        <td>
+                            <div class="row-sm-6">
+                                <!-- Dropdown Card Example -->
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h3 class="m-0  text-dark">Dosdos, Franco S.</h3>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Action</div>
+                                                <a>View</a>
+
+
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="row justify-content-center">
+                                            <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
+                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/135Dosdos_Franco.png" />
+                                                chiiing@gmail.com
+                                            </div>
+                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                Internship
+                                            </div>
+
+                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                <i class="bi bi-dot fa-3x" style="color:yellow"> </i>
+                                                Influence
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Resume:<h3>80%</h3>
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Assessment:<h3>NA</h3>
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Interview:<h3>NA</h3>
+                                            </div>
+
+                                            <div class="col-sm-1 text-center">
+                                                Total:<h3>62%</h3>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td>
+
+
+                    </tr>
+                     <tr>
+
+
+                        <td>
+                            <div class="row-sm-6">
+                                <!-- Dropdown Card Example -->
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h3 class="m-0  text-dark">Doe, Jane J.</h3>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Action</div>
+                                                <a>View</a>
+
+
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="row justify-content-center">
+                                            <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
+                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/140DoeJane.jpg" />
+                                                jd@gmail.com
+                                            </div>
+                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                Internship
+                                            </div>
+
+                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                <i class="bi bi-dot fa-3x" style="color:red"> </i>
+                                                Compliance
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Resume:<h3>80%</h3>
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Assessment:<h3>NA</h3>
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Interview:<h3>NA</h3>
+                                            </div>
+
+                                            <div class="col-sm-1 text-center">
+                                                Total:<h3>59%</h3>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td>
+
+
+                    </tr>
+                     <tr>
+
+
+                        <td>
+                            <div class="row-sm-6">
+                                <!-- Dropdown Card Example -->
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h3 class="m-0  text-dark">Castanares, Ben Amiel F.</h3>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Action</div>
+                                                <a>View</a>
+
+
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="row justify-content-center">
+                                            <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
+                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/136Castanares_Ben Amiel.png" />
+                                                benamiel@gmail.com
+                                            </div>
+                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                Internship
+                                            </div>
+
+                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                <i class="bi bi-dot fa-3x" style="color:red"> </i>
+                                                Compliance
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Resume:<h3>40%</h3>
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Assessment:<h3>NA</h3>
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Interview:<h3>NA</h3>
+                                            </div>
+
+                                            <div class="col-sm-1 text-center">
+                                                Total:<h3>35%</h3>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td>
+
+
+                    </tr>
+                    <tr>
+
+
+                        <td>
+                            <div class="row-sm-6">
+                                <!-- Dropdown Card Example -->
+                                <div class="card shadow mb-4">
+                                    <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h3 class="m-0  text-dark">Miscala, Luc Nathan</h3>
+                                        <div class="dropdown no-arrow">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Action</div>
+                                                <a>View</a>
+
+
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item text-danger" href="#">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="row justify-content-center">
+                                            <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
+                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/139Miscala_Luc Nathan.png" />
+                                                jasper.ching@cit.edu
+                                            </div>
+                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                Internship
+                                            </div>
+
+                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
+                                                <i class="bi bi-dot fa-3x" style="color:blue"> </i>
+                                                Influence
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Resume:<h3>40%</h3>
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Assessment:<h3>NA</h3>
+                                            </div>
+                                            <div class="col-sm-1 text-center">
+                                                Interview:<h3>NA</h3>
+                                            </div>
+
+                                            <div class="col-sm-1 text-center">
+                                                Total:<h3>27%</h3>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td>
+
+
+                    </tr>
+
+                   
+
+
+
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    <!-- Page level plugins -->
+    <script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/js/demo/datatables-demo.js"></script>
+
+}

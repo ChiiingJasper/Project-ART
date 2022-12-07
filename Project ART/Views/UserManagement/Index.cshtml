@@ -1,0 +1,128 @@
+﻿@model IEnumerable<TableUser>
+@{
+    ViewData["Title"] = "User Management";
+}
+
+
+<!-- DataTables Example -->
+<div class="card shadow m-5">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col pt-2">
+                <h3 class="m-0 font-weight-bold text-primary">Users</h3>
+            </div>
+
+            <div class="col col-lg-2" align="right">
+                <a asp-controller="UserManagement" asp-action="CreateUser" class="btn btn-success btn-icon-split btn-lg">
+                    <span class="icon text-white-50">
+                        <i class="bi bi-plus-circle"></i>
+                    </span>
+                    <span class="text">Create</span>
+                </a>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>&nbsp</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var obj in Model)
+                    {
+                            <tr>
+                                <td>
+
+
+                                    <div class="row-sm-6">
+                                        <!-- Dropdown Card Example -->
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Dropdown -->
+                                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h3 class="m-0  text-dark">@obj.First_Name @obj.Last_Name</h3>
+                                                <div class="dropdown no-arrow">
+                                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                        <div class="dropdown-header">Action</div>
+                                                        <a class="dropdown-item" asp-controller="UserManagement" asp-action="EditUser" asp-route-id="@obj.Company_ID">View</a>
+
+
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Card Body -->
+                                            <div class="card-body">
+                                                <div class="row justify-content-center mx-2">
+                                                    <div class="col-sm-2 align-self-center ">
+                                                        <img class="rounded-circle w-50 h-50" src="~/img/@obj.Profile_Pic" />
+                                                    </div>
+                                                <div class="col-sm-3 align-self-center">
+                                                       Employee No. @obj.Company_ID
+                                                    </div>
+
+                                                <div class="col-sm-3 align-self-center">
+                                                    @obj.Email
+                                                    </div>
+
+                                                <div class="col-sm-3 align-self-center">
+                                                    @obj.Mobile_Number
+                                                    </div>
+
+                                                    <div class="col-sm-1 align-self-center">
+                                                    @if (obj.Is_Admin)
+                                                    {
+                                                        <span>Admin</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>Employee</span>
+                                                    }
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </td>
+                            </tr>
+
+                    }
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+        <!-- Page level plugins -->
+        <script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/lib/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="~/js/demo/datatables-demo.js"></script>
+
+}
