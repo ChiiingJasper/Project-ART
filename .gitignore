@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ART_Candidate Page/wwwroot/UploadedFiles
+/Project ART/wwwroot/UploadedFiles/Photo
