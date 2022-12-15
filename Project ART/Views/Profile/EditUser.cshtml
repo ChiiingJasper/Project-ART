@@ -60,7 +60,7 @@
                 <div class="col-md-8">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <form class="user" method="post" asp-action="EditUser" onsubmit="validatePasswords(event)">
+                            
                                 <div class="row mb-3">
                                  
                                 <div class="col-sm-3">
@@ -69,17 +69,11 @@
 
                                     
 
-                                    
-
-                                    <input asp-for="Profile_Pic" type="text" id="profpic" hidden class="form-control"
-                                           placeholder="Profile Pic" required>
-
-                                    <input asp-for="Is_Admin" type="text" hidden class="form-control"
-                                           placeholder="Is Admin" required>
+             
 
                                 <div class="col-sm-9 text-secondary">
-                                        <input asp-for="First_Name" type="text" class="form-control"
-                                               placeholder="First Name" required>
+                                    <input id="firstName" type="text" class="form-control"
+                                               placeholder="First Name" value="@Model.First_Name" required>
                                 </div>
                             </div>
                             <hr>
@@ -88,8 +82,8 @@
                                     <h6 class="mt-2">Last Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                        <input asp-for="Last_Name" type="text" class="form-control"
-                                               placeholder="Last Name" required>
+                                    <input id="lastName" type="text" class="form-control"
+                                           placeholder="Last Name" value="@Model.Last_Name" required>
                                 </div>
                             </div>
                             <hr>
@@ -98,8 +92,8 @@
                                     <h6 class="mt-2">Middle Initial</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                        <input asp-for="Middle_Initial" type="text" class="form-control"
-                                               placeholder="Middle Initial" required>
+                                    <input id="MI" type="text" class="form-control"
+                                           placeholder="Middle Initial" value="@Model.Middle_Initial" required>
                                 </div>
                             </div>
                             <hr>
@@ -109,8 +103,8 @@
                                     <h6 class="mt-2">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                        <input asp-for="Email" type="email" class="form-control"
-                                               placeholder="Email" required>
+                                    <input id="email" type="email" class="form-control"
+                                           placeholder="Email" value="@Model.Email" required>
                                 </div>
                             </div>
 
@@ -121,8 +115,8 @@
                                     <h6 class="mt-2">Mobile</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                        <input asp-for="Mobile_Number" minlength="11" maxlength="11" type="text" class="form-control"
-                                               placeholder="Mobile Number" required>
+                                    <input id="mobileNumber" minlength="11" maxlength="11" type="text" class="form-control"
+                                           placeholder="Mobile Number" value="@Model.Mobile_Number" required>
                                 </div>
                             </div>
                             <hr>
@@ -133,8 +127,8 @@
                                         <h6 class="mt-2">Password</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        
-                                        <input asp-for="Password" minlength="8" type="password" value="" class="form-control @TempData["error"]">
+
+                                    <input id="password" minlength="8" type="password" value="" class="form-control ">
                                     </div>
                                 </div>
                                 <hr>
@@ -145,8 +139,8 @@
                                         <h6 class="mt-2"> Confirm Password</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        
-                                        <input asp-for="Password" minlength="8" type="password" value="" class="form-control @TempData["error"]">
+
+                                    <input id="confirmPassword" minlength="8" type="password" value="" class="form-control ">
                                     </div>
                                 </div>
                                 <hr>
@@ -156,7 +150,7 @@
                                 <div class="col-lg-8">
                                 </div>
                                 <div class="col col-lg-2" >
-                                    <a asp-controller="Profile" asp-action="Index" class="btn btn-danger btn-icon-split btn-lg">
+                                    <a id="cancel" asp-controller="Profile" asp-action="Index" class="btn btn-danger btn-icon-split btn-lg">
                                         <span class="icon text-white-50">
                                             <i class="bi bi-x-square"></i>
                                         </span>
@@ -173,7 +167,7 @@
                                     </button>
                                 </div>
                             </div>
-                            </form>
+                           
                         </div>
                         
                     </div>
@@ -193,5 +187,5 @@
     </div>
 
 </div>
+<script src="~/js/EditUser.js"></script>
 <script src="~/js/demo/changeImage.js"></script>
-<script src="~/js/passwordValidator.js"></script>

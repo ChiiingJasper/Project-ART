@@ -1,0 +1,138 @@
+﻿@{
+    ViewData["Title"] = "View User";
+}
+@model TableUser
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="main-body">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 ">
+            <div class="row">
+                <div class="col pt-2 mb-3">
+                    <h3 class="m-0 font-weight-bold text-primary">User Profile</h3>
+                </div>
+            </div>
+
+
+            <div class="row gutters-md ">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+
+
+                                
+                                
+                                        <img src="~/img/@Model.Profile_Pic" alt="Admin" id="profilePic" class="rounded-circle image-change" width="160">
+                                  
+                         
+
+                                    
+                              
+
+
+
+                                <div class="mt-3">
+                                    <h4>@Model.First_Name @Model.Last_Name</h4>
+                                    @if (Model.Is_Admin)
+                                    {
+                                        <p class="text-secondary mb-2">Admin</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-secondary mb-1">Employee</p>
+                                    }
+                                    <p class="text-secondary mb-1"></p>
+                                    <p class="text-muted font-size-sm pb-4">Company ID: #@Model.Company_ID</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">First Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary text">
+                                    @Model.First_Name
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Last Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.Last_Name
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Middle Intitial</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.Middle_Initial.
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.Email
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Mobile</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.Mobile_Number
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row align-items-end">
+                                <div class="col-sm-10">
+                                </div>
+                                <div class="col col-lg-2" align="right">
+                                    <a asp-controller="UserManagement" asp-action="Index" class="btn btn-warning btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                            <i class="bi bi-arrow-return-left"></i>
+                                        </span>
+                                        <span class="text">Back</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="~/js/demo/changeImage.js"></script>
+<script src="~/js/passwordValidator.js"></script>

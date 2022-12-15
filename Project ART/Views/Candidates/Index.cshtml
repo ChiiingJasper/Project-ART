@@ -1,8 +1,300 @@
 ﻿@model IEnumerable<TableCandidate>
 @{
-    ViewData["Title"] = "Job Listing";
+    ViewData["Title"] = "Candidates";
 }
 <link href="~/css/customstyle.css" rel="stylesheet">
+
+@{
+    String Is_Admin = Context.Session.GetString("Is_Admin");
+
+    if (Is_Admin is "True")
+    {
+        <div class="job_details_area" style="padding-bottom: 0; margin:0;">
+
+            <div class="container-xl">
+                <div class="share_wrap" style=" margin:0;">
+
+                    <div class="row">
+
+
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <a data-toggle="modal" data-target="#personality" id="personalityBtn">
+                                <div class="card card-clicker border-left-danger shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                    Personality
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@(@ViewBag.Scores.Personality+"%")</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-user fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <a data-toggle="modal" data-target="#resume" id="resumeBtn">
+                                <div class="card card-clicker border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Resume Score
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@(@ViewBag.Scores.Resume+"%")</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-file fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <a data-toggle="modal" data-target="#exam" id="examBtn">
+                                <div class="card card-clicker border-left-primary shadow h-100 py-2">
+
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Exam
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@(@ViewBag.Scores.Exam+"%")</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-feather fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <a data-toggle="modal" data-target="#interview" id="interviewBtn">
+                                <div class="card card-clicker border-left-info shadow h-100 py-2">
+
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Interview
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@(@ViewBag.Scores.Interview+"%")</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="modal fade" id="personality" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Enter Personality Weighting</h5>
+                    </div>
+                    <div class="modal-body justify-content-center">
+
+
+
+                        <div class="col col-md-12 mb-4">
+                            <div class="card  border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Personality
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@(@ViewBag.Scores.Personality+"%")</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                        <input class="form-control my-5" id="personalityInput" placeholder="Enter Score" type="number" min="0" max="100" />
+                    </div>
+                    <div class="modal-footer">
+                        <a id="personalitySubmit" href="#" data-dismiss="modal" class="btn btn-success">Enter</a>
+                        <a id="close" class="btn btn-secondary" href="#" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="resume" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Enter Resume Weighting</h5>
+                    </div>
+                    <div class="modal-body justify-content-center">
+
+                        <div class="col col-md-12 mb-4">
+                            <a data-toggle="modal" data-target="#resume">
+                                <div class="card  border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Resume Score
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">@(@ViewBag.Scores.Resume + "%")</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-file fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <input class="form-control my-5" id="resumeInput" placeholder="Enter Score" type="number" />
+                    </div>
+                    <div class="modal-footer">
+                        <a id="resumeSubmit" href="#" data-dismiss="modal" class="btn btn-success">Enter</a>
+                        <a id="close" class="btn btn-secondary" href="#" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="exam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Enter Exam Weighting</h5>
+                    </div>
+                    <div class="modal-body justify-content-center">
+
+
+
+                        <div class="col col-md-12 mb-4">
+
+                            <div class="card card border-left-primary shadow h-100 py-2">
+
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Exam
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@(@ViewBag.Scores.Exam + "%")</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-feather fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <input class="form-control  my-5" id="examInput" placeholder="Enter Score" type="number" />
+                    </div>
+                    <div class="modal-footer">
+                        <a id="examSubmit" href="#" data-dismiss="modal" class="btn btn-success">Enter</a>
+                        <a id="close" class="btn btn-secondary" href="#" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="interview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Enter Interview Weighting</h5>
+                    </div>
+                    <div class="modal-body justify-content-center">
+
+
+
+
+
+                        <div class="col-xl col-md-12 mb-4">
+
+                            <div class="card border-left-info shadow h-100 py-2">
+
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Interview
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@(@ViewBag.Scores.Interview + "%")</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <input class="form-control  my-5" id="interviewInput" placeholder="Enter Score" type="number" />
+                    </div>
+                    <div class="modal-footer">
+                        <a id="interviewSubmit" href="#" data-dismiss="modal" class="btn btn-success">Enter</a>
+                        <a id="close" class="btn btn-secondary" href="#" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+
 
 <!-- DataTables Example -->
 <div class="card shadow m-5">
@@ -29,7 +321,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered"  width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>&nbsp</th>
@@ -39,8 +331,11 @@
 
                 <tbody>
 
+                    @foreach(var obj in ViewBag.Candidate)
+                    {
+                        
                     
-                        <tr>
+                    <tr>
 
 
                             <td>
@@ -49,7 +344,7 @@
                                     <div class="card shadow mb-4">
                                         <!-- Card Header - Dropdown -->
                                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h3 class="m-0  text-dark">Ching, Jasper C.</h3>
+                                            <h3 class="m-0  text-dark">@(obj.Last_Name+", "+obj.First_Name+" "+obj.Middle_Initial)</h3>
                                             <div class="dropdown no-arrow">
                                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,11 +353,9 @@
                                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                  aria-labelledby="dropdownMenuLink">
                                                     <div class="dropdown-header">Action</div>
-                                                    <a >View</a>
-
-
+                                                    <a class="dropdown-item" asp-action="ViewCandidate" asp-controller="Candidates" asp-route-id="@obj.Candidate_ID">View</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                    <a class="dropdown-item text-danger" asp-action="DeleteCandidate" asp-controller="Candidates" asp-route-id="@obj.Candidate_ID">Delete</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -70,29 +363,45 @@
                                         <div class="card-body">
                                             <div class="row justify-content-center">
                                                 <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
-                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/140Ching_Jasper.png" />
-                                                    chingyu2727@gmail.com
+                                                    <img class="rounded-circle w-25 h-25 mw-25 mh-25 mr-4"  src="~/CandidateUpload/Photos/@obj.Photo" />
+                                                    @obj.Email
                                                 </div>
                                                  <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                    Internship
+                                                    @obj.Job
                                                 </div>
 
                                                 <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                <i class="bi bi-dot fa-3x" style="color:green"> </i>
-                                                    Dominance
+                                                <i class="bi bi-dot fa-3x @obj.DISC" > </i>
+                                                    @obj.DISC
                                                 </div>
                                                 <div class="col-sm-1 text-center">
-                                                    Resume:<h3>80%</h3>
+                                                    Resume:<h3>@(obj.Resume_Score+"%")</h3>
                                                 </div>
                                                 <div class="col-sm-1 text-center">
-                                                    Assessment:<h3>50%</h3>
+                                                    Assessment:
+                                                    @if(obj.Exam == 0)
+                                                    {
+                                                        <h3>NA</h3>
+                                                    }else
+                                                    {
+                                                        <h3>@(obj.Exam + "%")</h3>
+                                                    }
+                                                    
                                                 </div>
                                                 <div class="col-sm-1 text-center">
-                                                    Interview:<h3>90%</h3>
+                                                    Interview:
+                                                    @if (obj.Interview == 0)
+                                                    {
+                                                        <h3>NA</h3>
+                                                    }
+                                                    else
+                                                    {
+                                                        <h3>@(obj.Interview + "%")</h3>
+                                                    }
                                                 </div>
 
                                                 <div class="col-sm-1 text-center">
-                                                    Total:<h3>83%</h3>
+                                                    Total:<h3>@TempData[@obj.Candidate_ID.ToString()]</h3>
                                                 </div>
 
 
@@ -110,285 +419,13 @@
 
                         </tr>
 
+}
 
 
-
-                    <tr>
-
-
-                        <td>
-                            <div class="row-sm-6">
-                                <!-- Dropdown Card Example -->
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h3 class="m-0  text-dark">Dosdos, Franco S.</h3>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                 aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Action</div>
-                                                <a>View</a>
-
-
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger" href="#">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="row justify-content-center">
-                                            <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
-                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/135Dosdos_Franco.png" />
-                                                chiiing@gmail.com
-                                            </div>
-                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                Internship
-                                            </div>
-
-                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                <i class="bi bi-dot fa-3x" style="color:yellow"> </i>
-                                                Influence
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Resume:<h3>80%</h3>
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Assessment:<h3>NA</h3>
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Interview:<h3>NA</h3>
-                                            </div>
-
-                                            <div class="col-sm-1 text-center">
-                                                Total:<h3>62%</h3>
-                                            </div>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </td>
-
-
-                    </tr>
-                     <tr>
-
-
-                        <td>
-                            <div class="row-sm-6">
-                                <!-- Dropdown Card Example -->
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h3 class="m-0  text-dark">Doe, Jane J.</h3>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                 aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Action</div>
-                                                <a>View</a>
-
-
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger" href="#">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="row justify-content-center">
-                                            <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
-                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/140DoeJane.jpg" />
-                                                jd@gmail.com
-                                            </div>
-                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                Internship
-                                            </div>
-
-                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                <i class="bi bi-dot fa-3x" style="color:red"> </i>
-                                                Compliance
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Resume:<h3>80%</h3>
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Assessment:<h3>NA</h3>
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Interview:<h3>NA</h3>
-                                            </div>
-
-                                            <div class="col-sm-1 text-center">
-                                                Total:<h3>59%</h3>
-                                            </div>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </td>
-
-
-                    </tr>
-                     <tr>
-
-
-                        <td>
-                            <div class="row-sm-6">
-                                <!-- Dropdown Card Example -->
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h3 class="m-0  text-dark">Castanares, Ben Amiel F.</h3>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                 aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Action</div>
-                                                <a>View</a>
-
-
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger" href="#">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="row justify-content-center">
-                                            <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
-                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/136Castanares_Ben Amiel.png" />
-                                                benamiel@gmail.com
-                                            </div>
-                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                Internship
-                                            </div>
-
-                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                <i class="bi bi-dot fa-3x" style="color:red"> </i>
-                                                Compliance
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Resume:<h3>40%</h3>
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Assessment:<h3>NA</h3>
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Interview:<h3>NA</h3>
-                                            </div>
-
-                                            <div class="col-sm-1 text-center">
-                                                Total:<h3>35%</h3>
-                                            </div>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </td>
-
-
-                    </tr>
-                    <tr>
-
-
-                        <td>
-                            <div class="row-sm-6">
-                                <!-- Dropdown Card Example -->
-                                <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h3 class="m-0  text-dark">Miscala, Luc Nathan</h3>
-                                        <div class="dropdown no-arrow">
-                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                                 aria-labelledby="dropdownMenuLink">
-                                                <div class="dropdown-header">Action</div>
-                                                <a>View</a>
-
-
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item text-danger" href="#">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="row justify-content-center">
-                                            <div class="d-inline-flex col-sm-3 align-self-center flex-center-start">
-                                                <img class="rounded-circle w-25 h-25 mr-4" src="~/CandidateUpload/Photos/139Miscala_Luc Nathan.png" />
-                                                jasper.ching@cit.edu
-                                            </div>
-                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                Internship
-                                            </div>
-
-                                            <div class="d-inline-flex col-sm-2 align-self-center flex-center-start text-right justify-content-center">
-                                                <i class="bi bi-dot fa-3x" style="color:blue"> </i>
-                                                Influence
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Resume:<h3>40%</h3>
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Assessment:<h3>NA</h3>
-                                            </div>
-                                            <div class="col-sm-1 text-center">
-                                                Interview:<h3>NA</h3>
-                                            </div>
-
-                                            <div class="col-sm-1 text-center">
-                                                Total:<h3>27%</h3>
-                                            </div>
-
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </td>
-
-
-                    </tr>
+                    
+                    
+                    
+                    
 
                    
 
@@ -412,5 +449,6 @@
 
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
+    <script src="~/js/weighting.js"></script>
 
 }

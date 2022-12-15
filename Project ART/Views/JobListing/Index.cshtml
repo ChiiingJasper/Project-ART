@@ -58,17 +58,7 @@
                                          aria-labelledby="dropdownMenuLink">
                                                 <div class="dropdown-header">Action</div>
                                                     <a class="dropdown-item" asp-controller="JobListing" asp-action="ViewJobApplication" asp-route-id="@obj.Job_Application_ID">View</a>
-                                                    @if (obj.Is_Open)
-                                                    {
-                                                        <a class="dropdown-item" href="#">Close</a>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a class="dropdown-item" href="#">Open</a>
-                                                    }
-                                        
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                   
                                     </div>
                                 </div>
                             </div>

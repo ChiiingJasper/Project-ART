@@ -379,6 +379,31 @@ namespace Project_ART.Migrations
                     b.ToTable("Log");
                 });
 
+            modelBuilder.Entity("Project_ART.Models.TablePendingCandidatePrediction", b =>
+                {
+                    b.Property<int>("Candidate_Details_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Candidate_Details_ID"), 1L, 1);
+
+                    b.Property<bool?>("Approved")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Candidate_ID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DISC_Personality")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Resume_Score")
+                        .HasColumnType("int");
+
+                    b.HasKey("Candidate_Details_ID");
+
+                    b.ToTable("PendingCandidatePrediction");
+                });
+
             modelBuilder.Entity("Project_ART.Models.TablePersonalityPrediction", b =>
                 {
                     b.Property<int>("Candidate_Details_ID")
@@ -488,9 +513,6 @@ namespace Project_ART.Migrations
                     b.Property<bool?>("Is_Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("Skill_Matched")
-                        .HasColumnType("bit");
-
                     b.HasKey("Skill_ID");
 
                     b.ToTable("Skill");
@@ -585,6 +607,31 @@ namespace Project_ART.Migrations
                     b.HasKey("Company_ID");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Project_ART.Models.TableWeighting", b =>
+                {
+                    b.Property<int>("weighting_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("weighting_ID"), 1L, 1);
+
+                    b.Property<int?>("Exam")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Interview")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Personality")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Resume")
+                        .HasColumnType("int");
+
+                    b.HasKey("weighting_ID");
+
+                    b.ToTable("Weighting");
                 });
 
             modelBuilder.Entity("Project_ART.Models.TableAssessment", b =>

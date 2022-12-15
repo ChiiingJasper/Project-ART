@@ -6,15 +6,24 @@ Chart.defaults.global.defaultFontColor = '#858796';
 var ctx = document.getElementById("myPieChart");
 var ctx2 = document.getElementById("b5PieChart");
 
+var Dominance = parseInt(document.getElementById("Dominance").innerHTML);
+var Influence = parseInt(document.getElementById("Influence").innerHTML);
+var Steadiness = parseInt(document.getElementById("Steadiness").innerHTML);
+var Compliance = parseInt(document.getElementById("Compliance").innerHTML);
+
+
+
+
+
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-      labels: ["Dominance", "Influence", "Conscientiousness", "Steadiness"],
+      labels: ["Dominance", "Influence", "Steadiness","Compliance"],
     datasets: [{
-      data: [1, 0, 0, 0],
-        backgroundColor: ['#1cc88a', '#e74a3b', '#f6c23e','#4e73df'],
-        hoverBackgroundColor: ['#169c6b', '#e32d1c', '#f4b20b','#2854d7'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
+        data: [Dominance, Influence, Steadiness, Compliance],
+        backgroundColor: ['#1cc88a', '#e74a3b','#4e73df','#f6c23e'],
+        hoverBackgroundColor: ['#169c6b', '#e32d1c', '#2854d7', '#f4b20b'],
+      hoverBorderColor: "rgba(234, 236, 1, 244)",
     }],
   },
   options: {

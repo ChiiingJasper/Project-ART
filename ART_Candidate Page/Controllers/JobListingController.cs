@@ -35,7 +35,11 @@ namespace ART_Candidate_Page.Controllers
         public IActionResult Index()
         {
             IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplication.Where(x => x.Is_Deleted == false && x.Is_Open == true);
-            
+            var count = _db.JobApplication
+            .Where(o => o.Is_Open == true && o.Is_Deleted == false)
+            .Count();
+
+            ViewBag.Count = count;
             return View(objTableJobApplicationList);
         }
         public IActionResult JobDesc(int? id)
@@ -81,7 +85,12 @@ namespace ART_Candidate_Page.Controllers
 
                 TableResume resume = new TableResume();
                 TableIntroduction introduction = new TableIntroduction();
-                TableCandidate candidate = new TableCandidate { Resume = resume, Introduction = introduction };
+                TableExam exam = new TableExam { Exam_Score = 0};
+                TableInterview interview = new TableInterview { Interview_Score = 0 };
+
+                TableAssessment assessment = new TableAssessment { Exam = exam, Interview = interview };
+
+                TableCandidate candidate = new TableCandidate { Resume = resume, Introduction = introduction , Assessment = assessment};
                 candidate.First_Name = data["First Name"];
                 candidate.Last_Name = data["Last Name"];
                 string MI = data["Middle Initial"];
@@ -93,7 +102,7 @@ namespace ART_Candidate_Page.Controllers
                 candidate.City = data["City"];
                 int jobID = int.Parse(data["JobID"]);
                 candidate.Job_Application_ID = jobID;
-                candidate.Email_Confirmed = true;
+                candidate.Email_Confirmed = false;
                 _db.Candidate.Add(candidate);
                 _db.SaveChanges();
 
@@ -118,7 +127,7 @@ namespace ART_Candidate_Page.Controllers
                     "please click the link below to confirm your email so we can process your details.<br><br>"
                     + "<a href=https://" +link+ ">Click here to Confirm Your Email</a>"  +
                     "<br><br>Sincerly Yours, <br>Alliance Recruitment Team</h3>";
- //               SendMail(candidate.Email, subject, body);
+                SendMail(candidate.Email, subject, body);
 
                 
 
@@ -271,7 +280,7 @@ namespace ART_Candidate_Page.Controllers
                 jobDetails.Append(" " + q.Qualification + " " + q.Description);
             }
             string jobText = jobDetails.ToString();
-
+            int otherSkills = 0;
             int matchedSkills = 0;
             int jobSkills = 0;
             foreach (var skill in skillObj)
@@ -279,7 +288,8 @@ namespace ART_Candidate_Page.Controllers
                 if (jobText.ToUpper().Contains(skill.Data.ToUpper()))
                     jobSkills++;
 
-                if (resumeText.ToUpper().Contains(skill.Data.ToUpper())) { 
+                if (resumeText.ToUpper().Contains(skill.Data.ToUpper())) {
+                    otherSkills++;
                 TableData data = new TableData();
                 data.Resume_ID = resumeID;
                 data.Data = skill.Data;
@@ -287,12 +297,13 @@ namespace ART_Candidate_Page.Controllers
                     {
                         data.Skill_Matched = true;
                         matchedSkills++;
+                        otherSkills--;
                     }
                         
                 _db.Data.Add(data);
                 };
             }
-            double score = Math.Round((((double)matchedSkills / (double)jobSkills) * 100), 2);
+            double score = Math.Round((((double)matchedSkills / (double)jobSkills) * 80)+(otherSkills*.2), 2);
             resume.Resume_Score =(int)score;
 
             _db.Resume.Update(resume);

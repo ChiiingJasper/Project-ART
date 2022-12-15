@@ -44,6 +44,54 @@ namespace Project_ART.Controllers
             .Count();
 
             ViewBag.AssessedCount = AssessedCount;
+
+
+            var Dominance =
+                             from candidate in _db.Candidate.Where(x => x.Is_Deleted == false)
+                             join status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Hired") on candidate.Candidate_ID equals status.Candidate_ID
+                             join introduction in _db.Introduction.Where(x => x.DISC_Trait == "Dominance") on candidate.Introduction_ID equals introduction.Introduction_ID
+                             select new
+                             {
+                                 Candidate_ID = candidate.Candidate_ID,
+                             };
+
+            ViewBag.Dominance = Dominance.Count();
+
+            var Influence =
+                             from candidate in _db.Candidate.Where(x => x.Is_Deleted == false)
+                             join status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Hired") on candidate.Candidate_ID equals status.Candidate_ID
+                             join introduction in _db.Introduction.Where(x => x.DISC_Trait == "Influence") on candidate.Introduction_ID equals introduction.Introduction_ID
+                             select new
+                             {
+                                 Candidate_ID = candidate.Candidate_ID,
+                             };
+
+            ViewBag.Influence = Influence.Count();
+
+            var Steadiness =
+                             from candidate in _db.Candidate.Where(x => x.Is_Deleted == false)
+                             join status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Hired") on candidate.Candidate_ID equals status.Candidate_ID
+                             join introduction in _db.Introduction.Where(x => x.DISC_Trait == "Steadiness") on candidate.Introduction_ID equals introduction.Introduction_ID
+                             select new
+                             {
+                                 Candidate_ID = candidate.Candidate_ID,
+                             };
+
+            ViewBag.Steadiness = Steadiness.Count();
+
+            var Compliance =
+                             from candidate in _db.Candidate.Where(x => x.Is_Deleted == false)
+                             join status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Hired") on candidate.Candidate_ID equals status.Candidate_ID
+                             join introduction in _db.Introduction.Where(x => x.DISC_Trait == "Compliance") on candidate.Introduction_ID equals introduction.Introduction_ID
+                             select new
+                             {
+                                 Candidate_ID = candidate.Candidate_ID,
+                             };
+
+            ViewBag.Compliance = Compliance.Count();
+
+            ViewBag.Candidates = _db.Candidate.Where(x => x.Is_Deleted == false).Count();
+
             return View();
         }
 

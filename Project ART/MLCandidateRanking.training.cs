@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ML.Data;
-using Microsoft.ML.Trainers.FastTree;
 using Microsoft.ML.Trainers;
+using Microsoft.ML.Transforms;
 using Microsoft.ML;
 
 namespace Project_ART
@@ -35,11 +35,11 @@ namespace Project_ART
         public static IEstimator<ITransformer> BuildPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations
-            var pipeline = mlContext.Transforms.ReplaceMissingValues(@"Candidate_Details_ID", @"Candidate_Details_ID")      
-                                    .Append(mlContext.Transforms.Text.FeaturizeText(inputColumnName:@"Introduction_Video_Data",outputColumnName:@"Introduction_Video_Data"))      
-                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"Candidate_Details_ID",@"Introduction_Video_Data"}))      
-                                    .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName:@"DISC_Personality",inputColumnName:@"DISC_Personality"))      
-                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator:mlContext.BinaryClassification.Trainers.FastTree(new FastTreeBinaryTrainer.Options(){NumberOfLeaves=4,MinimumExampleCountPerLeaf=20,NumberOfTrees=4,MaximumBinCountPerFeature=254,FeatureFraction=1,LearningRate=0.1,LabelColumnName=@"DISC_Personality",FeatureColumnName=@"Features"}),labelColumnName: @"DISC_Personality"))      
+            var pipeline = mlContext.Transforms.Categorical.OneHotEncoding(@"DISC_Personality", @"DISC_Personality", outputKind: OneHotEncodingEstimator.OutputKind.Indicator)      
+                                    .Append(mlContext.Transforms.ReplaceMissingValues(@"Resume_Score", @"Resume_Score"))      
+                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"DISC_Personality",@"Resume_Score"}))      
+                                    .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName:@"Approved",inputColumnName:@"Approved"))      
+                                    .Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(new LbfgsMaximumEntropyMulticlassTrainer.Options(){L1Regularization=1F,L2Regularization=1F,LabelColumnName=@"Approved",FeatureColumnName=@"Features"}))      
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue(outputColumnName:@"PredictedLabel",inputColumnName:@"PredictedLabel"));
 
             return pipeline;

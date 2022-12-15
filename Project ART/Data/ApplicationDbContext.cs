@@ -13,6 +13,7 @@ namespace Project_ART.Data
         public DbSet<TableAssessment>? Assessment { get; set; }
         public DbSet<TableBenefit>? Benefit { get; set; }
         public DbSet<TableCandidate>? Candidate { get; set; }
+        public DbSet<TablePendingCandidatePrediction>? PendingCandidatePrediction { get; set; }
         public DbSet<TableData>? Data { get; set; }
         public DbSet<TableExam>? Exam { get; set; }
         public DbSet<TableFAQ>? FAQ { get; set; }
@@ -26,10 +27,11 @@ namespace Project_ART.Data
         public DbSet<TableResponsibility>? Responsibility { get; set; }
         public DbSet<TableResume>? Resume { get; set; }
 
+
         public DbSet<TableSkill>? Skill { get; set; }
         public DbSet<TableStatus>? Status { get; set; }
         public DbSet<TableUser>? User { get; set; }
-
+        public DbSet<TableWeighting>? Weighting { get; set; }
     }
 
    

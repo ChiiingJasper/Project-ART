@@ -2,6 +2,7 @@
 using Project_ART.Data;
 using Project_ART.Models;
 using System.Net;
+using System.Text;
 
 namespace Project_ART.Controllers
 {
@@ -32,39 +33,68 @@ namespace Project_ART.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult EditUser(TableUser obj)
+        public async Task<IActionResult> SubmitEditUser()
         {
-            var id = HttpContext.Session.GetInt32("Id");
-            var userFromDb = _db.User.Find(id);
 
-            obj.Company_ID = (int)id;
+            var data = Request.Form;
             
 
-            //if (obj.Password != obj.Confirm_Password)
-            {
-                TempData["passwordMismatch"] = "Your Password must match";
-                TempData["error"] = "redborder";
-                return RedirectToAction("EditUser"); ;
-            }
-            if (obj.Password == null)
-            {
-                obj.Password = userFromDb.Password;
-                //obj.Confirm_Password = userFromDb.Password;
-            }
-            else
-            {
-                obj.Password = BCrypt.Net.BCrypt.HashPassword(obj.Password);
-                //obj.Confirm_Password = obj.Password;
-            }
-            if (ModelState.IsValid)
-            {
-                _db.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return RedirectToAction("Index");
+                var id = HttpContext.Session.GetInt32("Id");
 
+                TableUser user = _db.User.SingleOrDefault(x => x.Company_ID == id);
+
+
+                user.First_Name = data["First Name"];
+                user.Last_Name = data["Last Name"];
+                string MI = data["Middle Initial"];
+                user.Middle_Initial = MI.ToUpper().ToCharArray()[0];
+
+                user.Email = data["Email"];
+                user.Mobile_Number = data["Mobile Number"];
+                if(data["Password"] != "None")
+                {
+                    user.Password = BCrypt.Net.BCrypt.HashPassword(data["Password"]);
+                }
+                
+                
+              
+
+                if (data["Photo"] != "None")
+                {
+                    string fileName = user.Company_ID + user.Last_Name + "_" + user.First_Name;
+                    user.Profile_Pic = fileName + ".png";
+
+
+
+                    var photo = Request.Form.Files["Photo"];
+
+
+                    if (photo != null)
+                    {
+
+                        string UploadFolder = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img");
+
+                        string PhotoPath = System.IO.Path.Combine(UploadFolder, fileName);
+
+
+                        FileStream fsPhoto = new FileStream(PhotoPath + ".png", FileMode.Create);
+                        await photo.CopyToAsync(fsPhoto);
+                        fsPhoto.Close();
+
+                    }
+                }
+
+                
+
+
+                _db.User.Update(user);
+                _db.SaveChanges();
+
+            HttpContext.Session.SetString("Name", user.First_Name + " " + user.Last_Name);
+            HttpContext.Session.SetString("Picture", user.Profile_Pic);
+
+
+            return Json(HttpStatusCode.BadRequest);
         }
     }
 }

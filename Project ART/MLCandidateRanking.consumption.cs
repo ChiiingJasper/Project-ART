@@ -16,16 +16,16 @@ namespace Project_ART
         public class ModelInput
         {
             [LoadColumn(0)]
-            [ColumnName(@"Candidate_Details_ID")]
-            public float Candidate_Details_ID { get; set; }
-
-            [LoadColumn(1)]
-            [ColumnName(@"Introduction_Video_Data")]
-            public string Introduction_Video_Data { get; set; }
-
-            [LoadColumn(2)]
             [ColumnName(@"DISC_Personality")]
             public string DISC_Personality { get; set; }
+
+            [LoadColumn(1)]
+            [ColumnName(@"Resume_Score")]
+            public float Resume_Score { get; set; }
+
+            [LoadColumn(2)]
+            [ColumnName(@"Approved")]
+            public float Approved { get; set; }
 
         }
 
@@ -37,20 +37,20 @@ namespace Project_ART
         #region model output class
         public class ModelOutput
         {
-            [ColumnName(@"Candidate_Details_ID")]
-            public float Candidate_Details_ID { get; set; }
-
-            [ColumnName(@"Introduction_Video_Data")]
-            public float[] Introduction_Video_Data { get; set; }
-
             [ColumnName(@"DISC_Personality")]
-            public uint DISC_Personality { get; set; }
+            public float[] DISC_Personality { get; set; }
+
+            [ColumnName(@"Resume_Score")]
+            public float Resume_Score { get; set; }
+
+            [ColumnName(@"Approved")]
+            public uint Approved { get; set; }
 
             [ColumnName(@"Features")]
             public float[] Features { get; set; }
 
             [ColumnName(@"PredictedLabel")]
-            public string PredictedLabel { get; set; }
+            public float PredictedLabel { get; set; }
 
             [ColumnName(@"Score")]
             public float[] Score { get; set; }

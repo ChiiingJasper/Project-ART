@@ -8,6 +8,9 @@ using iTextSharp.text.pdf.parser;
 using iTextSharp.text.pdf;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
+using System.Collections;
+using System.Drawing.Imaging;
+using Microsoft.ML;
 
 namespace Project_ART.Controllers
 {
@@ -19,11 +22,50 @@ namespace Project_ART.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? jobID, int? openID)
         {
             bool deleteFlag = false;
             IEnumerable<TableJobApplication> objTableJobApplicationList = _db.JobApplication.Where(x => x.Is_Deleted == deleteFlag);
-            
+
+
+            if(jobID != null)
+            {
+                var candidateStatus = _db.Status.Where(x => x.Is_Deleted == false && (x.Status == "Approved" || x.Status == "Pending")).ToList();
+                var Candidates = from status in candidateStatus
+                                 join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == jobID) on status.Candidate_ID equals candidate.Candidate_ID
+                                 select new
+                                 {
+                                  Candidate_ID = candidate.Candidate_ID
+                                 };
+
+                foreach(var i in Candidates)
+                {
+                    var NotHired = _db.Status.Find(i.Candidate_ID);
+                    NotHired.Status = "Not Hired";
+                    _db.Status.Update(NotHired);
+                    
+                }
+                var jobStatus = _db.JobApplication.Find(jobID);
+                jobStatus.Is_Open = false;
+                _db.JobApplication.Update(jobStatus);
+
+                _db.SaveChanges();
+            }
+
+            if (openID != null)
+            {
+                var jobStatus = _db.JobApplication.Find(openID);
+                jobStatus.Is_Open = true;
+                _db.JobApplication.Update(jobStatus);
+
+                _db.SaveChanges();
+            }
+
+
+
+
+
+
             return View(objTableJobApplicationList);
         }
 
@@ -34,6 +76,14 @@ namespace Project_ART.Controllers
 
         public IActionResult ViewJobApplication(int? id)
         {
+
+
+
+
+
+
+
+
             dynamic obj = new ExpandoObject();
 
             if (id == null || id == 0)
@@ -56,23 +106,38 @@ namespace Project_ART.Controllers
             {
                 return BadRequest(e);
             }
-            var PendingCount = _db.Status
-            .Where(o => o.Status == "Pending" && o.Is_Deleted == false)
-            .Count();
 
-            ViewBag.PendingCount = PendingCount;
+            var pendingCandidates =
+                                         from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Pending")
+                                         join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                                         select new
+                                         {
+                                             Candidate_ID = candidate.Candidate_ID,
+                                         };
 
-            var ApprovedCount = _db.Status
-            .Where(o => o.Status == "Approved" && o.Is_Deleted == false)
-            .Count();
+            ViewBag.PendingCount = pendingCandidates.Count();
 
-            ViewBag.ApprovedCount = ApprovedCount;
 
-            var HiredCount = _db.Status
-            .Where(o => o.Status == "Hired" && o.Is_Deleted == false)
-            .Count();
 
-            ViewBag.HiredCount = HiredCount;
+            var approvedCandidates =
+                             from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Approved")
+                             join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                             select new
+                             {
+                                 Candidate_ID = candidate.Candidate_ID,
+                             };
+
+            ViewBag.ApprovedCount = approvedCandidates.Count();
+
+            var hiredCandidates =
+                             from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Hired")
+                             join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                             select new
+                             {
+                                 Candidate_ID = candidate.Candidate_ID,
+                             };
+
+            ViewBag.HiredCount = hiredCandidates.Count();
 
             return View(obj);
         }
@@ -99,7 +164,11 @@ namespace Project_ART.Controllers
                 _db.SaveChanges();
 
                 string photoName = jobApplication.Job_Application_ID + jobApplication.Job;
-                jobApplication.Icon = photoName+".png";
+
+                string UploadFolder = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadedFiles");
+                string PhotoPath = System.IO.Path.Combine(UploadFolder + "/Photo", photoName);
+
+                jobApplication.Icon = photoName + ".png";
 
                 _db.JobApplication.Update(jobApplication);
 
@@ -143,8 +212,7 @@ namespace Project_ART.Controllers
                 var photo = Request.Form.Files["icon"];
                 if (photo != null)
                 {
-                    string UploadFolder = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadedFiles");
-                    string PhotoPath = System.IO.Path.Combine(UploadFolder + "/Photo", photoName);
+                    
                     await photo.CopyToAsync(new FileStream(PhotoPath + ".png", FileMode.Create));
                 }
 
@@ -176,47 +244,68 @@ namespace Project_ART.Controllers
                 _db.SaveChanges();
             }
 
- 
-            var Candidates =
-                             from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Pending")
+
+            var pendingCandidates =
+                 from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Pending")
+                 join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                 join resume in _db.Resume.Where(x => x.Is_Deleted == false) on candidate.Resume_ID equals resume.Resume_ID
+                 join video in _db.Introduction.Where(x => x.Is_Deleted == false) on candidate.Introduction_ID equals video.Introduction_ID
+                 select new
+                 {
+                     Candidate_ID = candidate.Candidate_ID,
+                     First_Name = candidate.First_Name,
+                     Last_Name = candidate.Last_Name,
+                     Middle_Initial = candidate.Middle_Initital,
+                     DISC = video.DISC_Trait,
+                     Resume_Score = resume.Resume_Score,
+                     Photo = candidate.Photo
+                 };
+
+            ViewBag.Candidates = pendingCandidates.ToList();
+
+            int pendingCount = pendingCandidates.Count();
+            ViewBag.PendingCount = pendingCount;
+            
+            foreach (var i in pendingCandidates.OrderByDescending(x => x.Resume_Score).ToList())
+            {
+          
+                var sampleData = new MLCandidateRanking.ModelInput()
+                {
+                    DISC_Personality = i.DISC,
+                    Resume_Score = (float)i.Resume_Score,
+                };
+
+                
+                //Load model and predict output
+                var result = MLCandidateRanking.Predict(sampleData).Score;
+                int finalResult = (int)(result[1] * 10 + (i.Resume_Score*.9));
+
+                TempData[i.Candidate_ID.ToString()] = finalResult.ToString() + "%";
+                TempData[i.Candidate_ID.ToString() + "rank"] = ((100 - finalResult) * .1).ToString();
+            }
+
+            
+
+
+            var approvedCandidates =
+                             from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Approved")
                              join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
-                             join resume in _db.Resume.Where(x => x.Is_Deleted == false) on candidate.Resume_ID equals resume.Resume_ID
-                             join video in _db.Introduction.Where(x => x.Is_Deleted == false) on candidate.Introduction_ID equals video.Introduction_ID
                              select new
                              {
                                  Candidate_ID = candidate.Candidate_ID,
-                                 First_Name = candidate.First_Name,
-                                 Last_Name = candidate.Last_Name,
-                                 Middle_Initial = candidate.Middle_Initital,
-                                 DISC = video.DISC_Trait,
-                                 Resume_Score = resume.Resume_Score,
-                                 Photo = candidate.Photo
                              };
-            var candidateList = Candidates.OrderByDescending(x => x.Resume_Score).ToList();
-            
-            ViewBag.Candidates = candidateList;
 
-            TempData["Dosdos"] = 62;
-            TempData["Castanares"] = 35;
-            TempData["Miscala"] = 27;
+            ViewBag.ApprovedCount = approvedCandidates.Count();
 
-            var PendingCount = _db.Status
-            .Where(o => o.Status == "Pending" && o.Is_Deleted == false)
-            .Count();
+            var hiredCandidates =
+                             from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Hired")
+                             join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                             select new
+                             {
+                                 Candidate_ID = candidate.Candidate_ID,
+                             };
 
-            ViewBag.PendingCount = PendingCount;
-
-            var ApprovedCount = _db.Status
-            .Where(o => o.Status == "Approved" && o.Is_Deleted == false)
-            .Count();
-
-            ViewBag.ApprovedCount = ApprovedCount;
-
-            var HiredCount = _db.Status
-            .Where(o => o.Status == "Hired" && o.Is_Deleted == false)
-            .Count();
-
-            ViewBag.HiredCount = HiredCount;
+            ViewBag.HiredCount = hiredCandidates.Count();
 
             return View(obj);
 
@@ -253,7 +342,7 @@ namespace Project_ART.Controllers
             {
                 var approvedCandidate = _db.Status.Find(hireCandidate);
                 approvedCandidate.Status = "Hired";
-                approvedCandidate.Approved_By = HttpContext.Session.GetInt32("Id");
+                approvedCandidate.Hired_By = HttpContext.Session.GetInt32("Id");
                 _db.Status.Update(approvedCandidate);
                 _db.SaveChanges();
             }
@@ -264,6 +353,9 @@ namespace Project_ART.Controllers
                              join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
                              join resume in _db.Resume.Where(x => x.Is_Deleted == false) on candidate.Resume_ID equals resume.Resume_ID
                              join video in _db.Introduction.Where(x => x.Is_Deleted == false) on candidate.Introduction_ID equals video.Introduction_ID
+                             join assessment in _db.Assessment on candidate.Assessment_ID equals assessment.Assessment_ID
+                             join exam in _db.Exam on assessment.Assessment_ID equals exam.Exam_ID
+                             join interview in _db.Interview on assessment.Assessment_ID equals interview.Interview_ID
                              select new
                              {
                                  Candidate_ID = candidate.Candidate_ID,
@@ -272,29 +364,76 @@ namespace Project_ART.Controllers
                                  Middle_Initial = candidate.Middle_Initital,
                                  DISC = video.DISC_Trait,
                                  Resume_Score = resume.Resume_Score,
-                                 Photo = candidate.Photo
+                                 Photo = candidate.Photo,
+                                 Exam = exam.Exam_Score,
+                                 Interview = interview.Interview_Score
                              };
 
+            var weighting = _db.Weighting.Find(1);
+            double personalityScore = (double)(weighting.Personality);
+            double resumeScore = (double)(weighting.Resume) * .01;
+            double examScore = (double)(weighting.Exam) * .01;
+            double interviewScore = (double)(weighting.Interview) * .01;
+
+            foreach (var i in Candidates)
+            {
+                
+                var sampleData = new MLCandidateRanking.ModelInput()
+                {
+                    DISC_Personality = i.DISC,
+                    Resume_Score = (float)i.Resume_Score,
+                };
+
+                
+
+                //Load model and predict output
+                var result = MLCandidateRanking.Predict(sampleData).Score;
+
+                if (i.Exam == 0 || i.Interview == 0)
+                {
+                    var finalResult = "NA";
+                    TempData[i.Candidate_ID.ToString()] = finalResult.ToString();
+                    TempData[i.Candidate_ID.ToString() + "rank"] = (100 - i.Resume_Score).ToString() + finalResult.ToString();
+                }
+                else
+                {
+                    var finalResult = (int)(result[1] * personalityScore + (i.Resume_Score * resumeScore) + (i.Exam * examScore) + (i.Interview * interviewScore));
+                    TempData[i.Candidate_ID.ToString()] = finalResult.ToString() + "%";
+                    TempData[i.Candidate_ID.ToString() + "rank"] = ((100 - finalResult) * .1).ToString();
+                }
+
+
+
+
+              
+            }
+
             ViewBag.Candidates = Candidates.ToList();
+            ViewBag.ApprovedCount = Candidates.Count();
 
 
-            var PendingCount = _db.Status
-            .Where(o => o.Status == "Pending" && o.Is_Deleted == false)
-            .Count();
+            var pendingCandidates =
+                                         from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Pending")
+                                         join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                                         select new
+                                         {
+                                             Candidate_ID = candidate.Candidate_ID,
+                                         };
 
-            ViewBag.PendingCount = PendingCount;
+            ViewBag.PendingCount = pendingCandidates.Count();
 
-            var ApprovedCount = _db.Status
-            .Where(o => o.Status == "Approved" && o.Is_Deleted == false)
-            .Count();
 
-            ViewBag.ApprovedCount = ApprovedCount;
+            
 
-            var HiredCount = _db.Status
-            .Where(o => o.Status == "Hired" && o.Is_Deleted == false)
-            .Count();
+            var hiredCandidates =
+                             from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Hired")
+                             join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                             select new
+                             {
+                                 Candidate_ID = candidate.Candidate_ID,
+                             };
 
-            ViewBag.HiredCount = HiredCount;
+            ViewBag.HiredCount = hiredCandidates.Count();
 
             return View(obj);
 
@@ -307,10 +446,24 @@ namespace Project_ART.Controllers
 
             ViewBag.MatchedSkills = _db.Data.Where(x => x.Resume_ID == candidate.Resume_ID && x.Is_Deleted == false && x.Skill_Matched == true);
             ViewBag.OtherSkills = _db.Data.Where(x => x.Resume_ID == candidate.Resume_ID && x.Is_Deleted == false && x.Skill_Matched == false);
+            var assessmentID = _db.Assessment.Find(candidate.Assessment_ID);
+            var exam = _db.Exam.Find(assessmentID.Exam_ID);
+            var interview = _db.Interview.Find(assessmentID.Assessment_ID);
+
+            ViewBag.Exam = exam.Exam_Score;
+            ViewBag.Interview = interview.Interview_Score;
+
             return View();
         }
-        public IActionResult Hired(int? id)
+        public IActionResult Hired(int? id ,int? removeCandidate)
         {
+            if (removeCandidate != null)
+            {
+                var approvedCandidate = _db.Status.Find(removeCandidate);
+                approvedCandidate.Status = "Pending";
+                _db.Status.Update(approvedCandidate);
+                _db.SaveChanges();
+            }
 
             dynamic obj = new ExpandoObject();
 
@@ -325,7 +478,7 @@ namespace Project_ART.Controllers
                 return NotFound();
             }
 
-          
+
 
 
             var Candidates =
@@ -333,6 +486,9 @@ namespace Project_ART.Controllers
                              join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
                              join resume in _db.Resume.Where(x => x.Is_Deleted == false) on candidate.Resume_ID equals resume.Resume_ID
                              join video in _db.Introduction.Where(x => x.Is_Deleted == false) on candidate.Introduction_ID equals video.Introduction_ID
+                             join assessment in _db.Assessment on candidate.Assessment_ID equals assessment.Assessment_ID
+                             join exam in _db.Exam on assessment.Assessment_ID equals exam.Exam_ID
+                             join interview in _db.Interview on assessment.Assessment_ID equals interview.Interview_ID
                              select new
                              {
                                  Candidate_ID = candidate.Candidate_ID,
@@ -341,33 +497,153 @@ namespace Project_ART.Controllers
                                  Middle_Initial = candidate.Middle_Initital,
                                  DISC = video.DISC_Trait,
                                  Resume_Score = resume.Resume_Score,
-                                 Photo = candidate.Photo
+                                 Photo = candidate.Photo,
+                                 Exam = exam.Exam_Score,
+                                 Interview = interview.Interview_Score
                              };
 
-            ViewBag.Candidates = Candidates.ToList();
 
 
-            var PendingCount = _db.Status
-            .Where(o => o.Status == "Pending" && o.Is_Deleted == false)
-            .Count();
+            int index = 0;
+            foreach (var i in Candidates.OrderByDescending(x => x.Resume_Score).ToList())
+            {
 
-            ViewBag.PendingCount = PendingCount;
+                var sampleData = new MLCandidateRanking.ModelInput()
+                {
+                    DISC_Personality = i.DISC,
+                    Resume_Score = (float)i.Resume_Score,
+                };
 
-            var ApprovedCount = _db.Status
-            .Where(o => o.Status == "Approved" && o.Is_Deleted == false)
-            .Count();
 
-            ViewBag.ApprovedCount = ApprovedCount;
+                //Load model and predict output
+                var result = MLCandidateRanking.Predict(sampleData).Score;
 
-            var HiredCount = _db.Status
-            .Where(o => o.Status == "Hired" && o.Is_Deleted == false)
-            .Count();
+                if (i.Exam == 0 || i.Interview == 0)
+                {
+                    var finalResult = "NA";
+                    TempData[i.Candidate_ID.ToString()] = finalResult.ToString();
+                    TempData[i.Candidate_ID.ToString() + "rank"] = (100 - i.Resume_Score).ToString()+finalResult.ToString();
+                }
+                else
+                {
+                    var finalResult = (int)(result[1] * 10 + (i.Resume_Score * .20) + (i.Exam * .30) + (i.Interview * .40) + (Candidates.Count() - index));
+                    TempData[i.Candidate_ID.ToString()] = finalResult.ToString() + "%";
+                    TempData[i.Candidate_ID.ToString() + "rank"] = ((100 - finalResult) * .1).ToString();
+                }
 
-            ViewBag.HiredCount = HiredCount;
+
+
+
+
+                index++;
+            }
+
+
+
+            ViewBag.Candidates = Candidates.OrderByDescending(x => x.Resume_Score).ToList();
+
+            var approvedCandidates =
+                                         from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Approved")
+                                         join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                                         select new
+                                         {
+                                             Candidate_ID = candidate.Candidate_ID,
+                                         };
+
+            ViewBag.ApprovedCount = approvedCandidates.Count();
+
+
+
+
+
+            var pendingCandidates =
+                                         from status in _db.Status.Where(x => x.Is_Deleted == false && x.Status == "Pending")
+                                         join candidate in _db.Candidate.Where(x => x.Is_Deleted == false && x.Job_Application_ID == id) on status.Candidate_ID equals candidate.Candidate_ID
+                                         select new
+                                         {
+                                             Candidate_ID = candidate.Candidate_ID,
+                                         };
+
+            ViewBag.PendingCount = pendingCandidates.Count();
+
+
+
+
+
+            ViewBag.HiredCount = Candidates.Count();
 
             return View(obj);
         }
+        public IActionResult HiredCandidate(int? id)
+        {
+            var candidate = _db.Candidate.Find(id);
+            ViewBag.Candidates = candidate;
 
-       
+            ViewBag.MatchedSkills = _db.Data.Where(x => x.Resume_ID == candidate.Resume_ID && x.Is_Deleted == false && x.Skill_Matched == true);
+            ViewBag.OtherSkills = _db.Data.Where(x => x.Resume_ID == candidate.Resume_ID && x.Is_Deleted == false && x.Skill_Matched == false);
+            var assessmentID = _db.Assessment.Find(candidate.Assessment_ID);
+            var exam = _db.Exam.Find(assessmentID.Exam_ID);
+            var interview = _db.Interview.Find(assessmentID.Assessment_ID);
+
+            ViewBag.Exam = exam.Exam_Score;
+            ViewBag.Interview = interview.Interview_Score;
+
+            return View();
+        }
+
+
+
+
+
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> SubmitAssessment()
+        {
+
+            var data = Request.Form;
+            
+                int candidateID = Int32.Parse(data["candidateID"]);
+                var score = Int32.Parse(data["score"]);
+                
+                var status = _db.Status.Find(candidateID);
+                status.Assessed_By = HttpContext.Session.GetInt32("Id");
+                var candidate = _db.Candidate.Find(candidateID);
+                var assessment = _db.Assessment.Find(candidate.Assessment_ID);
+                var exam = _db.Exam.Find(assessment.Exam_ID);
+
+                exam.Exam_Score = score;
+                _db.Status.Update(status);
+                _db.Exam.Update(exam);
+                _db.SaveChanges();
+            
+                
+            return Json(HttpStatusCode.BadRequest);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> SubmitInterview()
+        {
+
+            var data = Request.Form;
+
+            int candidateID = Int32.Parse(data["candidateID"]);
+            var score = Int32.Parse(data["score"]);
+
+            var candidate = _db.Candidate.Find(candidateID);
+            var assessment = _db.Assessment.Find(candidate.Assessment_ID);
+            var interview = _db.Interview.Find(assessment.Exam_ID);
+
+            interview.Interview_Score = score;
+            _db.Interview.Update(interview);
+            _db.SaveChanges();
+
+
+            return Json(HttpStatusCode.BadRequest);
+        }
+
+
     }
 }

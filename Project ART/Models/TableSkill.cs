@@ -13,8 +13,6 @@ namespace Project_ART.Models
         [DisplayName("Skill")]
         public string? Data { get; set; }
 
-        [DisplayName("Skill Matched")]
-        public bool? Skill_Matched { get; set; } = false;
 
         [DisplayName("Is Deleted")]
         public bool? Is_Deleted { get; set; } = false;

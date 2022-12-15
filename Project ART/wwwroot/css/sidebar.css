@@ -7571,11 +7571,13 @@ button.bg-dark:focus {
 }
 
 .w-25 {
-  width: 25% !important;
+    width: 25% !important;
+    max-width: 100px !important;
 }
 
 .w-50 {
-  width: 50% !important;
+    width: 50% !important;
+    max-width: 100px !important;
 }
 
 .w-75 {
@@ -7591,11 +7593,13 @@ button.bg-dark:focus {
 }
 
 .h-25 {
-  height: 25% !important;
+    height: 25% !important;
+    max-height: 100px !important;
 }
 
 .h-50 {
-  height: 50% !important;
+    height: 50% !important;
+    max-height: 100px !important;
 }
 
 .h-75 {

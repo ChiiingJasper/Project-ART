@@ -1,11 +1,23 @@
 ﻿{
   "Scenario": "Classification",
   "DataSource": {
-    "Type": "SQL",
+    "Type": "TabularFile",
     "Version": 1,
+    "FilePath": "C:\\Users\\Ching\\Desktop\\Pending Candidates.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
     "ColumnProperties": [
       {
-        "ColumnName": "Candidate_Details_ID",
+        "ColumnName": "DISC_Personality",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 3
+      },
+      {
+        "ColumnName": "Resume_Score",
         "ColumnPurpose": "Feature",
         "ColumnDataFormat": "Single",
         "IsCategorical": false,
@@ -13,27 +25,14 @@
         "Version": 3
       },
       {
-        "ColumnName": "Introduction_Video_Data",
-        "ColumnPurpose": "Feature",
-        "ColumnDataFormat": "String",
-        "IsCategorical": false,
-        "Type": "Column",
-        "Version": 3
-      },
-      {
-        "ColumnName": "DISC_Personality",
+        "ColumnName": "Approved",
         "ColumnPurpose": "Label",
-        "ColumnDataFormat": "String",
-        "IsCategorical": false,
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
         "Type": "Column",
         "Version": 3
       }
-    ],
-    "ConnectionString": "Data Source=(localdb)\\Local;Initial Catalog=ART;Integrated Security=True",
-    "CommandString": "SELECT CAST([Candidate_Details_ID] as REAL), [Introduction_Video_Data], [DISC_Personality] FROM [dbo].[PersonalityPrediction]",
-    "DatabaseName": "ART",
-    "SelectedTableDbo": "dbo",
-    "TableName": "PersonalityPrediction"
+    ]
   },
   "Environment": {
     "Type": "LocalCPU",
@@ -46,22 +45,26 @@
       {
         "Version": 1,
         "Type": "Trial",
-        "TrainerName": "FastTreeOva",
-        "Score": 0.0,
-        "RuntimeInSeconds": 1.054,
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.093,
         "Parameter": {
-          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e11",
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e8 * e11",
           "e0": {
             "OutputColumnNames": [
-              "Candidate_Details_ID"
+              "DISC_Personality"
             ],
             "InputColumnNames": [
-              "Candidate_Details_ID"
+              "DISC_Personality"
             ]
           },
           "e1": {
-            "InputColumnName": "Introduction_Video_Data",
-            "OutputColumnName": "Introduction_Video_Data"
+            "OutputColumnNames": [
+              "Resume_Score"
+            ],
+            "InputColumnNames": [
+              "Resume_Score"
+            ]
           },
           "e11": {
             "OutputColumnName": "PredictedLabel",
@@ -69,36 +72,42 @@
           },
           "e2": {
             "InputColumnNames": [
-              "Candidate_Details_ID",
-              "Introduction_Video_Data"
+              "DISC_Personality",
+              "Resume_Score"
             ],
             "OutputColumnName": "Features"
           },
           "e3": {
-            "OutputColumnName": "DISC_Personality",
-            "InputColumnName": "DISC_Personality"
+            "OutputColumnName": "Approved",
+            "InputColumnName": "Approved"
+          },
+          "e8": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
           },
           "e4": {
             "NumberOfLeaves": 4,
             "MinimumExampleCountPerLeaf": 20,
             "NumberOfTrees": 4,
-            "MaximumBinCountPerFeature": 254,
+            "MaximumBinCountPerFeature": 255,
             "FeatureFraction": 1.0,
             "LearningRate": 0.099999999999999978,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e10": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e5": {
             "NumberOfTrees": 4,
             "NumberOfLeaves": 4,
             "FeatureFraction": 1.0,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e6": {
@@ -111,116 +120,19 @@
             "FeatureFraction": 1.0,
             "L1Regularization": 2E-10,
             "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e7": {
             "L1Regularization": 1.0,
             "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e8": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e9": {
             "L1Regularization": 1.0,
             "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          }
-        }
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "FastTreeOva",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.161,
-        "Parameter": {
-          "_SCHEMA_": "e0 * e1 * e2 * e3 * e4 * e11",
-          "e0": {
-            "OutputColumnNames": [
-              "Candidate_Details_ID"
-            ],
-            "InputColumnNames": [
-              "Candidate_Details_ID"
-            ]
-          },
-          "e1": {
-            "InputColumnName": "Introduction_Video_Data",
-            "OutputColumnName": "Introduction_Video_Data"
-          },
-          "e11": {
-            "OutputColumnName": "PredictedLabel",
-            "InputColumnName": "PredictedLabel"
-          },
-          "e2": {
-            "InputColumnNames": [
-              "Candidate_Details_ID",
-              "Introduction_Video_Data"
-            ],
-            "OutputColumnName": "Features"
-          },
-          "e3": {
-            "OutputColumnName": "DISC_Personality",
-            "InputColumnName": "DISC_Personality"
-          },
-          "e4": {
-            "NumberOfLeaves": 4,
-            "MinimumExampleCountPerLeaf": 21,
-            "NumberOfTrees": 4,
-            "MaximumBinCountPerFeature": 328,
-            "FeatureFraction": 0.97680253059832511,
-            "LearningRate": 0.99999977667298645,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e10": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e5": {
-            "NumberOfTrees": 4,
-            "NumberOfLeaves": 4,
-            "FeatureFraction": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e6": {
-            "NumberOfLeaves": 4,
-            "MinimumExampleCountPerLeaf": 20,
-            "LearningRate": 1.0,
-            "NumberOfTrees": 4,
-            "SubsampleFraction": 1.0,
-            "MaximumBinCountPerFeature": 255,
-            "FeatureFraction": 1.0,
-            "L1Regularization": 2E-10,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e7": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e8": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e9": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           }
         }
@@ -229,21 +141,25 @@
         "Version": 1,
         "Type": "Trial",
         "TrainerName": "LbfgsMaximumEntropyMulti",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.192,
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.017,
         "Parameter": {
           "_SCHEMA_": "e0 * e1 * e2 * e3 * e8 * e11",
           "e0": {
             "OutputColumnNames": [
-              "Candidate_Details_ID"
+              "DISC_Personality"
             ],
             "InputColumnNames": [
-              "Candidate_Details_ID"
+              "DISC_Personality"
             ]
           },
           "e1": {
-            "InputColumnName": "Introduction_Video_Data",
-            "OutputColumnName": "Introduction_Video_Data"
+            "OutputColumnNames": [
+              "Resume_Score"
+            ],
+            "InputColumnNames": [
+              "Resume_Score"
+            ]
           },
           "e11": {
             "OutputColumnName": "PredictedLabel",
@@ -251,25 +167,25 @@
           },
           "e2": {
             "InputColumnNames": [
-              "Candidate_Details_ID",
-              "Introduction_Video_Data"
+              "DISC_Personality",
+              "Resume_Score"
             ],
             "OutputColumnName": "Features"
           },
           "e3": {
-            "OutputColumnName": "DISC_Personality",
-            "InputColumnName": "DISC_Personality"
+            "OutputColumnName": "Approved",
+            "InputColumnName": "Approved"
           },
           "e8": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
+            "L1Regularization": 0.03125,
+            "L2Regularization": 1.86234915,
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e10": {
             "L1Regularization": 1.0,
             "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e4": {
@@ -279,14 +195,14 @@
             "MaximumBinCountPerFeature": 255,
             "FeatureFraction": 1.0,
             "LearningRate": 0.099999999999999978,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e5": {
             "NumberOfTrees": 4,
             "NumberOfLeaves": 4,
             "FeatureFraction": 1.0,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e6": {
@@ -299,258 +215,312 @@
             "FeatureFraction": 1.0,
             "L1Regularization": 2E-10,
             "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e7": {
             "L1Regularization": 1.0,
             "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           },
           "e9": {
             "L1Regularization": 1.0,
             "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
+            "LabelColumnName": "Approved",
             "FeatureColumnName": "Features"
           }
         }
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "LightGbmMulti",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.129,
-        "Parameter": {
-          "_SCHEMA_": "e0 * e1 * e2 * e3 * e6 * e11",
-          "e0": {
-            "OutputColumnNames": [
-              "Candidate_Details_ID"
-            ],
-            "InputColumnNames": [
-              "Candidate_Details_ID"
-            ]
-          },
-          "e1": {
-            "InputColumnName": "Introduction_Video_Data",
-            "OutputColumnName": "Introduction_Video_Data"
-          },
-          "e11": {
-            "OutputColumnName": "PredictedLabel",
-            "InputColumnName": "PredictedLabel"
-          },
-          "e2": {
-            "InputColumnNames": [
-              "Candidate_Details_ID",
-              "Introduction_Video_Data"
-            ],
-            "OutputColumnName": "Features"
-          },
-          "e3": {
-            "OutputColumnName": "DISC_Personality",
-            "InputColumnName": "DISC_Personality"
-          },
-          "e6": {
-            "NumberOfLeaves": 4,
-            "MinimumExampleCountPerLeaf": 20,
-            "LearningRate": 1.0,
-            "NumberOfTrees": 4,
-            "SubsampleFraction": 1.0,
-            "MaximumBinCountPerFeature": 254,
-            "FeatureFraction": 1.0,
-            "L1Regularization": 2E-10,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e10": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e4": {
-            "NumberOfLeaves": 4,
-            "MinimumExampleCountPerLeaf": 20,
-            "NumberOfTrees": 4,
-            "MaximumBinCountPerFeature": 255,
-            "FeatureFraction": 1.0,
-            "LearningRate": 0.099999999999999978,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e5": {
-            "NumberOfTrees": 4,
-            "NumberOfLeaves": 4,
-            "FeatureFraction": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e7": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e8": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e9": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          }
-        }
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "LightGbmMulti",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.091,
-        "Parameter": {
-          "_SCHEMA_": "e0 * e1 * e2 * e3 * e6 * e11",
-          "e0": {
-            "OutputColumnNames": [
-              "Candidate_Details_ID"
-            ],
-            "InputColumnNames": [
-              "Candidate_Details_ID"
-            ]
-          },
-          "e1": {
-            "InputColumnName": "Introduction_Video_Data",
-            "OutputColumnName": "Introduction_Video_Data"
-          },
-          "e11": {
-            "OutputColumnName": "PredictedLabel",
-            "InputColumnName": "PredictedLabel"
-          },
-          "e2": {
-            "InputColumnNames": [
-              "Candidate_Details_ID",
-              "Introduction_Video_Data"
-            ],
-            "OutputColumnName": "Features"
-          },
-          "e3": {
-            "OutputColumnName": "DISC_Personality",
-            "InputColumnName": "DISC_Personality"
-          },
-          "e6": {
-            "NumberOfLeaves": 4,
-            "MinimumExampleCountPerLeaf": 22,
-            "LearningRate": 0.98362109289152933,
-            "NumberOfTrees": 4,
-            "SubsampleFraction": 0.99999977667298645,
-            "MaximumBinCountPerFeature": 275,
-            "FeatureFraction": 0.94229632994936419,
-            "L1Regularization": 2E-10,
-            "L2Regularization": 0.087171022350328045,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e10": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e4": {
-            "NumberOfLeaves": 4,
-            "MinimumExampleCountPerLeaf": 20,
-            "NumberOfTrees": 4,
-            "MaximumBinCountPerFeature": 255,
-            "FeatureFraction": 1.0,
-            "LearningRate": 0.099999999999999978,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e5": {
-            "NumberOfTrees": 4,
-            "NumberOfLeaves": 4,
-            "FeatureFraction": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e7": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e8": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 1.0,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          },
-          "e9": {
-            "L1Regularization": 1.0,
-            "L2Regularization": 0.1,
-            "LabelColumnName": "DISC_Personality",
-            "FeatureColumnName": "Features"
-          }
-        }
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "FastForestOva",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.842
       },
       {
         "Version": 1,
         "Type": "Trial",
         "TrainerName": "LbfgsLogisticRegressionOva",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.084
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.042,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e7 * e11",
+          "e0": {
+            "OutputColumnNames": [
+              "DISC_Personality"
+            ],
+            "InputColumnNames": [
+              "DISC_Personality"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "Resume_Score"
+            ],
+            "InputColumnNames": [
+              "Resume_Score"
+            ]
+          },
+          "e11": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnNames": [
+              "DISC_Personality",
+              "Resume_Score"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "OutputColumnName": "Approved",
+            "InputColumnName": "Approved"
+          },
+          "e7": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e6": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.036,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e7 * e11",
+          "e0": {
+            "OutputColumnNames": [
+              "DISC_Personality"
+            ],
+            "InputColumnNames": [
+              "DISC_Personality"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "Resume_Score"
+            ],
+            "InputColumnNames": [
+              "Resume_Score"
+            ]
+          },
+          "e11": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnNames": [
+              "DISC_Personality",
+              "Resume_Score"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "OutputColumnName": "Approved",
+            "InputColumnName": "Approved"
+          },
+          "e7": {
+            "L1Regularization": 0.03125,
+            "L2Regularization": 1.86234915,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e6": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e8": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          }
+        }
       },
       {
         "Version": 1,
         "Type": "Trial",
         "TrainerName": "LbfgsMaximumEntropyMulti",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.143
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "LbfgsMaximumEntropyMulti",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.052
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "LbfgsMaximumEntropyMulti",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.126
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "LightGbmMulti",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.081
-      },
-      {
-        "Version": 1,
-        "Type": "Trial",
-        "TrainerName": "LightGbmMulti",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.096
+        "Score": 1.0,
+        "RuntimeInSeconds": 0.024,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e3 * e8 * e11",
+          "e0": {
+            "OutputColumnNames": [
+              "DISC_Personality"
+            ],
+            "InputColumnNames": [
+              "DISC_Personality"
+            ]
+          },
+          "e1": {
+            "OutputColumnNames": [
+              "Resume_Score"
+            ],
+            "InputColumnNames": [
+              "Resume_Score"
+            ]
+          },
+          "e11": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "InputColumnNames": [
+              "DISC_Personality",
+              "Resume_Score"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e3": {
+            "OutputColumnName": "Approved",
+            "InputColumnName": "Approved"
+          },
+          "e8": {
+            "L1Regularization": 0.0532500856,
+            "L2Regularization": 0.110510908,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e10": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "NumberOfTrees": 4,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "LearningRate": 0.099999999999999978,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e5": {
+            "NumberOfTrees": 4,
+            "NumberOfLeaves": 4,
+            "FeatureFraction": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e6": {
+            "NumberOfLeaves": 4,
+            "MinimumExampleCountPerLeaf": 20,
+            "LearningRate": 1.0,
+            "NumberOfTrees": 4,
+            "SubsampleFraction": 1.0,
+            "MaximumBinCountPerFeature": 255,
+            "FeatureFraction": 1.0,
+            "L1Regularization": 2E-10,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e7": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          },
+          "e9": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "Approved",
+            "FeatureColumnName": "Features"
+          }
+        }
       }
     ],
     "Estimators": {
-      "e0": "ReplaceMissingValues",
-      "e1": "FeaturizeText",
+      "e0": "OneHotEncoding",
+      "e1": "ReplaceMissingValues",
       "e2": "Concatenate",
       "e3": "MapValueToKey",
       "e4": "FastTreeOva",
@@ -570,8 +540,8 @@
   "TrainingOption": {
     "Version": 0,
     "Type": "ClassificationTrainingOption",
-    "TrainingTime": 60,
-    "LabelColumn": "DISC_Personality",
+    "TrainingTime": 100,
+    "LabelColumn": "Approved",
     "Seed": 0
   }
 }

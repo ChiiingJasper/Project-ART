@@ -1,6 +1,6 @@
 ﻿@model dynamic
 @{
-    ViewData["Title"] = "View " + Model.JobApplication.Job;
+    ViewData["Title"] = "Pending " + Model.JobApplication.Job;
 }
 
 <link href="~/css/customstyle.css" rel="stylesheet">
@@ -135,21 +135,8 @@
                                             <div class="card shadow mb-4">
                                                 <!-- Card Header - Dropdown -->
                                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h3 class="m-0  text-dark">#@(@ViewBag.Candidates.IndexOf(obj)+1)
-                                                        @{
-                                                            if (@ViewBag.Candidates.IndexOf(obj) == 0)
-                                                            {
-                                                                <i class="fa-solid fa-medal " style="color:gold"></i>
-                                                            }
-                                                            if (@ViewBag.Candidates.IndexOf(obj) == 1)
-                                                            {
-                                                                <i class="fa-solid fa-medal " style="color:silver"></i>
-                                                            }
-                                                            if (@ViewBag.Candidates.IndexOf(obj) == 2)
-                                                            {
-                                                                <i class="fa-solid fa-medal " style="color:sandybrown"></i>
-                                                            }
-                                                        }
+                                                    <h3 class="m-0  text-dark ranking">
+                                                        @(TempData[obj.Candidate_ID.ToString() + "Rank"])
                                                         </h3>
                                                     <div class="dropdown no-arrow">
                                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -162,8 +149,7 @@
                                                             <a class="dropdown-item" asp-controller="JobListing" asp-action="PendingCandidate" asp-route-id="@obj.Candidate_ID">View</a>
 
 
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -188,7 +174,7 @@
                                                     </div>
 
                                                         <div class="col-sm-3 text-center">
-                                                            Total:<h3>@(TempData[""+@obj.Last_Name] + "%")</h3>
+                                                            Total:<h3>@(TempData[obj.Candidate_ID.ToString()])</h3>
                                                         </div>
 
                                                     
@@ -223,4 +209,5 @@
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
 
+    <script src="~/js/ranking.js"></script>
 }

@@ -1,6 +1,6 @@
 ﻿@model dynamic
 @{
-    ViewData["Title"] = "View " + Model.JobApplication.Job;
+    ViewData["Title"] = "Hired " + Model.JobApplication.Job;
 }
 
 <link href="~/css/customstyle.css" rel="stylesheet">
@@ -136,22 +136,8 @@
                                             <div class="card shadow mb-4">
                                                 <!-- Card Header - Dropdown -->
                                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h3 class="m-0  text-dark">
-                                                        #@(@ViewBag.Candidates.IndexOf(obj) + 1)
-                                                        @{
-                                                            if (@ViewBag.Candidates.IndexOf(obj) == 0)
-                                                            {
-                                                                <i class="fa-solid fa-medal " style="color:gold"></i>
-                                                            }
-                                                            if (@ViewBag.Candidates.IndexOf(obj) == 1)
-                                                            {
-                                                                <i class="fa-solid fa-medal " style="color:silver"></i>
-                                                            }
-                                                            if (@ViewBag.Candidates.IndexOf(obj) == 2)
-                                                            {
-                                                                <i class="fa-solid fa-medal " style="color:sandybrown"></i>
-                                                            }
-                                                        }
+                                                    <h3 class="m-0  text-dark ranking">
+                                                        #@(TempData[obj.Candidate_ID.ToString() + "Rank"])
                                                     </h3>
                                                     <div class="dropdown no-arrow">
                                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -161,11 +147,10 @@
                                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                          aria-labelledby="dropdownMenuLink">
                                                             <div class="dropdown-header">Action</div>
-                                                            <a class="dropdown-item" asp-controller="JobListing" asp-action="PendingCandidate" asp-route-id="@obj.Candidate_ID">View</a>
+                                                            <a class="dropdown-item" asp-controller="JobListing" asp-action="HiredCandidate" asp-route-id="@obj.Candidate_ID">View</a>
 
 
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                          
                                                         </div>
                                                     </div>
                                                 </div>
@@ -180,20 +165,20 @@
 
 
                                                         <div class="d-inline-flex col-sm-1 align-self-center flex-center-start text-right justify-content-center">
-                                                            <i class="bi bi-dot dominance fa-3x"> </i>
+                                                            <i class="bi bi-dot @obj.DISC fa-3x"> </i>
                                                             @obj.DISC
                                                         </div>
                                                         <div class="col-sm-2 text-center">
                                                             Resume:<h3>@(@obj.Resume_Score + "%")</h3>
                                                         </div>
                                                         <div class="col-sm-2 text-center">
-                                                            Assessment:<h3>50%</h3>
+                                                            Assessment:<h3>@(@obj.Exam + "%")</h3>
                                                         </div>
                                                         <div class="col-sm-2 text-center">
-                                                            Interview:<h3>90%</h3>
+                                                            Interview:<h3>@(@obj.Interview + "%")</h3>
                                                         </div>
                                                         <div class="col-sm-2 text-center">
-                                                            Total:<h3>83%</h3>
+                                                            Total:<h3>@(TempData[obj.Candidate_ID.ToString()])</h3>
                                                         </div>
 
 
@@ -226,5 +211,5 @@
 
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
-
+    <script src="~/js/ranking.js"></script>
 }

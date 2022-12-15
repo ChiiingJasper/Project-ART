@@ -1,15 +1,9 @@
 'use strict';
-$("#time").hide();
+
 /* globals MediaRecorder */
 
-$("#videoButton").click(function () {
-    setTimeout(function () {
-        $("#question").fadeOut(500, function () {
-            $("#time").fadeIn(500);
-        });
-        
-    }, 3000);
-});
+
+
 document.querySelector('button#stop').disabled = true;
 let mediaRecorder;
 let recordedBlobs;
@@ -470,3 +464,17 @@ $("#stopVideo").on('click', function () {
 });
 
 
+$(document).ready(function () {
+    $('#videoButton').click(function () {
+        document.querySelector('button#start').disabled = true;
+        $("#time").hide();
+        $("#question").show();
+        setTimeout(function () {
+            $("#question").fadeOut(500, function () {
+                $("#time").fadeIn(500);
+                document.querySelector('button#start').disabled = false;
+            });
+
+        }, 3000);
+    });
+});

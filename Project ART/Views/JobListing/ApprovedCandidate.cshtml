@@ -31,7 +31,7 @@
                                     <h4>@ViewBag.Candidates.First_Name @ViewBag.Candidates.Last_Name</h4>
                                     <p class="text-secondary mb-1"></p>
                                     <p class="text-muted font-size-sm pb-4">Candidate ID: #@ViewBag.Candidates.Candidate_ID</p>
-
+                                    <input id="candidateIDToSubmit" hidden value="@ViewBag.Candidates.Candidate_ID" />
                                 </div>
                             </div>
                         </div>
@@ -180,8 +180,8 @@
                                 <h6 class="mb-0">Assessment Score</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <a data-toggle="modal" data-target="#assessment" href="#" >
-                                    50/100
+                                    <a data-toggle="modal" data-target="#assessment" href="#" id="assessmentbtn">
+                                        @(ViewBag.Exam+"/100")
                                     </a>
                                 </div>
                             </div>
@@ -192,8 +192,8 @@
                                 <h6 class="mb-0">Interview Score</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <a data-toggle="modal" data-target="#interview" href="#" id="videoModalPlayer">
-                                    90/100
+                                    <a data-toggle="modal" data-target="#interview" href="#" id="interivewbtn">
+                                        @(ViewBag.Interview + "/100")
                                     </a>
                                 </div>
                             </div>
@@ -275,11 +275,11 @@
             </div>
             <div class="modal-body justify-content-center">
 
-                <input class="form-control qualification my-5" id="qualification" placeholder="Enter Score" type="number" />
+                <input class="form-control assessment my-5" id="assessmentInput" placeholder="Enter Score" type="number" min="0" max="100" />
             </div>
             <div class="modal-footer">
-                <a id="close" href="https://localhost:7221/JobListing/ApprovedCandidate/140" class="btn btn-success" >Enter</a>
-                <a id="close" class="btn btn-secondary" type="button" data-dismiss="modal">Close</a>
+                <a id="assessmentSubmit" href="#" data-dismiss="modal" class="btn btn-success">Enter</a>
+                <a id="close" class="btn btn-secondary" href="#" data-dismiss="modal">Close</a>
             </div>
         </div>
     </div>
@@ -295,16 +295,16 @@
             </div>
             <div class="modal-body justify-content-center">
 
-                <input class="form-control qualification my-5" id="qualification" placeholder="Enter Score" type="number" />
+                <input class="form-control qualification my-5" id="interviewInput" placeholder="Enter Score" type="number" />
             </div>
             <div class="modal-footer">
-                <a id="close" href="https://localhost:7221/JobListing/ApprovedCandidate/140" class="btn btn-success">Enter</a>
-                <a id="close" class="btn btn-secondary" type="button" data-dismiss="modal">Close</a>
+                <a id="interviewSubmit" href="#" data-dismiss="modal" class="btn btn-success">Enter</a>
+                <a id="close" class="btn btn-secondary" href="#" data-dismiss="modal">Close</a>
             </div>
         </div>
     </div>
 </div>
 
 
-
+<script src="~/js/assessment.js"></script>
 <script src="~/js/videoPlayer.js"></script>
